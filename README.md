@@ -4,7 +4,7 @@ A collaborative study of many repelling random points confined to the unit disk.
 
 Every result, method, or proof on this Git repository is completely free to reuse. If you want to take it, write your own article, and add to the noise, you are free to do so. However, we believe that the current capabilities of AI should push us toward a more collaborative, less ego-driven way of doing mathematics. We generally believe that there is no point in claiming for yourself results that are or can be easily AI-generated (more info in the [manifesto](A%20Manifesto%20for%20Renewing%20the%20Practice%20of%20Mathematics.pdf)). So we advise against participating in the noise and invite you to join us. You are very welcome.
 
-It is still not very clear how we will work together, but there is a [Discord server available for discussion](https://discord.gg/fcsYGk7NT).
+It is still not very clear how we will work together, but there is a [Discord server available for discussion](https://discord.gg/m4VbUtkY6).
 
 The final aim is to build a coherent, checked, reader-friendly account of the mathematics: what is known, which arguments work, and which questions remain. The ultimate goal could be a future manuscript under a collective name, online videos, or anything that allows us to share this mathematics. All of this comes with the idea of rejecting ownership of results or proofs, as well as individual credit.
 
