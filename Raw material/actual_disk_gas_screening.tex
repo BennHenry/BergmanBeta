@@ -1,0 +1,3169 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=26mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools,microtype}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newcommand{\D}{\mathbb D}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Pp}{\mathbb P}
+\newcommand{\dd}{\,d}
+\DeclareMathOperator{\TV}{TV}
+\DeclareMathOperator{\osc}{osc}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\title{Screening estimates for the actual unweighted disk gas\\[4pt]
+\large Boundary attenuation and exactly centered reference gases}
+\author{}
+\date{8 September 2026}
+\begin{document}
+\maketitle
+\vspace{-1.5em}
+\begin{abstract}
+We prove screening estimates beyond the determinantal case for the
+original finite unweighted disk log gas. For every $0<\beta\le2$,
+a negative-type distance argument gives a particle-number-uniform
+susceptibility inequality under every common one-body weight. Its
+consequences include generating-functional bounds and total-variation
+stability of the complete particle law under perturbations with small
+quadratic intensity cost. A positive radial-gap mixture supplies a
+uniform hyperbolic intensity bound at every temperature. Combining
+these facts, distant Green-potential tilts have vanishing effect on
+the actual law, uniformly in $N$, and the full exterior Green force
+has vanishing mean-square tail. The limiting Green force is therefore
+recoverable from the limiting exterior configuration. Independently,
+the nondegenerate outermost-radius boundary statistic decouples from
+the entire local law at rate $O(N^{-1})$ for every $\beta>0$.
+At $\beta=2$ we prove full selected-exterior attenuation at rate
+$O(1-R^2)$, uniformly in $N$, by reversing the conditioning and
+computing the distant response to an interior hole.
+We also construct an exact short-range reference representation,
+including its count weights, with a uniformly small comparison norm
+for $0<\beta\le1/4$. For $0<\beta\le1/20$, a convergent complex
+cluster expansion gives a periodic restoring potential in the exact
+imaginary Gaussian-field representation. A self-consistent reference
+then cancels the linear field term exactly while retaining these
+uniform small-temperature bounds. A separate strongly convex
+construction gives exact canonical centering at every $N$ and
+$0<\beta<2$. The remaining large-field and normalization problems
+are not discarded.
+Appendices give a non-determinantal two-to-one deletion coupling and
+whole-local-law linear response at $\beta=2$. Independence from the
+entire distant exterior away from $2$, and the conjectured intensity
+coefficient, remain unproved.
+\end{abstract}
+\clearpage
+\tableofcontents
+\clearpage
+
+\section{The actual model and the scope of the results}
+The finite gas throughout the note is
+\[
+ P_{N,\beta}(d\mathbf z)
+ =\frac1{Z_N(\beta)}\prod_{i<j}|z_i-z_j|^\beta
+                   \prod_i\mu(dz_i),\qquad
+ \mu=\frac{dA}{\pi},\quad z_i\in\D,\quad\beta>0.
+\]
+Write $\Xi_N=\sum_i\delta_{z_i}$ and $B_r=\{|z|<r\}$.
+Intensities $\rho_{N,\beta}$ are relative to $\mu$. Use curvature
+$-1$ hyperbolic distance $d$ and area
+\[
+ \nu(dz)=\frac{\mu(dz)}{(1-|z|^2)^2},\qquad
+ d(0,z)=2\operatorname{artanh}|z|.
+\]
+The hyperbolic ball of radius $L$ has $\nu$-volume $\sinh^2(L/2)$.
+For probabilities, $\TV(P,Q)=\sup_E|P(E)-Q(E)|$ takes values in
+$[0,1]$. Thus a TV estimate for a point-process restriction controls
+all its positions and count probabilities at once.
+
+The full boundary target is, for fixed $r<1$,
+\begin{equation}\label{eq:full-exterior-target}
+ \sup_N\mathbb E\TV\left(
+  \mathcal L(\Xi_N|_{B_r}\mid\Xi_N|_{\D\setminus B_R}),
+  \mathcal L(\Xi_N|_{B_r})\right)\longrightarrow0
+       \quad(R\uparrow1).
+\end{equation}
+The results below establish specific parts of this program at fixed
+temperatures. Theorem~\ref{thm:full-exterior-beta-two} proves
+\eqref{eq:full-exterior-target} at $\beta=2$, including all local
+counts, for boundary data selected by the actual finite gases.
+It remains unproved away from the determinantal point.
+The following distinctions are maintained:
+\begin{enumerate}
+\item The susceptibility and Green-tail estimates use the original
+canonical gas and hold for the whole interval $0<\beta\le2$.
+\item The radial-scale theorem conditions on one nondegenerate
+statistic measurable from a distant exterior; it does not condition
+on every detail of that exterior.
+\item The small reference norm belongs to a specified short-range
+reference law. The exact original law retains an additional tilt.
+\item Exact self-consistent centering removes the reference's linear
+field term. The canonical construction does not automatically
+inherit the grandcanonical influence bound or its phase coercivity.
+\item The temperature-response theorem concerns derivatives taken
+at $2$ before $N\to\infty$; it does not control a fixed nonlinear
+temperature interval.
+\end{enumerate}
+
+The central new input is
+\begin{equation}\label{eq:intro-susceptibility}
+ \operatorname{Var}\Xi_N(f)
+ \le\mathbb E\Xi_N(f^2)-\frac{(\mathbb E\Xi_N(f))^2}{N},
+ \qquad 0<\beta\le2.
+\end{equation}
+It remains valid under arbitrary common finite one-body weights,
+including exact finite exterior weights. The proof below is a
+self-contained Hilbert-space and spectral induction. Its connection
+with Lorentzian polynomials uses the original theorem of
+Br\"and\'en--Huh~\cite{BrandenHuh}; that theorem is not needed for
+the direct continuum proof. This supplies a new input to the
+screening program studied in the preceding note, rather than simply
+repeating a comparison criterion with unverified hypotheses.
+
+All asserted estimates are proved in the following sections. Standard
+spectral, measure-theoretic, elliptic, and determinantal identities
+used in the arguments are specified there. The longest independent
+mathematical checks concerned the spectral induction, the radial
+transport, the Green-field limit, the exact reference normalization,
+the all-order signed Janossy inversion, the full-exterior comparison,
+and the new self-consistent centering constructions.
+
+
+\section{A count-sensitive susceptibility bound for the actual gas below two}
+\label{sec:lorentzian}
+
+This section gives an estimate for the original interaction, uniformly in
+particle number and in every finite exterior weight.  It uses the fact
+that $|z-w|^\beta$ is a squared Hilbert distance for $0<\beta\le2$.
+The corresponding finite generating polynomials are Lorentzian.  We
+also give a direct spectral induction proof of the needed consequence,
+so the continuum estimate does not depend on a discretization argument.
+
+\begin{lemma}[A Hilbert representation]
+\label{lem:distance-negative-type}
+For $0<\beta\le2$ there are a real Hilbert space $H$ and a continuous
+map $\Phi:\mathbb R^2\to H$ such that
+\[
+ \|\Phi(x)-\Phi(y)\|_H^2=|x-y|^\beta.
+\]
+Consequently, for any finite points $x_1,\ldots,x_q$ and real numbers
+$c_i$ with $\sum_i c_i=0$,
+\[
+ \sum_{i,j}c_ic_j|x_i-x_j|^\beta\le0.
+\]
+\end{lemma}
+
+\begin{proof}
+For $\beta=2$, take $H=\mathbb R^2$ and $\Phi(x)=x$.
+For $0<\beta<2$, put
+\[
+ C_\beta=\int_{\mathbb R^2}
+       |e^{ik\cdot e_1}-1|^2|k|^{-2-\beta}\,dk.
+\]
+This number is finite and strictly positive: near zero the numerator
+is at most $|k|^2$, and outside the unit ball it is at most four.
+Use the underlying real Hilbert space of
+$L^2(\mathbb R^2,|k|^{-2-\beta}dk;\mathbb C)$, and set
+$\Phi(x)(k)=C_\beta^{-1/2}(e^{ik\cdot x}-1)$.
+Rotation invariance and the substitution $u=|x-y|k$ give the displayed
+distance identity.  That identity also proves continuity.  Finally,
+expanding squared Hilbert distances, with $\sum_i c_i=0$, gives
+\[
+ \sum_{i,j}c_ic_j\|\Phi(x_i)-\Phi(x_j)\|^2
+ =-2\Big\|\sum_i c_i\Phi(x_i)\Big\|^2\le0.
+\]
+\end{proof}
+
+\begin{proposition}[Lorentzian finite approximations]
+\label{prop:finite-lorentzian}
+Let $x_1,\ldots,x_q$ be distinct planar points, let $w_i>0$, and let
+$1\le n\le q$.  If $0<\beta\le2$, then the polynomial
+\[
+ F_n(t_1,\ldots,t_q)=
+ \sum_{\substack{S\subset\{1,\ldots,q\}\\|S|=n}}
+  \left(\prod_{\{i,j\}\subset S}|x_i-x_j|^\beta\right)
+  \prod_{i\in S}w_it_i
+\]
+is Lorentzian.  In particular, $\log F_n$ and $F_n^{1/n}$ are concave
+on the positive orthant.
+\end{proposition}
+
+\begin{proof}
+We use the characterization and concavity theorem of
+Br\"and\'en--Huh \cite[Theorems 2.25 and 2.30, Proposition 2.33]{BrandenHuh}:
+a homogeneous polynomial with nonnegative coefficients and
+$M$-convex support is Lorentzian if every derivative of degree two
+has a Hessian with at most one positive eigenvalue; such a polynomial
+has the two stated concavity properties.
+
+Here the support consists of all zero-one vectors with coordinate sum
+$n$.  It satisfies the required exchange property: if $i\in S\setminus
+T$, choose any $j\in T\setminus S$ and exchange $i,j$.
+For $n\ge2$, a nonzero derivative indexed by an $(n-2)$-element set
+$A$ has quadratic coefficients
+\[
+ C_A\,b_i b_j |x_i-x_j|^\beta,
+ \qquad
+ b_i=w_i\prod_{a\in A}|x_i-x_a|^\beta,
+ \qquad i,j\notin A,
+\]
+with $C_A>0$.  Its Hessian is thus a positive diagonal congruence of
+the matrix $K_{ij}=|x_i-x_j|^\beta$, with zero diagonal.
+Lemma~\ref{lem:distance-negative-type} makes the quadratic form of $K$
+nonpositive on the codimension-one subspace $\sum_i c_i=0$.
+The min--max principle implies that $K$ has at most one positive
+eigenvalue, and diagonal congruence preserves its inertia.  Derivatives
+with repeated indices vanish.  This checks every hypothesis.  Degree
+one is immediate.
+\end{proof}
+
+\begin{theorem}[Uniform susceptibility for every finite exterior weight]
+\label{thm:subpoisson-susceptibility}
+Let $\sigma$ be a nonzero finite nonatomic Borel measure with compact
+support in $\mathbb R^2$, let $n\ge1$, and let $0<\beta\le2$.
+Normalize the symmetric probability measure
+\[
+ P_{n,\beta}^{\sigma}(d\mathbf z)
+ =\frac{1}{Z_{n,\beta}^{\sigma}}
+   \prod_{i<j}|z_i-z_j|^\beta\prod_{i=1}^n\sigma(dz_i).
+\]
+Write $\Xi=\sum_i\delta_{z_i}$ and let $\rho$ be its intensity measure,
+so $\rho(\mathbb R^2)=n$.  Every bounded real Borel function $f$ satisfies
+\begin{equation}
+ \operatorname{Var}\Xi(f)
+ \le \int f^2\,d\rho-\frac1n\left(\int f\,d\rho\right)^2
+ \le \int f^2\,d\rho.
+ \label{eq:subpoisson-variance}
+\end{equation}
+For every bounded nonnegative Borel function $v$,
+\begin{equation}
+ \mathbb E\prod_{z\in\Xi}v(z)
+ \le\left(\frac1n\int v\,d\rho\right)^n
+ \le\exp\!\left\{\int(v-1)\,d\rho\right\}.
+ \label{eq:subpoisson-generating}
+\end{equation}
+Consequently, for every real $t$,
+\begin{equation}
+ \log\mathbb E e^{t(\Xi(f)-\mathbb E\Xi(f))}
+ \le\int(e^{tf}-1-tf)\,d\rho.
+ \label{eq:subpoisson-laplace}
+\end{equation}
+These inequalities hold with the same constants after replacing
+$\sigma$ by any nonzero finite nonatomic one-body weight.
+\end{theorem}
+
+\begin{proof}[Direct proof of the variance estimate]
+Compact support makes the interaction bounded and the partition
+function finite.  Nonatomicity makes the partition function positive,
+since the particles are pairwise distinct almost everywhere.
+Normalize $\sigma$ to have mass one, which does not change the law.
+We prove the first inequality by induction on $n$.  For $n=1$ it is
+an equality.
+
+For $n=2$, use Lemma~\ref{lem:distance-negative-type} and write
+$m=\int\Phi\,d\sigma$, $H(z)=\Phi(z)-m$, and
+$V=\int\|H\|^2d\sigma>0$.  The pair partition function is $2V$.
+Let $f$ have mean zero under the tagged-particle marginal, and put
+\[
+ a=\int f\,d\sigma,\qquad
+ b=\int fH\,d\sigma,\qquad
+ c=\int f\|H\|^2d\sigma.
+\]
+The tagged marginal has density $(\|H(z)\|^2+V)/(2V)$ relative to
+$\sigma$, so the centering condition is $c+Va=0$.  Expanding the
+Hilbert distance gives
+\[
+ \mathbb E[f(z_1)f(z_2)]
+ =\frac{2ac-2\|b\|^2}{2V}
+ =-a^2-\frac{\|b\|^2}{V}\le0.
+\]
+Thus $\operatorname{Var}(f(z_1)+f(z_2))\le2\mathbb E f(z_1)^2$,
+as required for centered $f$.
+
+Suppose now that the assertion holds for $n-1\ge2$, for every such
+one-body measure.  Let $\pi$ be the tagged-particle marginal of the
+$n$-particle law, and define the self-adjoint Markov operator on
+$L^2(\pi)$ by
+\[
+ (Tf)(x)=\mathbb E[f(z_2)\mid z_1=x].
+\]
+Exchangeability gives self-adjointness, and conditional Jensen gives
+$\|T\|\le1$.  Take bounded $f$ with $\pi(f)=0$, and write
+\[
+ M=\pi(f^2),\qquad A=\langle f,Tf\rangle_\pi,
+ \qquad B=\|Tf\|_{L^2(\pi)}^2.
+\]
+Conditioned on $z_1=x$, the other $n-1$ particles have precisely the
+same interaction and one-body measure $|x-z|^\beta\sigma(dz)$.
+This measure remains finite and nonatomic.  The induction hypothesis
+and total variance therefore give
+\begin{align*}
+ \operatorname{Var}\sum_{i=1}^nf(z_i)
+ &\le (n-1)(M-B)
+       +\operatorname{Var}\bigl(f(z_1)+(n-1)Tf(z_1)\bigr)\\
+ &=nM+2(n-1)A+(n-1)(n-2)B.
+\end{align*}
+On the other hand, exchangeability gives the exact expression
+$nM+n(n-1)A$ for the left side.  Hence $A\le B$, since $n>2$.
+Bounded functions are dense in $L^2(\pi)$, so on the mean-zero
+subspace this is the operator inequality $T\le T^2$.
+The spectral theorem and $\|T\|\le1$ place its spectrum in
+$[-1,0]\cup\{1\}$.
+
+The eigenvalue one has only constant eigenfunctions.  Indeed,
+\[
+ \langle f,(I-T)f\rangle_\pi
+ =\tfrac12\mathbb E\bigl(f(z_1)-f(z_2)\bigr)^2,
+\]
+and the pair marginal has a strictly positive density relative to
+$\sigma\otimes\sigma$ almost everywhere.  To see positivity, fix two
+distinct points; the integral over the other $n-2$ coordinates is
+strictly positive because nonatomicity excludes all collisions almost
+everywhere.  Thus equality in the displayed formula forces $f$ to
+be constant $\sigma$-almost everywhere, hence also $\pi$-almost
+everywhere.  Since one is isolated from the remaining possible
+spectrum, its spectral subspace is exactly this eigenspace.
+There is therefore no positive spectrum on the mean-zero subspace,
+and $A\le0$.  It follows that
+\[
+ \operatorname{Var}\sum_i f(z_i)
+ =nM+n(n-1)A\le nM.
+\]
+Subtracting the tagged mean from an arbitrary bounded $f$ proves
+\eqref{eq:subpoisson-variance} and completes the induction.
+\end{proof}
+
+\begin{proof}[Generating-functional and Laplace bounds]
+First suppose that $v$ is bounded and bounded away from zero.  Set
+$v_s=1+s(v-1)$, $0\le s\le1$, and
+\[
+ G(s)=\mathbb E\prod_{z\in\Xi}v_s(z),\qquad L(s)=\log G(s).
+\]
+All derivatives can be taken under the finite integral.  Under the
+tilted gas with one-body measure $v_s\sigma$, put
+$h_s=(v-1)/v_s$.  Exact differentiation gives
+\[
+ L'(s)=\mathbb E_s\Xi(h_s),\qquad
+ L''(s)=\operatorname{Var}_s\Xi(h_s)
+                -\mathbb E_s\Xi(h_s^2)
+ \le-\frac{L'(s)^2}{n},
+\]
+where the last step is \eqref{eq:subpoisson-variance} for that tilted
+one-body measure.  Consequently $(G^{1/n})''\le0$.
+Its tangent line at zero gives
+\[
+ G(1)^{1/n}\le1+\frac1n\int(v-1)\,d\rho
+ =\frac1n\int v\,d\rho.
+\]
+Apply this first to $v+\varepsilon$ and let $\varepsilon\downarrow0$
+to include bounded nonnegative $v$.  The exponential inequality
+follows from $(1+u/n)^n\le e^u$ for $u\ge-n$, with the zero case
+interpreted directly.  Finally set $v=e^{tf}$ and subtract
+$t\int f\,d\rho$ from the logarithm to obtain
+\eqref{eq:subpoisson-laplace}.
+\end{proof}
+
+\begin{corollary}[Count sectors of the actual conditional gas]
+\label{cor:conditional-count-susceptibility}
+Let $U$ be any bounded observation region, let $Y$ be a finite exterior
+configuration, and condition the disk gas on having exactly $m$ points
+in $U$, with exterior $Y$.  For $0<\beta\le2$, all conclusions of
+Theorem~\ref{thm:subpoisson-susceptibility} hold with $n=m$ and
+\[
+ \sigma(dz)=\mathbf1_U(z)\prod_{y\in Y}|z-y|^\beta\,dA(z).
+\]
+The empty sector is deterministic.  In any nonempty sector, for a
+Borel set $A\subset U$ and $a=\mathbb E\Xi(A)$,
+\[
+ \operatorname{Var}\Xi(A)\le a(1-a/m),\qquad
+ \mathbb E t^{\Xi(A)}
+ \le\left(1+\frac am(t-1)\right)^m\le e^{a(t-1)},\quad t>0.
+\]
+\end{corollary}
+
+\begin{proof}
+The displayed measure is finite and nonatomic, and nonzero whenever
+the sector is admissible.  Apply the theorem with $f=\mathbf1_A$ and
+$v=1+(t-1)\mathbf1_A$.  This proof requires no separation of $Y$ into
+annuli and no approximation of its entire interaction.
+\end{proof}
+
+\begin{remark}[Scope of the negative dependence]
+The theorem controls the variance of every real linear statistic and
+the full generating functional, including count fluctuations.  It
+does not assert that the covariance of two different nonnegative
+test functions is always nonpositive, nor that arbitrary local events
+are negatively associated.  It does not by itself provide stochastic
+domination between successive particle numbers.  A spatial attenuation
+estimate still needs a perturbation whose quadratic intensity cost
+vanishes with distance.
+\end{remark}
+
+
+\section{Radial comparison and an actual screened boundary statistic}
+\label{sec:radial-comparison}
+
+All statements in this section concern the unweighted disk gas at an
+arbitrary fixed $\beta>0$. Intensities are relative to
+$\mu(\dd z)=\dd A(z)/\pi$. Set
+\[
+ d_j=2j+\frac\beta2j(j-1),\qquad
+ c_\beta=\min\{2,\beta/2\},\qquad
+ C_\beta=2+\frac{16\sqrt6}{c_\beta}.
+\]
+The notation $c_\beta$ here is merely a comparison constant, not the
+conjectured hyperbolic intensity coefficient.
+
+\begin{proposition}[A positive mixture for the ordered radial gaps]
+\label{prop:radial-positive-mixture}
+Order the radii increasingly as $r_1<\cdots<r_N$, put
+$t_j=-\log r_j$, $t_{N+1}=0$, and $g_j=t_j-t_{j+1}$.
+The joint distribution of $(g_1,\ldots,g_N)$ is a countable mixture of
+product distributions
+\[
+ \bigotimes_{j=1}^N\operatorname{Exp}(d_j+2A_j),
+ \qquad A_j\in\mathbb Z_{\ge0},\quad A_N=0.
+\]
+In particular, on a coupling with independent rate-one exponentials
+$E_j$, one has simultaneously
+\begin{equation}\label{eq:radial-gap-domination}
+ g_j\le E_j/d_j,\qquad
+ t_j\le\sum_{k=j}^N E_k/d_k.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Ties and zero radii have probability zero. On the ordered region factor
+\[
+ \prod_{i<j}|z_j-z_i|^\beta
+ =\prod_{j=1}^N r_j^{\beta(j-1)}
+   \left|\prod_{i<j}(1-z_i/z_j)^{\beta/2}\right|^2.
+\]
+Every power is the analytic branch defined by its binomial expansion
+on $|z_i/z_j|<1$. The finite product has an absolutely convergent
+Laurent expansion on every fixed ordered radial torus,
+\[
+ \prod_{i<j}(1-z_i/z_j)^{\beta/2}
+   =\sum_\alpha b_\alpha\prod_j z_j^{\alpha_j}.
+\]
+An expansion term is specified by nonnegative integers $n_{ij}$,
+$i<j$, and has
+\[
+ \alpha_j=\sum_{\ell>j}n_{j\ell}-\sum_{i<j}n_{ij},
+ \qquad
+ A_k:=\sum_{j\le k}\alpha_j
+       =\sum_{i\le k<j}n_{ij}\ge0,
+ \qquad A_N=0.
+\]
+For a fixed exponent vector, each $n_{ij}$ is bounded by any $A_k$
+with $i\le k<j$, so only finitely many terms contribute to its
+coefficient. Absolute convergence also justifies regrouping terms.
+Angular Parseval therefore gives
+\[
+ \int\left|\prod_{i<j}(1-z_i/z_j)^{\beta/2}\right|^2
+       \prod_j\frac{\dd\theta_j}{2\pi}
+ =\sum_\alpha |b_\alpha|^2\prod_j r_j^{2\alpha_j}.
+\]
+The radial area elements are $2r_j\dd r_j$. After the changes to
+$t_j$ and then $g_j$, the contribution of a term is, up to a common
+positive constant,
+\[
+ |b_\alpha|^2
+ \exp\left\{-\sum_{k=1}^N(d_k+2A_k)g_k\right\}
+ \prod_k\dd g_k.
+\]
+Indeed, the coefficient of $g_k$ is
+$\sum_{j\le k}[2+\beta(j-1)+2\alpha_j]=d_k+2A_k$.
+All rates are positive. Tonelli's theorem applies to this nonnegative
+series. Its integral is finite and nonzero because it is the original
+finite partition integral. Normalizing its terms gives mixture weights
+proportional to
+$|b_\alpha|^2\prod_k(d_k+2A_k)^{-1}$ and proves the claim.
+Finally, sample the mixture index and independent $E_j$, and set
+$g_j=E_j/(d_j+2A_j)$ to obtain \eqref{eq:radial-gap-domination}.
+\end{proof}
+
+\begin{theorem}[Uniform compact intensity bound]
+\label{thm:uniform-actual-intensity}
+For all $N\ge1$, $\beta>0$, and $z\in\D$,
+\begin{equation}\label{eq:actual-uniform-bergman-upper}
+ \rho_{N,\beta}(z)\le\frac{C_\beta}{(1-|z|^2)^2}.
+\end{equation}
+No determinantal representation is used.
+\end{theorem}
+
+\begin{proof}
+The inequality $d_k\ge c_\beta k^2$ follows directly from its
+definition. Independence of the exponentials in
+\eqref{eq:radial-gap-domination} gives
+\[
+ \E t_j^2
+ \le\left(\sum_{k=j}^N d_k^{-1}\right)^2
+       +\sum_{k=j}^N d_k^{-2}
+ \le\frac{6}{c_\beta^2j^2}.
+\]
+Here $\sum_{k\ge j}k^{-2}\le2/j$ and
+$\sum_{k\ge j}k^{-4}\le2/j^2$ suffice. Since
+$\{\Xi_N(B_r)\ge j\}=\{t_j> -\log r\}$ up to null events,
+Markov's inequality yields, for $0<r<1$,
+\begin{equation}\label{eq:actual-radial-count-upper}
+ \E\Xi_N(B_r)
+ \le\sum_{j\ge1}\min\left\{1,
+       \frac{6}{c_\beta^2j^2(-\log r)^2}\right\}
+ \le1+\frac{2\sqrt6}{c_\beta(-\log r)}.
+\end{equation}
+For the last inequality, put $a=\sqrt6/(c_\beta(-\log r))$,
+split the sum at $\lceil a\rceil$, and use
+$\sum_{j>m}j^{-2}\le1/m$.
+
+The intensity is rotation invariant and subharmonic in its argument:
+its marginal formula is a positive integral of
+$|\prod_{i=2}^N(z-z_i)|^\beta$ against a measure independent of $z$.
+These integrands are subharmonic, and are locally uniformly bounded
+for fixed $N$. A radial subharmonic function finite at zero is
+nondecreasing with radius, as follows from the monotonicity of its
+circular means. Consequently, whenever $0\le r<s<1$,
+\[
+ \rho_{N,\beta}(r)(s^2-r^2)
+ \le\int_{B_s\setminus B_r}\rho_{N,\beta}\,\dd\mu
+ \le\E\Xi_N(B_s).
+\]
+Choose $s^2=(1+r^2)/2$. Then
+$-\log s\ge(1-s^2)/2=(1-r^2)/4$. Substitution of
+\eqref{eq:actual-radial-count-upper} gives
+\[
+ \rho_{N,\beta}(r)
+ \le\frac2{1-r^2}
+       +\frac{16\sqrt6}{c_\beta(1-r^2)^2}
+ \le\frac{C_\beta}{(1-r^2)^2}.
+\]
+\end{proof}
+
+\begin{proposition}[Exact scale separation]
+\label{prop:exact-scale-separation}
+Let $R_N=\max_i|z_i|$, $W_N=\{z_i/R_N:1\le i\le N\}$, and
+$T_N=d_N(-\log R_N)$. Then $T_N$ has the rate-one exponential
+law and is independent of the whole normalized configuration $W_N$.
+The intensity of $W_N$ in the open disk satisfies the same bound
+\eqref{eq:actual-uniform-bergman-upper}.
+\end{proposition}
+
+\begin{proof}
+For completeness, independence of the whole shape, rather than only
+its radii, follows from a direct change of variables. Choose the
+almost surely unique outermost label, write its coordinate as
+$R e^{i\theta}$, and write all other coordinates as $R w_i$,
+$|w_i|<1$. The Jacobian and the homogeneous Vandermonde yield a
+factor $R^{d_N-1}\dd R$. All remaining factors depend only on
+$(\theta,w_1,\ldots,w_{N-1})$. Thus $R$ has density
+$d_N R^{d_N-1}$ on $(0,1)$ independently of the shape, proving
+the first assertion. Equivalently, the gap mixture has $A_N=0$.
+
+There is one shape particle on the unit circle. The other particles,
+conditional on its angle, have density proportional to
+\[
+ |\Delta_{N-1}(\mathbf w)|^\beta
+ \prod_{i=1}^{N-1}|w_i-e^{i\theta}|^\beta
+ \prod_i\mu(\dd w_i).
+\]
+The interior shape intensity, after averaging the angle, is therefore
+radial and subharmonic by exactly the marginal argument above.
+Moreover $R_N\le1$ gives, on the defining coupling,
+$W_N(B_s)\le\Xi_N(B_s)$ for every $s<1$. Hence
+\eqref{eq:actual-radial-count-upper} applies to its count expectation.
+The same monotonicity argument proves its stated intensity bound.
+For $N=1$ its interior intensity is zero, so the conclusion still holds.
+\end{proof}
+
+\begin{theorem}[Count-law attenuation of the outermost radial mode]
+\label{thm:radial-count-screening}
+Fix $0<r<1$, let $s^2=(1+r^2)/2$, and put
+$K_{\beta,r}=C_\beta/(1-s^2)^2$.
+For $N\ge2$, with $M_N=\Xi_N(B_r)$, one has
+\begin{equation}\label{eq:radial-count-TV}
+ \E\TV\bigl(\mathcal L(M_N\mid T_N),\mathcal L(M_N)\bigr)
+ \le\frac{4K_{\beta,r}r^2}{d_N-2}
+           +2(r/s)^{d_N}
+ =O_{\beta,r}(N^{-2}).
+\end{equation}
+This is an actual selected-boundary estimate for every fixed
+$\beta>0$ and includes the complete probability distribution of
+the local count. The boundary statistic $T_N$ remains nondegenerate.
+\end{theorem}
+
+\begin{proof}
+Let $Q_t$ be the law of $W_N(B_{r e^{t/d_N}})$, with the evident
+interpretation if the radius exceeds one, and let $Q_0$ be the law
+at radius $r$. Exact scale separation says that $Q_t$ is a version
+of the conditional law of $M_N$ given $T_N=t$. Couple these count
+variables using the same $W_N$. If
+$0\le t\le d_N\log(s/r)$, the coupling inequality and the shape
+intensity bound give
+\[
+ \TV(Q_t,Q_0)
+ \le \Pp\{W_N(B_{r e^{t/d_N}}\setminus B_r)>0\}
+ \le K_{\beta,r}r^2(e^{2t/d_N}-1).
+\]
+For larger $t$, use the bound one. Since $d_N>2$ for $N\ge2$,
+integration against the exponential density yields
+\[
+ \int_0^\infty\TV(Q_t,Q_0)e^{-t}\dd t
+ \le\frac{2K_{\beta,r}r^2}{d_N-2}+(r/s)^{d_N}.
+\]
+The unconditional law is $\overline Q=\int Q_t e^{-t}\dd t$.
+Convexity and the triangle inequality imply
+$\int\TV(Q_t,\overline Q)e^{-t}\dd t
+ \le2\int\TV(Q_t,Q_0)e^{-t}\dd t$,
+proving the claim.
+\end{proof}
+
+The same proof controls the joint vector of counts in any fixed finite
+collection of concentric disks: replace $r^2$ in the first term by
+the sum of their squared radii, use their largest radius in the tail
+term, and choose $s$ above that largest radius. Counts in finitely many
+concentric annuli follow by taking differences. This does not show
+independence from the \emph{entire} distant exterior, whose angular
+information and remaining count selection are absent from $T_N$.
+The result is useful because it separates a rigorously attenuated,
+nontrivial boundary mode from those still requiring collective screening.
+
+\begin{lemma}[Uniform exponential compact-count moments]
+\label{lem:radial-exponential-count}
+For $0<b<1$ and every integer $j\ge1$,
+\begin{equation}\label{eq:radial-Gaussian-count-tail}
+ \Pp\{\Xi_N(B_b)\ge j\},\quad
+ \Pp\{W_N(B_b)\ge j\}
+ \le\exp\left\{2j-
+           \frac{c_\beta(-\log b)}2j^2\right\}.
+\end{equation}
+In particular, for every fixed $v>0$,
+\[
+ \sup_N\E\bigl[\Xi_N(B_b)e^{v\Xi_N(B_b)}\bigr]<\infty,
+ \qquad
+ \sup_N\E\bigl[W_N(B_b)e^{vW_N(B_b)}\bigr]<\infty.
+\]
+\end{lemma}
+
+\begin{proof}
+For $j\le N$ put $q=c_\beta j^2/2$. Then
+$q/d_k\le j^2/(2k^2)\le1/2$ for $k\ge j$. The gap comparison and
+$-\log(1-x)\le2x$ on $[0,1/2]$ yield
+\[
+ \log\E\exp\left(q\sum_{k=j}^N E_k/d_k\right)
+ \le2q\sum_{k=j}^N d_k^{-1}\le2j.
+\]
+Exponential Markov proves the first tail bound; it is automatic for
+$j>N$. The shape bound follows from its coupled count domination.
+For either count $K$, monotone summation gives
+\[
+ \E[K e^{vK}]
+ =\sum_{j\ge1}\bigl(je^{vj}-(j-1)e^{v(j-1)}\bigr)\Pp(K\ge j)
+ \le\sum_{j\ge1}j\exp\left\{(v+2)j-
+               \frac{c_\beta(-\log b)}2j^2\right\}<\infty.
+\]
+\end{proof}
+
+\begin{theorem}[Full local-law attenuation of the radial scale mode]
+\label{thm:radial-full-law-screening}
+For every fixed $\beta>0$ and $0<r<1$, there are constants
+$A_{\beta,r}<\infty$ and $a_{\beta,r}>0$, independent of $N$, such that
+\begin{equation}\label{eq:radial-full-law-TV}
+ \E\TV\left(
+    \mathcal L(\Xi_N|_{B_r}\mid T_N),
+    \mathcal L(\Xi_N|_{B_r})\right)
+ \le A_{\beta,r}\frac{N}{d_N}
+             +2\exp\{-a_{\beta,r}d_N/N\}
+ =O_{\beta,r}(N^{-1}).
+\end{equation}
+This concerns the complete local law, including all particle positions
+and particle-number probabilities.
+\end{theorem}
+
+\begin{proof}
+Choose $r<u<b<1$ and a smooth radial function $\chi$ equal to one
+on $B_u$ and zero outside $B_b$. Put $V(z)=\chi(z)z$ and
+$L=\max\{1,\operatorname{Lip}(V)\}$. For
+\[
+ 0\le\eta\le\eta_0
+ :=\min\left\{\frac1{2L},\frac{u-r}{2u},\frac12\right\},
+ \qquad F_\eta(z)=z-\eta V(z),
+\]
+the map $F_\eta$ is a smooth diffeomorphism of the plane, equal to
+the identity outside $B_b$. Indeed, its derivative has singular values
+between $1-\eta L$ and $1+\eta L$, the map is globally injective by
+the same Lipschitz bounds, and it is proper; local invertibility and
+properness give surjectivity. It consequently preserves $B_b$ and
+$\D$. Its pair distortions and Jacobian satisfy
+\begin{align*}
+ \left|\log\frac{|F_\eta(x)-F_\eta(y)|}{|x-y|}\right|
+    &\le2L\eta \quad (x\ne y),\\
+ |\log\det DF_\eta(x)|&\le4L\eta.
+\end{align*}
+The determinant is positive, by continuity from $\eta=0$. Pair
+distortions vanish when both points lie outside $B_b$, and the
+Jacobian is one there.
+
+Use the shape coordinates from Proposition~\ref{prop:exact-scale-separation}:
+one point is $e^{i\theta}$ on the unit circle and the remaining
+$N-1$ points have a density $p_\theta(\mathbf w)$. The transport
+fixes the boundary point. Write $K=W_N(B_b)$ and
+$B=L(2\beta+4)$. There are at most $NK$ affected pairs and at most
+$K$ nontrivial one-particle Jacobians. Therefore, almost surely,
+\[
+ H_\eta:=\log\frac{p_\theta(F_\eta\mathbf w)
+                         J_{F_\eta}(\mathbf w)}
+                        {p_\theta(\mathbf w)}
+ \quad\hbox{satisfies}\quad
+ |H_\eta|\le B\eta NK.
+\]
+The densities vanish only on collision sets of measure zero, which do
+not affect this formula. Averaging the usual change-of-variables
+identity for total variation over $\theta$ gives
+\[
+ \TV\bigl(\mathcal L(F_\eta W_N),\mathcal L(W_N)\bigr)
+ \le\tfrac12\E|e^{H_\eta}-1|
+ \le\tfrac12 B\eta N\E[K e^{B\eta NK}].
+\]
+This inequality first holds for the labelled shape coordinates and
+then for the unordered process by data processing. By
+Lemma~\ref{lem:radial-exponential-count}, the constant
+$D=\sup_N\E[K e^K]$ is finite. Whenever $B\eta N\le1$, the last
+display is at most $BD\eta N/2$.
+
+Because $F_\eta$ is radial, injective, and equals multiplication by
+$1-\eta$ on $B_u$, while $(1-\eta)u>r$, its restriction satisfies
+the exact configuration identity
+\[
+ (F_\eta W_N)|_{B_r}=((1-\eta)W_N)|_{B_r}.
+\]
+Let $Q_t$ now denote the law of
+$(e^{-t/d_N}W_N)|_{B_r}$ and let $Q_0$ be the local shape law.
+Set $a=\min\{\eta_0,1/B\}$. For $0\le t\le a d_N/N$,
+$\eta=1-e^{-t/d_N}\le t/d_N$ satisfies both required smallness
+conditions, and hence
+\[
+ \TV(Q_t,Q_0)\le\frac{BDN}{2d_N}t.
+\]
+For larger $t$ use one. Thus
+\[
+ \int_0^\infty\TV(Q_t,Q_0)e^{-t}\dd t
+ \le\frac{BDN}{2d_N}+e^{-a d_N/N}.
+\]
+Exact scale separation identifies $Q_t$ as the conditional local law
+given $T_N=t$. Comparing with its exponential mixture and using the
+same triangle/convexity argument as in
+Theorem~\ref{thm:radial-count-screening} proves
+\eqref{eq:radial-full-law-TV}, with $A_{\beta,r}=BD$ and
+$a_{\beta,r}=a$.
+\end{proof}
+
+This really is a boundary statistic. For any fixed $r<R<1$, define
+$T_{N,R}=T_N$ if $R_N>R$ and set $T_{N,R}=+\infty$ otherwise.
+It is measurable from the exterior configuration in $\D\setminus B_R$
+and is a deterministic function of $T_N$. Data processing therefore
+preserves both attenuation bounds when $T_N$ is replaced by $T_{N,R}$.
+The censoring probability is exactly $R^{d_N}$, so this selected
+exterior statistic has an asymptotically nondegenerate exponential
+distribution. The theorem does not assert that it is a sufficient
+statistic for the entire exterior.
+
+
+\section{Fixed-temperature screening estimates for the actual gas}
+\label{sec:actual-screening}
+
+We now combine the susceptibility estimate with the radial bound.
+Every statement in this section uses the original canonical disk law;
+no effective pair potential replaces its interaction. Write
+$\nu(dz)=dA(z)/[\pi(1-|z|^2)^2]$ and retain the intensity constant
+$C_\beta$ from Theorem~\ref{thm:uniform-actual-intensity}.
+
+\begin{theorem}[Full-law stability under a one-body perturbation]
+\label{thm:actual-tilt-TV}
+Let $0<\beta\le2$, let $f$ be bounded and real, and put
+\[
+ \frac{dP_{N,\beta}^{t,f}}{dP_{N,\beta}}
+ =\frac{e^{t\Xi_N(f)}}{\mathbb E_{N,\beta}e^{t\Xi_N(f)}},
+ \qquad M=\|f\|_\infty,\quad
+ Q_0=\mathbb E_{N,\beta}\Xi_N(f^2).
+\]
+For every real $t$,
+\begin{align}
+ D_{\rm KL}(P_{N,\beta}^{t,f}\Vert P_{N,\beta})
+ &\le\frac{t^2}{2}e^{|t|M}Q_0,
+ \label{eq:actual-tilt-KL}\\
+ \TV(P_{N,\beta}^{t,f},P_{N,\beta})
+ &\le\frac{|t|}{2}e^{|t|M/2}\sqrt{Q_0}
+ \le\frac{|t|\sqrt{C_\beta}}2 e^{|t|M/2}\|f\|_{L^2(\nu)}.
+ \label{eq:actual-tilt-TV}
+\end{align}
+The last inequality is useful when $f\in L^2(\nu)$. The first two
+apply more generally to every nonzero finite nonatomic one-body measure
+supported in a bounded region, with
+its own value of $Q_0$. The TV estimate concerns the entire
+$N$-particle configuration, and therefore every local count and
+position event simultaneously.
+\end{theorem}
+
+\begin{proof}
+Let $P_s=P_{N,\beta}^{s,f}$ and
+$Q(s)=\mathbb E_s\Xi_N(f^2)$. Differentiation is justified because
+$\Xi_N(f)$ is bounded for fixed $N$. Theorem~
+\ref{thm:subpoisson-susceptibility} applies to every $P_s$. Thus
+\[
+ |Q'(s)|
+ =|\operatorname{Cov}_s(\Xi_N(f^2),\Xi_N(f))|
+ \le\sqrt{\mathbb E_s\Xi_N(f^4)\,
+                     \mathbb E_s\Xi_N(f^2)}
+ \le M Q(s).
+\]
+Gronwall's inequality gives $Q(s)\le e^{|s|M}Q(0)$.
+For $\psi(s)=\log\mathbb E_0e^{s\Xi_N(f)}$, this implies
+$\psi''(s)=\operatorname{Var}_s\Xi_N(f)\le e^{|s|M}Q_0$.
+The relative entropy is $t\psi'(t)-\psi(t)$, since $\psi(0)=0$.
+Its derivative is $t\psi''(t)$; integration from zero to $t$,
+also when $t<0$, proves \eqref{eq:actual-tilt-KL}.
+Pinsker's inequality with $\TV=\sup_E|P(E)-Q(E)|$ gives
+$\TV^2\le D_{\rm KL}/2$. Finally,
+$Q_0\le C_\beta\int f^2d\nu$ by the actual intensity bound.
+\end{proof}
+
+\begin{corollary}[The mean measure is controlled as well]
+\label{cor:actual-tilt-intensity}
+For a relatively compact Borel window $A$, put
+$m_0=\mathbb E_{N,\beta}\Xi_N(A)$ and
+$D=\frac{|t|}{2}e^{|t|M/2}\sqrt{Q_0}$.
+The variation of the two mean measures restricted to $A$ is at most
+\[
+ 2\sqrt{m_0}\,D+D^2.
+\]
+Here variation is the supremum of the integral difference over
+all real $u$ supported in $A$ with $|u|\le1$.
+\end{corollary}
+\begin{proof}
+Write $m(s)=\mathbb E_s\Xi_N(A)$. The susceptibility estimate gives
+$|m'(s)|\le\sqrt{m(s)Q(s)}$. Applying the inequality first to
+$\sqrt{m(s)+\epsilon}$ and then letting $\epsilon\downarrow0$
+shows
+$\sqrt{m(s)}\le\sqrt{m_0}+\tfrac12\int_0^{|s|}\sqrt{Q(\pm v)}dv$,
+where the sign follows that of $s$.
+For $u$ as stated,
+$|\frac{d}{ds}\mathbb E_s\Xi_N(u)|\le\sqrt{m(s)Q(s)}$.
+Integrate this bound and use
+$\tfrac12\int_0^{|t|}\sqrt{Q(\pm v)}dv\le D$.
+The result is $2\sqrt{m_0}D+D^2$, independently of $u$.
+\end{proof}
+
+\subsection{A distant Green tail may have large mean but small effect}
+
+Let
+\[
+ g(a,z)=-\log\left|\frac{a-z}{1-a\bar z}\right|.
+\]
+Fix $0<r<1$, let $\sigma$ be a finite real signed source measure
+supported in $\overline B_r$, and write $q=|\sigma|(\overline B_r)$.
+For $R>r$ put
+\[
+ V_R(z)=\mathbf1_{\{|z|>R\}}\int g(a,z)\,\sigma(da),
+ \qquad \delta=1-R^2.
+\]
+This is a potential applied only to the distant particles; $t$ below
+is its fixed amplitude, not an $N$-dependent temperature change.
+
+\begin{theorem}[Full-law attenuation of distant Green-potential tilts]
+\label{thm:green-tail-TV}
+Suppose $0<\beta\le2$ and $\delta\le(1-r)^2/2$. For every $N\ge1$,
+every real $t$, and every source just described,
+\begin{equation}\label{eq:green-tail-TV}
+ \TV(P_{N,\beta}^{t,V_R},P_{N,\beta})
+ \le \frac{|t|q\sqrt{C_\beta}}{2(1-r)^2}
+ \exp\!\left\{\frac{|t|q\delta}{2(1-r)^2}\right\}\sqrt\delta.
+\end{equation}
+The same rate controls every local law, including every particle
+count. On each fixed compact window it also controls the mean
+measure at order $O_{\beta,r,t,q,A}(\sqrt\delta)$.
+\end{theorem}
+\begin{proof}
+The identity
+\[
+ g(a,z)=-\frac12\log(1-u),\qquad
+ u=\frac{(1-|a|^2)(1-|z|^2)}{|1-a\bar z|^2}
+\]
+and the assumptions give $0\le u\le1/2$. Since
+$-\frac12\log(1-u)\le u$ on this interval,
+\[
+ |V_R(z)|\le\frac{q}{(1-r)^2}(1-|z|^2)\mathbf1_{\{|z|>R\}}.
+\]
+Consequently
+\[
+ \|V_R\|_\infty\le\frac{q\delta}{(1-r)^2},\qquad
+ \int V_R^2d\nu\le\frac{q^2\delta}{(1-r)^4},
+\]
+because $(1-|z|^2)^2d\nu=d\mu$ and
+$\mu(\{|z|>R\})=\delta$. Apply
+Theorem~\ref{thm:actual-tilt-TV}; restriction is a measurable map and
+cannot increase TV. The mean-measure assertion follows from
+Corollary~\ref{cor:actual-tilt-intensity} and
+$m_0\le C_\beta\nu(A)$.
+\end{proof}
+
+The estimate does not follow from a small supremum norm alone:
+the elementary energy bound would be $N\|V_R\|_\infty$, which is
+not uniform in $N$. Moreover $\int |V_R|d\nu$ need not be finite.
+The proof removes the deterministic mean through normalization and
+controls the fluctuating sum by its quadratic intensity cost.
+In curvature $-1$, $\sqrt\delta=\operatorname{sech}
+(d(0,R)/2)$; the rate is exponential in the hyperbolic distance
+at fixed source region. No boundary-volume factor has been omitted.
+
+\subsection{The entire distant Green force vanishes in mean square}
+
+For $|a|<R$ define the complex force
+\[
+ \mathcal E_{N,R}(a)
+ :=\sum_{|z_i|>R}\frac{1-|z_i|^2}{(z_i-a)(1-a\bar z_i)}
+ =2\partial_a\sum_{|z_i|>R}g(a,z_i).
+\]
+This is the field from all particles beyond $R$, without a truncation
+of its angular modes.
+
+\begin{theorem}[Screening and reconstruction of the Green force]
+\label{thm:green-force-reconstruction}
+For $0<\beta\le2$, $0<r<1$ and $R\ge(1+r)/2$,
+\begin{equation}\label{eq:green-force-L2}
+ \mathbb E\mathcal E_{N,R}(a)=0,\qquad
+ \sup_{|a|\le r}\mathbb E|\mathcal E_{N,R}(a)|^2
+ \le\frac{4C_\beta(1-R^2)}{(1-r)^4},
+ \qquad N\ge1.
+\end{equation}
+For every fixed $r<1$ there is also $C_{\beta,r}'<\infty$ such that
+\[
+ \mathbb E\sup_{|a|\le r}|\mathcal E_{N,R}(a)|^2
+ \le C_{\beta,r}'(1-R^2)
+\]
+for all sufficiently large $R$, uniformly in $N$.
+
+Let $\Xi_{N_j}$ converge locally in law to a subsequential limit
+$\Xi$. For any $0<s<1$, the exterior force
+\begin{equation}\label{eq:configuration-force}
+ \mathcal E_\Xi^{s}(a)
+ =\lim_{R\uparrow1}
+ \sum_{z\in\Xi:\ s<|z|<R}
+       \frac{1-|z|^2}{(z-a)(1-a\bar z)},\qquad |a|<s,
+\end{equation}
+exists in mean square, locally uniformly in $a$. It is measurable
+from the exterior configuration $\Xi|_{\D\setminus B_s}$.
+Moreover the finite-gas exterior fields $\mathcal E_{N_j,s}$
+converge jointly with the configurations to this field. Thus this
+Green force carries no additional random contribution from infinity.
+\end{theorem}
+\begin{proof}
+For a fixed radius $u>|a|$, angular averaging gives
+\[
+ \frac1{2\pi}\int_0^{2\pi}g(a,ue^{i\theta})d\theta=-\log u.
+\]
+Indeed the mean of $\log|a-ue^{i\theta}|$ is $\log u$, and that
+of $\log|1-au e^{-i\theta}|$ is zero, by their convergent harmonic
+series. Differentiation in $a$ and radiality of the finite-gas
+intensity prove the zero mean in \eqref{eq:green-force-L2}.
+
+For $|a|\le r$ and $|z|>R\ge(1+r)/2$, the force summand $f_a(z)$
+satisfies
+\[
+ |f_a(z)|\le\frac{2(1-|z|^2)}{(1-r)^2}.
+\]
+Apply \eqref{eq:subpoisson-variance} to its real and imaginary
+parts and add the bounds. The zero mean then gives
+\[
+ \mathbb E|\mathcal E_{N,R}(a)|^2
+ \le\int_{|z|>R}|f_a(z)|^2\rho_{N,\beta}(z)d\mu(z),
+\]
+which proves \eqref{eq:green-force-L2} by the intensity bound.
+Choose $r<r_1<1$. The field is holomorphic on $B_R$. The disk
+mean-value inequality for its squared modulus implies
+\[
+ \sup_{B_r}|\mathcal E_{N,R}|^2
+ \le\frac{4}{(r_1-r)^2}\int_{B_{r_1}}
+                     |\mathcal E_{N,R}(a)|^2d\mu(a).
+\]
+For $R\ge(1+r_1)/2$, the already proved estimate and Tonelli give
+the locally uniform bound. The identical proof applies to a finite
+radial annulus $R<|z|<R'$ and gives the same upper bound with $R$.
+
+We detail passage to the point-process limit. On a compact window,
+\eqref{eq:subpoisson-generating} with $v=e^{u\mathbf1_A}$ and
+\eqref{eq:actual-uniform-bergman-upper} bound every exponential
+count moment uniformly in $N$. Local convergence therefore passes
+expectations of continuous compactly supported linear statistics,
+and their moments, to the limit. In particular, the limiting mean
+measure is rotation invariant and bounded by $C_\beta\nu$;
+each fixed circle has zero mean mass and hence almost surely contains no
+points. These observations justify restriction to each annulus
+$s<|z|<R$ and convergence of its force, locally uniformly in $a$.
+One may first work with smooth radial cutoffs and then remove
+them using the uniform count-moment and intensity bounds.
+
+The annular mean-square estimate just proved passes to the limit.
+For every $r<s$, its locally uniform version makes the sums in
+\eqref{eq:configuration-force} Cauchy in
+$L^2(\sup_{B_r}|\cdot|)$. Their limit is a measurable function of
+the exterior points. Choose a countable sequence $r\uparrow s$;
+the limits agree on overlaps and define the asserted holomorphic
+field. Finally, truncate both the finite-gas and limiting fields
+at radius $R$. Their joint convergence with configurations holds
+for fixed $R$, while the discarded tails have uniformly vanishing
+mean-square norms as $R\uparrow1$. The triangle inequality for
+bounded Lipschitz tests proves the stated joint convergence.
+\end{proof}
+
+Integrating this force from zero to $a$ shows that the Green potential
+modulo its value at zero is recovered as
+\[
+ H_\Xi^s(a)=\lim_{R\uparrow1}
+       \sum_{z\in\Xi:\ s<|z|<R}[g(a,z)-g(0,z)],\qquad |a|<s,
+\]
+with the same local mean-square convergence. Every finite annular
+sum has mean zero by radiality. This removes the need to specify a
+separate random mark for this particular Green force. It does not
+identify the additive potential constant, the conditional count
+weights, or the harmonic part of the original Euclidean interaction.
+Indeed
+\[
+ -\log|a-z|=g(a,z)-\log|1-a\bar z|,
+\]
+and the second term has boundary modes that the present estimate
+does not suppress. Consequently
+Theorem~\ref{thm:green-force-reconstruction} is not a proof of independence
+from the complete distant exterior sigma-field.
+
+
+\section{The full actual exterior at the determinantal benchmark}
+\label{sec:full-exterior-benchmark}
+
+The Green-tail tilt estimates do not themselves bound conditioning on
+the entire far exterior.  At $\beta=2$, however, that stronger statement
+has a direct proof.  It is uniform in the finite particle number, and
+therefore handles exterior data chosen by the actual gases even along
+triangular arrays of radii and particle numbers.
+
+For random elements $X,Y$ of standard Borel spaces, write
+\[
+ \mathcal B(X,Y)
+ =d_{\mathrm{TV}}\bigl(\operatorname{Law}(X,Y),
+              \operatorname{Law}(X)\otimes\operatorname{Law}(Y)\bigr),
+\]
+where probability total variation takes values in $[0,1]$.
+The disintegration formula for total variation gives
+\begin{equation}\label{eq:full-exterior-disintegration}
+ \mathcal B(X,Y)
+ =\mathbb E\,d_{\mathrm{TV}}
+       \bigl(\operatorname{Law}(X\mid Y),\operatorname{Law}(X)\bigr)
+ =\mathbb E\,d_{\mathrm{TV}}
+       \bigl(\operatorname{Law}(Y\mid X),\operatorname{Law}(Y)\bigr).
+\end{equation}
+For clarity, this identity follows by disintegrating the signed measure
+$\operatorname{Law}(X,Y)-\operatorname{Law}(X)\otimes\operatorname{Law}(Y)$
+over either marginal.  A countable generating algebra for the standard
+Borel space, followed by monotone approximation, makes the fiberwise
+variation measurable and identifies the variation of the signed measure
+with its integral.  Consequently the order of conditioning in
+\eqref{eq:full-exterior-disintegration} can be reversed without changing
+the dependence coefficient.
+
+\begin{theorem}[Entire selected-exterior attenuation at two]
+\label{thm:full-exterior-beta-two}
+Let $\Xi_N$ have density proportional to $|\Delta_N|^2$ relative to
+$\mu^N$, where $\mu=dA/\pi$ on the unit disk.  Fix $0<r<R<1$, and put
+$X_N=\Xi_N|_{B_r}$ and $Y_{N,R}=\Xi_N|_{\mathbb D\setminus B_R}$.
+Then
+\begin{align}
+ \mathcal B(X_N,Y_{N,R})
+ &\le \min\left\{1,
+   2\sum_{j=1}^N
+       \frac{r^{2j}(1-R^{2j})}{1-r^{2j}}\right\}
+                                                        \label{eq:full-exterior-exact}\\
+ &\le 2(1-R^2)\sum_{j=1}^{\infty}
+                      \frac{j r^{2j}}{1-r^{2j}}
+ \le \frac{2r^2(1-R^2)}{(1-r^2)^3}.
+                                                        \label{eq:full-exterior-rate}
+\end{align}
+In particular,
+\[
+ \lim_{R\uparrow1}\sup_{N\ge1}
+ \mathbb E\,d_{\mathrm{TV}}
+  \bigl(\operatorname{Law}(\Xi_N|_{B_r}\mid
+                    \Xi_N|_{\mathbb D\setminus B_R}),
+                    \operatorname{Law}(\Xi_N|_{B_r})\bigr)=0.
+\]
+This controls the whole local configuration, including its particle
+number, and every measurable statistic of the whole far exterior.
+\end{theorem}
+
+We record a proof of the finite-projection comparison needed here.
+It is a special case of the ordered-kernel theorem
+\cite[Theorem 3.8]{LyonsScreening}; its proof below removes any need
+for an external coupling theorem in the quantitative argument.
+
+\begin{lemma}[Finite projection comparison]
+\label{lem:finite-projection-comparison}
+Let $H_1\subset H_2$ be finite-dimensional subspaces of $L^2(E,\mu)$,
+and let $Q_i$ be their projection determinantal laws.  Then
+$\mathbb E_{Q_1}F\le\mathbb E_{Q_2}F$ for every bounded measurable
+function $F$ increasing under inclusion of configurations.  For every
+measurable $B\subset E$,
+\begin{equation}\label{eq:ordered-projection-local-TV}
+ d_{\mathrm{TV}}(Q_1|_B,Q_2|_B)
+ \le\mathbb E_{Q_2}\Xi(B)-\mathbb E_{Q_1}\Xi(B).
+\end{equation}
+\end{lemma}
+\begin{proof}
+It suffices first to compare ranks $n$ and $n+1$, with orthonormal
+basis $\phi_1,\ldots,\phi_n$ of $H_1$ and unit vector
+$\phi\perp H_1$ such that $H_2=H_1\oplus\mathbb C\phi$.
+In the antisymmetric subspace of $L^2(E^n,\mu^n)$, the normalized
+wave function
+\[
+ \Psi(z_1,\ldots,z_n)=\frac1{\sqrt{n!}}
+                      \det[\phi_i(z_j)]_{i,j=1}^n
+\]
+has squared modulus equal to the ordered density of $Q_1$.
+For an antisymmetric function $f$ of $n$ variables define
+\[
+ (c_\phi f)(z_1,\ldots,z_{n+1})
+ =\frac1{\sqrt{n+1}}\sum_{i=1}^{n+1}(-1)^{i-1}\phi(z_i)
+                        f(z_1,\ldots,\widehat z_i,\ldots,z_{n+1}),
+\]
+where the hat means that the coordinate is omitted.  Its adjoint on
+antisymmetric functions is the operator
+\[
+ (a_\phi f)(z_1,\ldots,z_{n-1})
+   =\sqrt n\int_E\overline{\phi(t)}f(t,z_1,\ldots,z_{n-1})\,d\mu(t).
+\]
+Expanding the finite sum and using antisymmetry gives
+\[
+ a_\phi c_\phi+c_\phi a_\phi=I,
+ \qquad
+ \|c_\phi f\|_2^2=\|f\|_2^2-\|a_\phi f\|_2^2\le\|f\|_2^2.
+\]
+For example, in the first identity the term inserting $t$ in the first
+coordinate contributes $f$, while the remaining $n$ terms are exactly
+$-c_\phi a_\phi f$ after their permutation signs are collected.  The
+norm identity follows by taking the inner product with $f$ and using
+adjointness.  These calculations also apply to $n=0$ with the scalar
+vacuum space and zero annihilation operator.
+
+Orthogonality implies $a_\phi\Psi=0$.  The normalized wave function
+of $Q_2$ is $\Psi'=c_\phi\Psi$, up to an irrelevant sign, and
+$a_\phi\Psi'=\Psi$.  Let $\mathcal U$ be an increasing measurable
+configuration event, and let $A_n,A_{n+1}$ be its symmetric ordered
+sectors of cardinalities $n,n+1$.  Put $f=\mathbf1_{A_n}\Psi$.
+The function $c_\phi f$ vanishes off $A_{n+1}$: any nonzero summand
+exhibits a subconfiguration belonging to $\mathcal U$.  Hence, with
+$p_i=Q_i(\mathcal U)$,
+\[
+ p_1=\langle\Psi,f\rangle
+     =\langle\Psi',c_\phi f\rangle
+     =\langle\mathbf1_{A_{n+1}}\Psi',c_\phi f\rangle
+     \le\sqrt{p_2}\,\|c_\phi f\|_2
+     \le\sqrt{p_2p_1}.
+\]
+The inner product is real and nonnegative because its value is $p_1$;
+Cauchy--Schwarz justifies the displayed inequality.  Thus $p_1\le p_2$.
+Add an orthonormal basis of $H_2\ominus H_1$ one vector at a time and
+then use the layer-cake formula to obtain the assertion for every
+bounded increasing measurable function.
+
+For a measurable event $F$ of the restriction to $B$, both functions
+\[
+ \eta\longmapsto\eta(B)+\mathbf1_F(\eta|_B),
+ \qquad
+ \eta\longmapsto\eta(B)-\mathbf1_F(\eta|_B)
+\]
+are increasing under inclusion.  Indeed, an added point outside $B$
+changes neither term; a strict inclusion on $B$ increases its count
+by at least one and changes the indicator by at most one.  Counts are
+bounded by the finite ranks on the two laws; the increasing functions
+can therefore be truncated outside that range when applying the
+preceding assertion.  Applying the assertion to both signs gives
+\[
+ |(Q_2|_B)(F)-(Q_1|_B)(F)|
+ \le\mathbb E_{Q_2}\Xi(B)-\mathbb E_{Q_1}\Xi(B).
+\]
+Taking a supremum over $F$ proves the total-variation inequality.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:full-exterior-beta-two}]
+Put $A=B_r$, $E=\mathbb D\setminus A$, and $B=\mathbb D\setminus B_R$.
+There are almost surely no particles on either bounding circle.  The
+event $\{\Xi_N(A)=0\}$ has positive probability, since the joint density
+is positive almost everywhere on $E^N$.  Let $Q_0$ be the conditional
+law of the entire configuration in $E$ given that event.
+
+The Vandermonde determinant and Gram orthonormalization identify $Q_0$
+as the projection determinantal process onto
+\[
+ H_0=\operatorname{Pol}_{N-1}
+       \quad\hbox{in }L^2(E,\mu).
+\]
+More generally, condition on the complete configuration
+$x=\{x_1,\ldots,x_m\}$ in $A$.  Almost surely its points are distinct,
+and $0\le m\le N$.  Factoring the joint Vandermonde shows that the
+conditional density of the $N-m$ exterior points is proportional to
+\begin{equation}\label{eq:conditioned-exterior-polynomials}
+ |\Delta_{N-m}(z_1,\ldots,z_{N-m})|^2
+   \prod_{i=1}^{N-m}|p_x(z_i)|^2\prod_{i=1}^{N-m}d\mu(z_i),
+ \qquad p_x(z)=\prod_{a\in x}(z-a),\quad z_i\in E.
+\end{equation}
+Terms depending only on $x$ cancel in the conditional normalization.
+The density in \eqref{eq:conditioned-exterior-polynomials} is the
+projection determinantal law onto
+\[
+ H_x=p_x\operatorname{Pol}_{N-m-1}\subseteq H_0
+             \quad\hbox{in }L^2(E,\mu).
+\]
+For $m=N$ the subspace is zero and the exterior is empty.  Otherwise
+the identity follows by taking a determinant of any basis of $H_x$;
+the factors $p_x$ give exactly the displayed one-body weight.
+Distinct interpolation nodes impose $m$ independent conditions on
+$\operatorname{Pol}_{N-1}$, so the displayed subspace also consists of
+all polynomials in $H_0$ vanishing at every point of $x$.
+
+Write $Q_x$ for this conditional exterior law and $P_x$ for its
+projection kernel in $L^2(E,\mu)$.  The subspace inclusion gives
+$P_x\le P_0$.  Applying Lemma~\ref{lem:finite-projection-comparison} on $B$ yields
+\begin{equation}\label{eq:exterior-hole-bracket}
+ d_{\mathrm{TV}}(Q_x|_B,Q_0|_B)
+ \le \mathbb E_{Q_0}\Xi(B)-\mathbb E_{Q_x}\Xi(B).
+\end{equation}
+No regularity or typicality requirement on the observed points $x$ is
+needed for this inequality, beyond distinctness and admissibility.
+
+Let $\overline Q=\operatorname{Law}(\Xi_N|_E)$, the mixture of $Q_x$
+against the actual law of $X_N$.  Convexity of total variation and
+\eqref{eq:exterior-hole-bracket} imply
+\[
+ d_{\mathrm{TV}}(\overline Q|_B,Q_0|_B)
+ \le\mathbb E\,d_{\mathrm{TV}}(Q_{X_N}|_B,Q_0|_B)
+ \le \Delta_N(r,R),
+\]
+where
+\[
+ \Delta_N(r,R)=
+       \mathbb E[\Xi_N(B)\mid\Xi_N(A)=0]-\mathbb E\Xi_N(B).
+\]
+A second triangle inequality and
+\eqref{eq:full-exterior-disintegration} give
+\begin{equation}\label{eq:full-exterior-hole-reduction}
+ \mathcal B(X_N,Y_{N,R})\le2\Delta_N(r,R).
+\end{equation}
+
+It remains to compute this scalar excess count.  Angular orthogonality
+in $E$ gives the orthonormal basis
+\[
+ \left\{\sqrt{\frac{j}{1-r^{2j}}}\,z^{j-1}:1\le j\le N\right\}
+\]
+of $H_0$.  Thus
+\[
+ \mathbb E[\Xi_N(B)\mid\Xi_N(A)=0]
+   =\sum_{j=1}^N\frac{1-R^{2j}}{1-r^{2j}},
+ \qquad
+ \mathbb E\Xi_N(B)=\sum_{j=1}^N(1-R^{2j}).
+\]
+Subtracting proves the sum in \eqref{eq:full-exterior-exact}.
+Finally $1-R^{2j}\le j(1-R^2)$ and
+$1-r^{2j}\ge1-r^2$.  Summing
+$\sum_{j\ge1}j r^{2j}=r^2/(1-r^2)^2$ proves
+\eqref{eq:full-exterior-rate}.
+\end{proof}
+
+\begin{corollary}[Typical exteriors and normalized boundary changes]
+\label{cor:full-exterior-typical}
+Let $b_r(R)$ denote the last expression in
+\eqref{eq:full-exterior-rate}.  For every $\varepsilon>0$,
+\[
+ \mathbb P\!\left\{
+ d_{\mathrm{TV}}\bigl(\operatorname{Law}(X_N\mid Y_{N,R}),
+                     \operatorname{Law}(X_N)\bigr)>\varepsilon\right\}
+ \le \frac{b_r(R)}{\varepsilon}.
+\]
+Suppose a changed probability law has density $W(Y_{N,R})$ relative
+to the actual finite gas, where $W\ge0$ and $\mathbb EW=1$.  If
+$1<p\le\infty$ and $q=p/(p-1)$, then
+\begin{equation}\label{eq:boundary-likelihood-local-TV}
+ d_{\mathrm{TV}}\bigl(\operatorname{Law}_{W}(X_N),
+                     \operatorname{Law}(X_N)\bigr)
+ \le \|W\|_{L^p}\,b_r(R)^{1/q}.
+\end{equation}
+For $p=\infty$, the convention is $q=1$.  Thus bounded normalized
+likelihoods, and more generally uniformly $L^p$ normalized likelihoods,
+give a rigorously admissible class of boundary changes.
+\end{corollary}
+\begin{proof}
+The first assertion is Markov's inequality.  Set
+$d(Y)=d_{\mathrm{TV}}(\operatorname{Law}(X_N\mid Y),
+\operatorname{Law}(X_N))$.  For each local event $F$, conditioning on
+$Y$ gives
+\[
+ |\mathbb E[W\mathbf1_F]-\mathbb P(F)|
+ \le\mathbb E[W d(Y)].
+\]
+Take a supremum over $F$, use H\"older's inequality, and use
+$0\le d\le1$ and $\mathbb Ed\le b_r(R)$.
+\end{proof}
+
+\begin{remark}[What the benchmark excludes and what it does not]
+The estimate is uniform in $N$ with $r$ fixed.  Consequently no
+measurable estimator built from the actual far exterior can preserve a
+positive amount of total-variation information about the whole fixed
+local configuration along $R\uparrow1$, even if $N$ changes arbitrarily.
+This includes exterior harmonic sums, exterior counts, and functions
+whose formula depends on $N$ and $R$.  It is stronger than invoking
+tail triviality of the limiting Bergman process after taking $N$ to
+infinity first.
+
+The constant is not uniform as the observation radius $r$ tends to one.
+Nor is the conditional distance small for every individual exterior
+configuration: the theorem gives an average and hence a high-probability
+bound under the selected boundary law.  A rare boundary event can have
+a normalized likelihood with an arbitrarily large $L^p$ norm in
+\eqref{eq:boundary-likelihood-local-TV}.  Therefore the result is
+consistent with adverse deterministic exterior configurations.
+\end{remark}
+
+\subsection{A formulation transferable beyond determinants}
+
+The reversal of conditioning in the preceding proof is a probability
+argument, not a determinantal one.  It gives a concrete alternative
+target for screening at other temperatures.
+
+\begin{proposition}[Full-law attenuation from a hole response]
+\label{prop:general-hole-response}
+Let $\Xi$ be any finite point process on a standard Borel region $D$,
+and let $A,B\subset D$ be disjoint measurable sets.  Assume
+$\mathbb P\{\Xi(A)=0\}>0$ and that all the expectations below are finite.
+Write $Q_0$ for the law of $\Xi|_{D\setminus A}$ conditioned on the
+hole event and $Q_x$ for its law conditioned on the complete
+configuration $\Xi|_A=x$.  Suppose that, for almost every $x$ under the
+actual interior marginal, $Q_x|_B$ is stochastically dominated by
+$Q_0|_B$ under inclusion; an inclusion coupling is a sufficient
+condition.
+Then
+\begin{equation}\label{eq:general-hole-response}
+ \mathcal B(\Xi|_A,\Xi|_B)
+ \le2\left\{
+  \mathbb E[\Xi(B)\mid\Xi(A)=0]-\mathbb E\Xi(B)\right\}.
+\end{equation}
+More generally, it suffices that for some fixed reference law $Q_*$
+and measurable $e(x)\ge0$,
+\[
+ d_{\mathrm{TV}}(Q_x|_B,Q_*|_B)\le e(x),
+ \qquad \mathbb E e(\Xi|_A)<\infty.
+\]
+Then $\mathcal B(\Xi|_A,\Xi|_B)\le2\mathbb E e(\Xi|_A)$.
+\end{proposition}
+\begin{proof}
+Apply stochastic domination to the two increasing functions
+$\eta(B)\pm\mathbf1_F(\eta|_B)$, truncated if necessary and
+then passed to the limit by the assumed finite count expectations.
+As in the proof of Lemma~\ref{lem:finite-projection-comparison}, this
+bounds the distance to $Q_0|_B$ by its excess expected count.  Integrate over the actual
+interior configuration.  Convexity bounds the distance between the
+unconditional exterior and the same reference law by that integral.
+The triangle inequality and
+\eqref{eq:full-exterior-disintegration} prove both assertions.
+\end{proof}
+
+For the actual disk gas this proposes two separate non-determinantal
+estimates: an inclusion coupling, or a controlled approximate
+replacement, for complete interior conditioning; and vanishing
+far-exterior excess count after imposing a fixed inner hole.  The
+susceptibility inequality at $0<\beta\le2$ alone does not establish
+either assertion.  In particular, a two-particle-to-one-particle
+deletion coupling cannot be iterated over arbitrary particle numbers
+without a further theorem.  Proposition~\ref{prop:general-hole-response}
+is thus a proved reduction, not a claim of full screening below two.
+
+% Bibliography entry required by the parent document:
+% \bibitem{LyonsScreening}
+% R. Lyons, Determinantal probability: basic properties and conjectures,
+% Proceedings of the International Congress of Mathematicians 2014,
+% vol. IV, 137--161. \href{https://arxiv.org/abs/1406.2707}{arXiv:1406.2707}.
+% The ordered-kernel theorem used here is Theorem 3.8.
+
+
+\section{Why susceptibility alone does not give deletion couplings}
+\label{sec:lorentzian-covering-obstruction}
+
+The susceptibility estimate does not, by itself, justify replacing an
+exterior conditional law by a configuration containing all its particles.
+The following example isolates the logical gap.  It is an example of a
+discrete probability measure, not a counterexample for the disk gas.
+
+\begin{proposition}[A Lorentzian measure without deletion domination]
+\label{prop:lorentzian-no-covering}
+There is a strictly positive probability measure on every three-element
+subset of a five-element set whose generating polynomial is Lorentzian,
+but which fails stochastic covering after conditioning on one coordinate.
+\end{proposition}
+
+\begin{proof}
+Use coordinates $x_1,x_2,x_3,y,z$, and put
+\[
+ F=e_3(x_1,x_2,x_3,y,z)+3x_1x_2x_3,
+\]
+where $e_3$ is the sum of all squarefree monomials of degree three.
+Thus the coefficient of $x_1x_2x_3$ is four and each of the other nine
+coefficients is one.  The support is the set of all three-element
+subsets, which has the matroid exchange property.
+
+For a homogeneous cubic with this support, the Lorentzian criterion
+used above asks that each first derivative have a Hessian with at most
+one positive eigenvalue.  The derivatives with respect to $y$ and $z$
+are $e_2$ on the four remaining variables.  Their nonzero Hessian block
+is the matrix with zero diagonal and all off-diagonal entries one,
+whose eigenvalues are $3,-1,-1,-1$.
+
+For the derivative with respect to $x_1$, order the remaining variables
+as $x_2,x_3,y,z$.  Its Hessian block is
+\[
+ H=\begin{pmatrix}
+ 0&4&1&1\\
+ 4&0&1&1\\
+ 1&1&0&1\\
+ 1&1&1&0
+ \end{pmatrix}.
+\]
+The vectors $(1,-1,0,0)$ and $(0,0,1,-1)$ have eigenvalues $-4$ and
+$-1$.  On vectors $(a,a,b,b)$ the action is represented by
+$\left(\begin{smallmatrix}4&2\\2&1\end{smallmatrix}\right)$,
+whose eigenvalues are $5$ and $0$.  The derivatives with respect to
+$x_2$ and $x_3$ have the same spectrum.  The unused differentiated
+coordinate adds only a zero eigenvalue.  This verifies the complete
+Lorentzian criterion.
+
+Normalize the coefficients of $F$ to a probability measure $\mu$.
+Since $F(1,1,1,1,1)=13$, and writing $I_y,I_z$ for occupancy indicators,
+\[
+ \mu(I_y=1)=\mu(I_z=1)=\frac6{13},\qquad
+ \mu(I_y=I_z=1)=\frac3{13}.
+\]
+Consequently
+\[
+ \operatorname{Cov}_{\mu}(I_y,I_z)
+ =\frac3{13}-\frac{36}{169}=\frac3{169}>0.
+\]
+More explicitly, the law on the other four coordinates given $I_y=1$
+has two particles and assigns probability $1/2$ to $I_z=1$; the law
+given $I_y=0$ has three particles and assigns probability $3/7$ to that
+same increasing event.  The two-particle configuration therefore cannot
+be a subset of the three-particle configuration under any coupling.
+\end{proof}
+
+\begin{remark}
+This example is not asserted to have coefficients of the form
+$\prod_{\{i,j\}\subset S}|a_i-a_j|^\beta$ for planar points $a_i$.
+It disproves the implication from the already established Lorentzian
+property to deletion domination.  Additional structure of the disk
+interaction could still imply the latter.
+\end{remark}
+
+For precision, the additional property has a finite system of exact
+inequalities. Fix $\beta>0$ and $1\le n\le q$.
+Let $a_1,\ldots,a_q$ be distinct points, let $y$ be a
+further point, and let $w_i>0$.  For a subset $T\subset\{1,\ldots,q\}$
+of size $n$ and a subset $S$ of size $n-1$, set
+\[
+ A_T=\prod_{i\in T}w_i
+       \prod_{\{i,j\}\subset T}|a_i-a_j|^\beta,
+ \qquad
+ B_S=\prod_{i\in S}\bigl(w_i|a_i-y|^\beta\bigr)
+       \prod_{\{i,j\}\subset S}|a_i-a_j|^\beta.
+\]
+Write $Z_A=\sum_{|T|=n}A_T$ and $Z_B=\sum_{|S|=n-1}B_S$.
+For a family $\mathcal C$ of $(n-1)$-element subsets, define its upper
+shadow by
+\[
+ \partial^+\mathcal C
+ =\{T:|T|=n,\ S\subset T\text{ for some }S\in\mathcal C\}.
+\]
+
+\begin{proposition}[The exact finite deletion criterion]
+\label{prop:finite-deletion-hall}
+A coupling of $Q(S)=B_S/Z_B$ and $P(T)=A_T/Z_A$ supported on $S\subset T$
+exists if and only if, for every family $\mathcal C$,
+\begin{equation}
+ Z_A\sum_{S\in\mathcal C}B_S
+ \le Z_B\sum_{T\in\partial^+\mathcal C}A_T.
+ \label{eq:finite-deletion-hall}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Necessity follows because $S\in\mathcal C$ and $S\subset T$ imply
+$T\in\partial^+\mathcal C$.  For sufficiency, build a finite network
+with a source, one vertex for each $S$, one vertex for each $T$, and a
+sink.  Give source-to-$S$ edges capacity $Q(S)$, $T$-to-sink edges
+capacity $P(T)$, and each inclusion edge $S\to T$ capacity two.
+A cut of capacity less than one cannot cross an inclusion edge.
+If its source side contains a family $\mathcal C$ of lower vertices,
+it must therefore contain their upper shadow, and its capacity is at
+least $1-Q(\mathcal C)+P(\partial^+\mathcal C)\ge1$.
+All other cuts also have capacity at least one.  The max-flow/min-cut
+theorem gives a flow of value one.  Since both sets of marginal
+capacities sum to one, all source and sink edges are saturated, and
+the flows on inclusion edges form the required coupling.
+\end{proof}
+
+For $n=2$, the families $\mathcal C$ are just sets of possible singleton
+locations; the Hilbert-space calculation in the two-to-one deletion
+theorem proves all these inequalities.  For $n\ge3$, families of
+multi-particle configurations must be considered.  Linear-statistic
+variance bounds do not check those families.  Establishing
+\eqref{eq:finite-deletion-hall} for all relevant planar distance weights,
+or a suitably restricted version for boundary data selected by the
+actual gas, remains an explicit possible route to a count-sensitive
+comparison.
+
+
+\section{An exact finite-range splitting and a uniformly controlled reference gas}
+\label{sec:exact-smearing-reference}
+
+This section concerns the actual unweighted disk gas.  It supplies an exact
+representation, including every particle-number weight.  The representation
+does not by itself prove screening: its final, positive quadratic tilt still
+has to be controlled.  All measures and kernels used below are constructed
+explicitly.
+
+Put $\mu=\pi^{-1}dA$, $\nu=\pi^{-1}(1-|z|^2)^{-2}dA$, and let $d$ denote
+hyperbolic distance for curvature $-1$.  Write
+\[
+ \begin{gathered}
+ C(z,w)=-\log|z-w|=g(d(z,w))+h(z,w),\\
+ g(r)=-\log\tanh(r/2),\qquad h(z,w)=-\log|1-z\bar w|.
+ \end{gathered}
+\]
+The normalized radial element of $\nu$ about any point is
+$\frac12\sinh r\,dr$.  For $a>0$, let $S_a$ average a function over the
+hyperbolic sphere of radius $a$, with its rotational probability measure.
+This operator preserves harmonic functions.  It preserves $\nu$ and is
+self-adjoint on $L^2(\nu)$: the invariant measure on pairs of points at
+distance $a$ is unchanged on exchanging the points.  Source and target
+averaging of an invariant radial kernel commute.
+
+\begin{proposition}[Exact finite-range decomposition]
+\label{prop:smearing-exact}
+Let $C_a$ be $C$ averaged by $S_a$ in each argument.  There is a nonnegative
+radial kernel $k_a$ such that
+\[
+ C(z,w)=C_a(z,w)+k_a(d(z,w)),\qquad
+ k_a(r)=0\quad(r\ge2a).
+\]
+More precisely, with $q_a(r)=(g(r)-g(a))_+$,
+\begin{align}
+ k_a&=q_a+S_aq_a,\\
+ M_a:=\int k_a(d(o,z))\,\nu(dz)&=2\log\cosh(a/2),\\
+ C_a(z,z)&=g(a)-\log(1-|z|^2).
+\end{align}
+The kernel $C_a$ is finite and positive semidefinite.  For all
+$\beta>0$ and $\alpha\ge0$,
+\begin{equation}\label{eq:short-bond-norm}
+ \int e^{\alpha d(o,z)}\bigl(1-e^{-\beta k_a(d(o,z))}\bigr)\nu(dz)
+ \le \beta e^{2\alpha a}M_a.
+\end{equation}
+\end{proposition}
+\begin{proof}
+The spherical mean of the Green potential is
+\[
+ S_ag(r)=g(\max\{r,a\}).
+\]
+Outside the sphere this is the harmonic mean-value property.  Inside,
+the sphere potential is a rotationally invariant harmonic function regular
+at its center, hence constant; its value at the center is $g(a)$.
+These assertions agree continuously on the sphere, where the logarithmic
+singularity in the angular integral is integrable.  Since $h$ is harmonic
+in each argument, its spherical means equal $h$.  Therefore
+$C_a=S_a^2g+h$ and
+$g-S_a^2g=(g-S_ag)+S_a(g-S_ag)=q_a+S_aq_a$.
+This proves positivity and the range statement by the triangle inequality.
+Using $g'(r)=-1/\sinh r$ and integration by parts gives
+\[
+ \int q_a\,d\nu
+ =\frac12\int_0^a(g(r)-g(a))\sinh r\,dr
+ =\frac12\int_0^a\frac{\cosh r-1}{\sinh r}\,dr
+ =\log\cosh(a/2).
+\]
+Measure preservation by $S_a$ gives the stated value of $M_a$.
+Furthermore
+\[
+ S_a^2g(0)=S_a[g(\max\{r,a\})](0)=g(a),
+\]
+which proves the diagonal formula.
+
+For completeness, positivity as a quadratic form is a different assertion
+from pointwise positivity of $k_a$.  For any real finite signed measure
+$\sigma$ of finite Green energy, $\iint g\,d\sigma\,d\sigma\ge0$.
+One way to verify this is to first use a smooth charge density compactly
+supported in a disk $B_R$: its zero-boundary Green potential $U$ satisfies
+$-\Delta U=2\pi\sigma$, and integration by parts gives the energy
+$(2\pi)^{-1}\int_{B_R}|\nabla U|^2dA\ge0$.  Increasing $R$ to $1$
+gives the full-disk assertion; approximating the charges gives it for
+finite-energy measures.  In the present application the charges are
+finite linear combinations of uniform circle measures, whose logarithmic
+energies are finite.  Their energies converge under ordinary smooth
+approximation, because the only local singularity is logarithmic.
+Thus $S_a^2g$ is positive semidefinite on point configurations.  Also
+\[
+ \sum_{i,j}t_it_jh(z_i,z_j)
+ =\sum_{k\ge1}\frac1k\left|\sum_i t_i z_i^k\right|^2\ge0
+ \qquad(t_i\in\mathbb R).
+\]
+The series converges for every finite configuration in $\mathbb D$.
+This proves the assertion for $C_a$.  Finally,
+$1-e^{-\beta k_a}\le\beta k_a$ and its support is contained in
+$B_{2a}$, proving \eqref{eq:short-bond-norm}.
+\end{proof}
+
+For $\eta=\sum_{i=1}^N\delta_{z_i}$ at distinct points, the proposition
+gives the following identity without any approximation:
+\begin{equation}\label{eq:actual-smearing-density}
+ |\Delta_N(\mathbf z)|^\beta\,\mu^N(d\mathbf z)
+ =e^{\beta Ng(a)/2}
+  e^{-\frac\beta2 C_a(\eta,\eta)}
+  e^{-\beta\sum_{i<j}k_a(d(z_i,z_j))}
+  \prod_i(1-|z_i|^2)^{2-\beta/2}\nu(dz_i).
+\end{equation}
+Here $C_a(\sigma,\tau)=\iint C_a(z,w)\,\sigma(dz)\tau(dw)$ whenever
+the integral is defined.  The one-body factor is the retained diagonal
+self-energy, together with the change of area measure.  It cannot be
+dropped when comparing particle counts.
+
+\subsection{Construction of the reference density}
+
+We now assume $0<\beta<2$, and set
+\[
+ p=2-\beta/2>1,\qquad c=\frac{2p}{\beta}=\frac4\beta-1>0,
+ \qquad u(z)=(1-|z|^2)^p.
+\]
+The appearance of $c$ below concerns a reference density, not the
+unproved intensity of the actual particle process.
+
+\begin{proposition}[A finite-mass reference at every activity]
+\label{prop:saddle-reference}
+For every $\lambda>0$ there exists a positive radial smooth function
+$b_\lambda$ on $\mathbb D$ satisfying
+\begin{equation}\label{eq:reference-saddle}
+ b_\lambda(z)=\lambda u(z)
+       \exp[-\beta(C*b_\lambda)(z)],\qquad
+ (C*b)(z)=\int C(z,w)b(w)\nu(dw).
+\end{equation}
+It has finite mass, is radially decreasing, and satisfies
+\[
+ 0<b_\lambda(z)<c,\qquad
+ b_\lambda(z)\sim\lambda(1-|z|^2)^p\quad(|z|\uparrow1).
+\]
+These references increase strictly with $\lambda$ and
+\begin{equation}\label{eq:saddle-local-limit}
+ b_\lambda\longrightarrow c
+ \quad\hbox{locally uniformly as }\lambda\longrightarrow\infty.
+\end{equation}
+Their defining local equation is
+\begin{equation}\label{eq:saddle-liouville}
+ \Delta_{\mathbb H}\log b_\lambda
+       =\frac\beta2(b_\lambda-c).
+\end{equation}
+\end{proposition}
+\begin{proof}
+We construct the functions by a radial ordinary differential equation,
+which also proves the required bounds without an assumption about the
+gas.  Let $t=d(0,z)$, and fix $x\in(0,c)$.  Solve
+\begin{equation}\label{eq:saddle-ode}
+ v''(t)+\coth t\,v'(t)=\frac\beta2(e^{v(t)}-c),\qquad
+ v(0)=\log x,\quad v'(0)=0.
+\end{equation}
+The regular radial solution exists uniquely near zero.  For example,
+the integrated equation
+\[
+ v(t)=\log x+\frac\beta2\int_0^t\frac1{\sinh s}
+                  \int_0^s(e^{v(r)}-c)\sinh r\,dr\,ds
+\]
+has a unique continuous solution on a short interval by the contraction
+mapping theorem, since its double-integral operator has norm $O(t^2)$
+on bounded sets.  It then gives the usual regularity and the differential
+equation.  As long as the solution exists, the same formula shows that
+$v'(t)<0$ for $t>0$ and $e^{v(t)}\le x<c$: a first failure of either
+property is impossible.  Moreover
+\[
+ -p\tanh(t/2)\le v'(t)
+ \le-\frac\beta2(c-x)\tanh(t/2).
+\]
+These bounds prevent finite-time blowup and extend the solution to all
+$t\ge0$.  If $b_x(t)=e^{v(t)}$ and
+$\delta_x=\beta(c-x)/2>0$, they imply
+\begin{equation}\label{eq:saddle-decay-initial}
+ x\cosh(t/2)^{-2p}\le b_x(t)
+ \le x\cosh(t/2)^{-2\delta_x}.
+\end{equation}
+
+An exact refinement of the integrated equation is
+\[
+ v'(t)=-p\tanh(t/2)
+      +\frac\beta{2\sinh t}\int_0^t b_x(s)\sinh s\,ds.
+\]
+The integral of its second term over $t\in(0,\infty)$ is finite.
+Indeed, Tonelli identifies it with
+\[
+ \frac\beta2\int_0^\infty b_x(s)\sinh s
+                      \left(\int_s^\infty\frac{dt}{\sinh t}\right)ds
+ =\frac\beta2\int_0^\infty b_x(s)\sinh s\,g(s)\,ds<\infty.
+\]
+Near zero the integrand is $O(s|\log s|)$; at infinity,
+$\sinh s\,g(s)$ is bounded and \eqref{eq:saddle-decay-initial} gives
+exponential decay.  Consequently
+\begin{align}
+ b_x(t)&\sim\lambda(x)\cosh(t/2)^{-2p},\label{eq:saddle-asymptotic}\\
+ \lambda(x)&=x\exp\left[\frac\beta2\int_0^\infty
+                    b_x(s)\sinh s\,g(s)\,ds\right].
+\end{align}
+Since $p>1$, \eqref{eq:saddle-asymptotic} proves that $b_x\nu$ has
+finite total mass.
+
+Let $B_x=C*b_x$.  Angular averaging gives
+$C(z,w)\mapsto-\log\max\{|z|,|w|\}$ for radial charges.  In
+particular $B_x\ge0$, it is bounded by $B_x(0)<\infty$, and
+$B_x(z)\to0$ as $|z|\uparrow1$.  The latter also follows from
+$B_x(r)\le-\log r\int b_x\,d\nu$ for $r>0$.
+Its Laplacian is
+$\Delta_{\mathbb H}B_x=-b_x/2$, since
+$\Delta C(\cdot,w)=-2\pi\delta_w$ in Euclidean coordinates.
+Also $\Delta_{\mathbb H}\log(1-|z|^2)=-1$.
+It follows from \eqref{eq:saddle-ode} that
+$\log b_x-p\log(1-|z|^2)+\beta B_x$ is a radial harmonic
+function regular at zero and hence constant.  Taking its boundary
+limit using \eqref{eq:saddle-asymptotic} shows that this constant is
+$\log\lambda(x)$.  Thus \eqref{eq:reference-saddle} holds for $b_x$
+at activity $\lambda(x)$.
+
+It remains to parameterize all activities and prove the limiting claim.
+If $0<x<y<c$, the difference $w=v_y-v_x$ starts positive with zero
+derivative.  While it is positive,
+$(\sinh t\,w')'=\frac\beta2\sinh t(b_y-b_x)>0$ for $t>0$.
+It therefore remains positive and increasing.  Thus $b_y>b_x$ and,
+by the formula for $\lambda$, $\lambda(y)>\lambda(x)$.
+Continuity of $\lambda(x)$ inside $(0,c)$ follows from continuous
+dependence of the ODE on initial values and dominated convergence in
+the integral formula, using the upper bound in
+\eqref{eq:saddle-decay-initial} uniformly on compact $x$-intervals.
+As $x\downarrow0$, the same bound, with for example
+$\delta_x\ge p/2$, shows that the integral in $\log(\lambda(x)/x)$
+tends to zero; hence $\lambda(x)\to0$.
+As $x\uparrow c$, the ODE solutions tend on compact intervals to
+the constant solution $b=c$.  Monotonicity and Tonelli give
+\[
+ \int_0^\infty b_x(s)\sinh s\,g(s)\,ds\longrightarrow\infty,
+\]
+because $\sinh s\,g(s)\to1$.  Therefore $\lambda(x)\to\infty$.
+The continuous strictly increasing map $x\mapsto\lambda(x)$ maps
+$(0,c)$ onto $(0,\infty)$.  Its inverse defines $b_\lambda$ and
+proves all the claims, including local uniform convergence by the
+continuous dependence already used.
+\end{proof}
+
+\subsection{Exact grandcanonical representation and the small reference norm}
+
+Let $P_{\zeta,\beta}$ denote the grandcanonical mixture of the original
+unweighted gases, with unnormalized $N$-particle sector
+\[
+ \frac{\zeta^N}{N!}|\Delta_N(\mathbf z)|^\beta\prod_i\mu(dz_i).
+\]
+For $0<\beta<2$ its partition function is finite.  Indeed,
+$\int|\Delta_N|^2d\mu^N=N!\prod_{j=0}^{N-1}(j+1)^{-1}=1$
+by expanding the determinant and using angular orthogonality.  Jensen's
+inequality gives $Z_N(\beta)\le1$, and hence
+$\sum_N\zeta^NZ_N(\beta)/N!\le e^\zeta$.
+
+\begin{theorem}[The actual gas as a tilt of a uniformly subcritical reference]
+\label{thm:actual-reference-tilt}
+Fix $a>0$, $\zeta>0$, and $0<\beta<2$.  Set
+\[
+ \lambda=\zeta e^{\beta g(a)/2},\qquad b=b_\lambda,\qquad
+ a_\lambda(z)=b(z)\exp[\beta(k_a*b)(z)].
+\]
+Let $Q_\lambda$ be the finite grandcanonical gas with activity
+$a_\lambda(z)\nu(dz)$ and pair interaction $\beta k_a$.  Then
+\begin{equation}\label{eq:actual-exact-tilt}
+ \frac{dP_{\zeta,\beta}}{dQ_\lambda}(\eta)
+ =\frac{\exp[-\frac\beta2 C_a(\eta-b\nu,\eta-b\nu)]}
+ {E_{Q_\lambda}\exp[-\frac\beta2 C_a(\eta-b\nu,\eta-b\nu)]}.
+\end{equation}
+The expectation in the denominator is strictly positive.  Uniformly in
+$\lambda$,
+\begin{align}
+ a_\lambda(z)&\le c\exp(\beta cM_a),\label{eq:reference-activity-bound}\\
+ \sup_z\int e^{\alpha d(z,w)}a_\lambda(w)
+       (1-e^{-\beta k_a(d(z,w))})\nu(dw)
+ &\le\beta cM_a\exp(\beta cM_a+2\alpha a).
+ \label{eq:reference-influence-bound}
+\end{align}
+In particular, if $0<\beta\le1/4$ and $a=\sqrt\beta$, the
+right-hand side for $\alpha=1$ is at most
+$\frac14e^{5/4}<1$.
+\end{theorem}
+\begin{proof}
+The convolution $k_a*b$ is nonnegative and at most $cM_a$, so
+$a_\lambda\le e^{\beta cM_a}b$.  Its integral is finite by
+Proposition~\ref{prop:saddle-reference}.  Since the pair interaction is
+nonnegative, the grand partition function of $Q_\lambda$ lies between
+$1$ and $\exp(\int a_\lambda\,d\nu)$, and $Q_\lambda$ has a finite
+number of particles almost surely.
+
+All energies in \eqref{eq:actual-exact-tilt} are finite.
+Indeed $C*b$ is bounded and $b\nu$ has finite mass.  Radial symmetry
+annihilates its nonconstant harmonic moments, so $h*b=0$ and
+$C_a*b=S_a^2g*b$, which lies between $0$ and $C*b$ because
+$0\le S_a^2g\le g$.  This controls the deterministic and cross energies;
+the finite atomic self-energies are covered by
+Proposition~\ref{prop:smearing-exact}.  Moreover
+$\int[-\log(1-|z|^2)]b(z)\nu(dz)<\infty$ by the boundary asymptotic
+$b\sim\lambda(1-|z|^2)^p$ with $p>1$.  Together with
+$|h(z,w)|\le\frac12(h(z,z)+h(w,w))$, which follows from the positive
+semidefiniteness of $h$ and the arithmetic--geometric mean inequality,
+this justifies absolute integration of its harmonic term.  Truncating
+the radial background and then passing to the limit consequently
+extends the positive-energy formula to this noncompact finite measure.
+The full energy of the signed
+charge is nonnegative by the same Green-energy argument and harmonic
+moment expansion.  Hence the tilt lies in $(0,1]$ on every finite
+configuration and has positive expectation.
+
+To prove the identity, apply \eqref{eq:actual-smearing-density} to
+every $N$-sector and use
+$\log(\lambda u)=\log b+\beta C*b$ and $C=C_a+k_a$.
+Completing the square gives the unnormalized equality
+\begin{align*}
+ &e^{-\frac\beta2 C_a(\eta,\eta)}
+   e^{-\beta\sum_{i<j}k_a(d(z_i,z_j))}
+   \prod_i\lambda u(z_i)\nu(dz_i)\\
+ &\quad=e^{\frac\beta2 C_a(b\nu,b\nu)}
+   e^{-\frac\beta2 C_a(\eta-b\nu,\eta-b\nu)}
+   e^{-\beta\sum_{i<j}k_a(d(z_i,z_j))}
+   \prod_i a_\lambda(z_i)\nu(dz_i).
+\end{align*}
+This also holds for $N=0$; the two deterministic energy factors then
+cancel.  Division by $N!$ and summation over $N$ prove
+\eqref{eq:actual-exact-tilt}, including its particle-count weights.
+
+The first bound follows from $b<c$; the second follows from
+\eqref{eq:short-bond-norm}.  Finally, $\log\cosh x\le x^2/2$ gives
+\[
+ M_a=2\log\cosh(a/2)\le a^2/4.
+\]
+For $a=\sqrt\beta$,
+$\beta cM_a\le(4-\beta)\beta/4\le\beta$, so the right-hand side
+of \eqref{eq:reference-influence-bound} is at most
+$\beta e^{\beta+2\sqrt\beta}\le\frac14e^{5/4}<1$.
+\end{proof}
+
+\begin{corollary}[A canonical reference at every particle number]
+\label{cor:canonical-reference}
+For every $N\ge1$ there is a unique $\lambda_N>0$ such that
+$\int b_{\lambda_N}\,d\nu=N$.  Moreover $\lambda_N\to\infty$ and
+$b_{\lambda_N}\to c$ locally uniformly.  Let $Q_N$ be the canonical
+$N$-particle gas with one-body weight $a_{\lambda_N}\nu$ and pair
+interaction $\beta k_a$.  Then the original unweighted canonical gas
+satisfies exactly
+\[
+ \frac{dP_{N,\beta}}{dQ_N}(\eta)
+ =\frac{e^{-\frac\beta2 C_a(\eta-b_{\lambda_N}\nu,
+                              \eta-b_{\lambda_N}\nu)}}
+ {E_{Q_N}e^{-\frac\beta2 C_a(\eta-b_{\lambda_N}\nu,
+                              \eta-b_{\lambda_N}\nu)}}.
+\]
+\end{corollary}
+\begin{proof}
+The angular formula in the proof of
+Proposition~\ref{prop:saddle-reference} gives $C*b_\lambda\ge0$.
+Hence \eqref{eq:reference-saddle} implies
+$b_\lambda\le\lambda u$, where
+$\int u\,d\nu=(p-1)^{-1}<\infty$.  The total mass is consequently
+continuous in $\lambda$ by dominated convergence on compact activity
+intervals, strictly increasing, and tends to zero as $\lambda\downarrow0$.
+By monotone convergence and \eqref{eq:saddle-local-limit}, it tends to
+$c\nu(\mathbb D)=\infty$ as $\lambda\to\infty$.  This proves the
+assertions about $\lambda_N$ and the reference limit.  In
+Theorem~\ref{thm:actual-reference-tilt}, choose
+$\zeta_N=\lambda_Ne^{-\beta g(a)/2}$ and condition both sides on total
+count $N$.  Every such sector has positive probability.  The left
+conditional law is exactly $P_{N,\beta}$, and the right reference law
+is $Q_N$, giving the displayed identity.
+\end{proof}
+
+\begin{remark}[What the small norm establishes, and what it does not]
+The positive kernel
+$T(z,dw)=a_\lambda(w)(1-e^{-\beta k_a(d(z,w))})\nu(dw)$
+has a weighted row sum strictly below one in the stated range.
+Consequently its repeated path integrals are summable.  More explicitly,
+if the right side of \eqref{eq:reference-influence-bound} is $q<1$,
+then the total weight of paths starting at $z$, of any positive length,
+whose endpoint is at distance at least $L$ from $z$, is bounded by
+$e^{-\alpha L}q/(1-q)$.  To verify this, insert the weight
+$e^{\alpha\sum d(z_{i-1},z_i)}$, use the triangle inequality, and
+integrate successive vertices; an $n$-step path has weighted integral at
+most $q^n$.  This includes hyperbolic volume growth exactly in the row
+integrals.  It is the quantitative smallness required by finite-range
+comparison and disagreement constructions for the reference gas.
+
+Equation \eqref{eq:actual-exact-tilt} still contains the smooth, long-range
+quadratic energy.  A nonnegative energy can create dependencies after
+normalization; its positivity alone does not allow the reference path
+bound to be transferred to the tilted law.  A uniform estimate on this
+tilt under local changes, including its normalizing ratios, remains
+unproved.  Furthermore $b_\lambda\to c$ is a theorem about the explicitly
+constructed reference; it is not an identification of the intensity of
+$P_{\zeta,\beta}$ or of its fixed-$N$ subsequences.  One can work
+directly with the canonical identity in
+Corollary~\ref{cor:canonical-reference}, but conditioning the reference
+on its total count introduces an additional global dependency which the
+grandcanonical row-norm bound alone does not control.  Alternatively,
+passing a result for the grandcanonical mixture back to every $N$
+requires a comparison of nearby particle numbers.  The gain here is an exact
+starting point for resummation with a proved activity bound and a small
+finite-range remainder, rather than an assumed background density or a
+replacement of the original interaction by a massive one.
+\end{remark}
+
+\subsection{An exact restoring potential in the imaginary-field representation}
+
+The short-range expansion can be controlled uniformly even at complex
+activities.  This provides a further rigorous step in a Debye construction.
+The following elementary version includes its proof to specify which
+uniformity is obtained.
+
+\begin{proposition}[Complex-activity coercivity for a repulsive gas]
+\label{prop:complex-coercivity}
+Let $A(x)m(dx)$ be a finite nonnegative measure, let $v(x,y)\ge0$ be a
+measurable symmetric pair interaction, and set
+\[
+ p(x,y)=1-e^{-v(x,y)},\qquad
+ q=\sup_x\int A(y)p(x,y)m(dy).
+\]
+Define the complex partition function
+\[
+ \mathcal Z_\phi=
+ \sum_{n\ge0}\frac1{n!}\int
+       \prod_i A(x_i)e^{i\phi(x_i)}
+       \prod_{i<j}e^{-v(x_i,x_j)}\,dm^n.
+\]
+If $q\le1/19$, then $\mathcal Z_\phi\ne0$ for every real measurable
+$\phi$, and
+\begin{equation}\label{eq:complex-coercivity}
+ \log|\mathcal Z_\phi|-\log\mathcal Z_0
+ \le-\frac12\int A(x)(1-\cos\phi(x))m(dx).
+\end{equation}
+\end{proposition}
+\begin{proof}
+Put $f=-p$.  For $n\ge2$ let
+$U_n(\mathbf x)=\sum_{G\text{ connected}}\prod_{\{i,j\}\in E(G)}f(x_i,x_j)$,
+and put $U_1=1$.  The repulsive tree-graph bound is
+\begin{equation}\label{eq:repulsive-tree-bound}
+ |U_n(\mathbf x)|\le
+       \sum_{T\text{ tree}}\prod_{\{i,j\}\in E(T)}p(x_i,x_j).
+\end{equation}
+Here is a direct verification.  Root a connected labelled graph at vertex
+$1$, form its distance levels, and give each other vertex the smallest
+labelled parent among its neighbors in the preceding level.  This maps
+the graph to a rooted tree $T$.  The graphs giving $T$ are precisely
+$T\subset G\subset R(T)$, where $R(T)$ permits all edges within a level
+and all edges to the preceding level whose endpoint there is at least
+the chosen parent's label.  Summing over this interval of graphs gives
+\[
+ \prod_{e\in T}f_e\prod_{e\in R(T)\setminus T}(1+f_e).
+\]
+Since $0\le1+f_e\le1$, summing these disjoint intervals proves
+\eqref{eq:repulsive-tree-bound}.
+
+Fixing a root, successive integration of leaves bounds a tree integral
+by $q^{n-1}$ times the root integral.  There are $n^{n-2}$ labelled
+trees, as counted by their Pr\"ufer codes.  Consequently the connected
+series
+\begin{equation}\label{eq:connected-complex-series}
+ L_\phi=\sum_{n\ge1}\frac1{n!}
+       \int U_n(\mathbf x)\prod_i A(x_i)e^{i\phi(x_i)}\,dm^n
+\end{equation}
+converges absolutely when $eq<1$, uniformly in the phase.  More generally
+it converges when the activity is multiplied by a complex scalar $t$
+with $|t|eq<1$.  The identity $\exp L_\phi=\mathcal Z_\phi$ first
+holds as a power-series identity near $t=0$: each graph decomposes
+uniquely into connected components, which is precisely the exponential
+formula for the partition series.  Analytic continuation within
+$|t|eq<1$ proves it at $t=1$.  This also proves nonvanishing and
+$\operatorname{Re}L_\phi=\log|\mathcal Z_\phi|$.
+
+For any real numbers $\theta_1,\ldots,\theta_n$,
+\[
+ 1-\cos(\theta_1+\cdots+\theta_n)
+ \le n\sum_{j=1}^n(1-\cos\theta_j).
+\]
+Indeed, use the telescoping bound
+$|\prod_j e^{i\theta_j}-1|\le\sum_j|e^{i\theta_j}-1|$
+and Cauchy--Schwarz, then divide the squared inequality by $2$.
+The $n=1$ term in $\operatorname{Re}(L_\phi-L_0)$ is
+$-I$, where $I=\int A(1-\cos\phi)\,dm$.  The preceding inequality,
+the tree bound and rooted leaf integration show that the sum of the
+absolute values of all remaining terms is at most $S(q)I$, with
+\[
+ S(q)=\sum_{n\ge2}\frac{n^n}{n!}q^{n-1}
+ \le\frac{e^2q}{1-eq}.
+\]
+The last bound uses $n!\ge(n/e)^n$.
+For $q\le1/19$, the elementary bound $e<11/4$ gives
+$S(q)\le121/260<1/2$.  Thus
+$\operatorname{Re}(L_\phi-L_0)\le-(1-S(q))I\le-I/2$, proving
+\eqref{eq:complex-coercivity}.
+\end{proof}
+
+Apply this proposition to the reference activity $A=a_\lambda$, measure
+$m=\nu$, and pair interaction $v=\beta k_a$.  If
+$0<\beta\le1/20$ and $a=\sqrt\beta$, then
+$q\le\beta e^\beta\le1/19$, using
+$e^x\le(1-x)^{-1}$ for $0\le x<1$. All bounds are uniform in
+$\lambda$, including the choices $\lambda=\lambda_N$. This statement
+concerns the grandcanonical partition functional at those activities,
+not the partition function conditioned on count $N$. Indeed, a constant
+phase $\phi_0$ multiplies a canonical partition function by
+$e^{iN\phi_0}$ and leaves its modulus unchanged. Thus the canonical
+constant phase is an explicit noncontracting mode.
+
+There is an exact Gaussian formula behind this estimate.  Let $Y_a$ be
+a centered real Gaussian field with covariance $C_a$.  It can be
+constructed by sphere-averaging a zero-boundary Gaussian free field and
+adding the independent harmonic Gaussian series with covariance $h$.
+The averaged field has a measurable version, finite at every interior
+point; its local mean-square continuity also follows from the integrable
+logarithmic circle averages defining $C_a$.  The random variable
+$b(Y_a)=\int b(z)Y_a(z)\nu(dz)$ is well defined in $L^2$, since
+$C_a(b\nu,b\nu)<\infty$.  If $\Xi_{\rm short}$ denotes the
+unnormalized grand partition functional of the finite-range pair
+interaction, then
+\begin{equation}\label{eq:exact-imaginary-field}
+ \Xi_{\zeta,\beta}
+ =e^{\frac\beta2C_a(b\nu,b\nu)}
+ E\left[e^{-i\sqrt\beta b(Y_a)}
+       \Xi_{\rm short}(a_\lambda e^{i\sqrt\beta Y_a})\right].
+\end{equation}
+To verify it, expand the finite grand partition series and take the
+Gaussian characteristic function of
+$\sqrt\beta(\eta-b\nu)(Y_a)$.  This gives exactly
+$e^{-\frac\beta2C_a(\eta-b\nu,\eta-b\nu)}$, and the identity follows
+from the square completion above.  Fubini is justified because the
+absolute value before Gaussian averaging is bounded by the finite
+positive partition function $\Xi_{\rm short}(a_\lambda)$.
+
+For $\beta\le1/20$, Proposition~\ref{prop:complex-coercivity} proves the
+pointwise field bound
+\begin{equation}\label{eq:actual-field-restoring}
+ \left|e^{-i\sqrt\beta b(Y_a)}
+       \Xi_{\rm short}(a_\lambda e^{i\sqrt\beta Y_a})\right|
+ \le\Xi_{\rm short}(a_\lambda)
+       \exp\left[-\frac12\int a_\lambda(z)
+             (1-\cos(\sqrt\beta Y_a(z)))\nu(dz)\right].
+\end{equation}
+On the part of the disk where $|\sqrt\beta Y_a|\le\pi$, the integrand
+in the exponent is at least
+$\beta a_\lambda Y_a^2/\pi^2$, since
+$1-\cos t\ge2t^2/\pi^2$ for $|t|\le\pi$.
+Thus the exact resummation has a quadratic restoring term in its small
+field region.  It is periodic in the field and has additional wells.
+There is also an imaginary linear residue: the derivative of
+$\log\Xi_{\rm short}(a_\lambda e^{i\sqrt\beta Y})$
+at $Y=0$ is $i\sqrt\beta\int\rho_{Q_\lambda}Y\,d\nu$.
+After multiplication by the centering phase in
+\eqref{eq:exact-imaginary-field}, it is
+$i\sqrt\beta\int(\rho_{Q_\lambda}-b)Y\,d\nu$.
+The constructed reference profile $b$ is not asserted to equal
+$\rho_{Q_\lambda}$, so this term has not been canceled.
+Controlling these wells, the boundary field and ratios of the complex
+integrals in \eqref{eq:exact-imaginary-field} remains necessary.  An
+upper bound on the absolute integrand does not give a lower bound on
+its oscillatory expectation or a comparison of normalized local laws.
+These are the remaining large-field and normalization steps; they are
+not proved by the small reference norm or by
+\eqref{eq:actual-field-restoring}.
+
+
+\section{The reference-density residue and an exactly centered reference}
+\label{sec:reference-residue}
+
+The reference profile $b_\lambda$ in
+Proposition~\ref{prop:saddle-reference} is a deterministic Poisson--Boltzmann
+profile.  It is not the intensity of the finite-range reference gas.
+We first bound their difference, and then construct a different reference
+whose centering is exactly its own intensity.  These assertions concern
+the reference representation; neither identifies the intensity of the
+original disk gas.
+
+Throughout this section, $0<\beta\le1/20$, $a=\sqrt\beta$,
+$c=4/\beta-1$, $p=2-\beta/2$, $u(z)=(1-|z|^2)^p$,
+$k=k_a$, and $M=M_a=2\log\cosh(a/2)$.  We use the abbreviation
+\[
+ t=\beta cM\le\beta(1-\beta/4)\le\frac{79}{1600}<\frac1{20}.
+\]
+For a finite nonnegative activity $A\nu$, let $Q_A$ denote the
+grandcanonical gas with this activity and pair interaction $\beta k$,
+and let $\rho_A$ be its intensity relative to $\nu$.
+
+\begin{lemma}[Elementary insertion identities]
+\label{lem:reference-insertion}
+For every such activity,
+\begin{align}
+ \rho_A(z)&=A(z)E_{Q_A}\exp\!\left[-\beta\sum_{w\in\eta}k(d(z,w))\right],
+ \label{eq:reference-gnz}\\
+ \rho_A(z)&\le A(z),\qquad
+ \rho_A^{(2)}(z,w)\le A(z)A(w).
+ \label{eq:reference-ruelle}
+\end{align}
+If $(k*\rho_A)(z)$ is finite, then also
+\begin{equation}\label{eq:reference-jensen}
+ \rho_A(z)\ge A(z)\exp[-\beta(k*\rho_A)(z)].
+\end{equation}
+\end{lemma}
+\begin{proof}
+Expand the finite partition series and distinguish one of its labelled
+points.  Reindexing the remaining count proves
+\eqref{eq:reference-gnz}.  Distinguishing two points gives the analogous
+formula with the extra factor $e^{-\beta k(d(z,w))}$ and both
+insertion factors.  All these factors lie in $[0,1]$, which proves
+\eqref{eq:reference-ruelle}.  Tonelli applies because the series are
+nonnegative and bounded by the Poisson partition series.  Finally
+Jensen's inequality applied to the exponential in
+\eqref{eq:reference-gnz} proves \eqref{eq:reference-jensen}.
+\end{proof}
+
+\begin{proposition}[A uniform second-order density residue]
+\label{prop:reference-density-residue}
+Let $b=b_\lambda$ and $A=b\exp(\beta k*b)$ be the reference activity
+in Theorem~\ref{thm:actual-reference-tilt}.  Then, uniformly in
+$\lambda>0$ and $z\in\mathbb D$,
+\begin{equation}\label{eq:reference-density-residue}
+ |\rho_A(z)-b(z)|\le2\beta^2 b(z).
+\end{equation}
+\end{proposition}
+\begin{proof}
+Write $s(z)=\beta(k*b)(z)$, so that $0\le s\le t\le\beta$ and
+$A\le e^t b$.  By the insertion identities and Jensen,
+\[
+ \rho_A\ge A e^{-\beta k*A}
+ \ge b\exp[-(e^t-1)s]\ge b e^{-d},
+ \qquad d=t(e^t-1)\le\beta^2e^\beta.
+\]
+Since $e^\beta<2$, this implies $\rho_A\ge(1-2\beta^2)b$.
+
+We need a square-integral bound for the short kernel.  The decomposition
+$k=q_a+S_aq_a$, Jensen's inequality for the averaging operator, and its
+preservation of $\nu$ give
+\[
+ \int k(d(o,z))^2\nu(dz)\le4\int q_a(d(o,z))^2\nu(dz).
+\]
+Integration by parts in the normalized radial element
+$\frac12\sinh r\,dr$ gives
+\[
+ \int q_a^2\,d\nu
+ =\int_0^a q_a(r)\tanh(r/2)\,dr
+ \le\frac12\int_0^a r\log(a/r)\,dr=\frac{a^2}{8}.
+\]
+Here $q_a(r)=\int_r^a ds/\sinh s\le\log(a/r)$; the boundary terms
+vanish, including at zero since $r^2\log^2r\to0$.  Thus
+\begin{equation}\label{eq:reference-k-square}
+ \int k(d(o,z))^2\nu(dz)\le\frac{a^2}{2}.
+\end{equation}
+
+Fix $z$ and put $P_z(w)=1-e^{-\beta k(d(z,w))}$ and
+$r_z=\frac{\beta^2}{2}(k^2*b)(z)$.  Since $b\le c$, the preceding
+bound gives $0\le r_z\le\beta^2ca^2/4\le\beta^2$.
+The inequalities $1-e^{-x}\ge x-x^2/2$ and $1-e^{-x}\le x$ give
+\[
+ \int P_z b\,d\nu\ge s(z)-r_z,
+ \qquad \int P_z A\,d\nu\le e^t s(z).
+\]
+For any finite list $p_i\in[0,1]$, the even Bonferroni inequality is
+$\prod_i(1-p_i)\le1-\sum_i p_i+\sum_{i<j}p_ip_j$.
+For example, it follows by applying the two-term union bound to
+independent events of probabilities $p_i$.  Apply this inequality to
+the product in \eqref{eq:reference-gnz}; then use the lower bound
+$\rho_A\ge e^{-d}b$ and the upper bound on the second correlation.
+The result is
+\[
+ \frac{\rho_A(z)}{b(z)}
+ \le e^{s(z)}\left[1-e^{-d}(s(z)-r_z)
+                         +\frac12e^{2t}s(z)^2\right].
+\]
+All terms are integrable by the estimates already obtained.  Since
+$e^s(1-s)\le1$ for $s\ge0$ and $1-e^{-d}\le d$, this yields
+\[
+ \frac{\rho_A(z)}{b(z)}
+ \le1+e^t\left(td+r_z+\frac12e^{2t}t^2\right)
+ \le1+\beta^2 e^\beta
+                    \left(\beta e^\beta+1+\frac12e^{2\beta}\right).
+\]
+For $\beta\le1/20$, use $e^\beta\le20/19$ and
+$e^{2\beta}\le10/9$ to bound the last coefficient by
+$5500/3249<2$.  This proves the upper bound and hence the proposition.
+\end{proof}
+
+\subsection{Existence and uniqueness of an exact centering}
+
+The residue can in fact be removed from the grandcanonical linear
+field term.  The new centering is implicit; its construction does not
+assume that the original gas is locally neutral.
+
+\begin{theorem}[An exactly self-consistent finite-range reference]
+\label{thm:exact-reference-centering}
+For every $\lambda>0$ there is a unique radial function
+$m_\lambda$ in the order interval $0\le m_\lambda\le\lambda u$
+such that
+\begin{equation}\label{eq:exact-reference-centering}
+ m_\lambda=\rho_{A_\lambda},\qquad
+ A_\lambda=\lambda u\exp[-\beta(C_a*m_\lambda)].
+\end{equation}
+Both functions are positive and continuous in the open disk and have
+finite $\nu$-mass and finite $C_a$-energy.  They satisfy the uniform
+activity estimate
+\begin{equation}\label{eq:exact-centering-activity}
+ 0<m_\lambda\le A_\lambda
+ \le c\exp(t e^{2t}).
+\end{equation}
+In particular, uniformly in $\lambda$,
+\begin{equation}\label{eq:exact-centering-row}
+ \sup_z\int A_\lambda(w)
+       (1-e^{-\beta k(d(z,w))})\nu(dw)
+ \le t e^{t e^{2t}}
+ \le\frac{113918}{2180800}<\frac1{19}.
+\end{equation}
+With the additional weight $e^{d(z,w)}$ inside the integral, the
+row sum is at most $e^{2\sqrt\beta}/19<2/19<1$.
+The maps $\lambda\mapsto m_\lambda$ and
+$\lambda\mapsto A_\lambda$ are continuous in $L^1(\nu)$ and in
+the supremum norm.
+\end{theorem}
+\begin{proof}
+Put $G_a=S_a^2g$, so that $C_a=G_a+h$.
+The kernel $G_a$ is nonnegative, continuous, and positive semidefinite,
+and its diagonal is the constant $g(a)$.  Positivity of the two by two
+Gram matrices therefore gives $0\le G_a(z,w)\le g(a)$.
+Continuity also follows directly by first averaging to obtain the
+bounded continuous radial function $g(\max\{r,a\})$, and averaging
+once more.  If $m$ is radial and integrable, angular averaging gives
+$h*m=0$, with absolute integration justified by the boundedness of
+$h(z,\cdot)$ for each fixed $z$.  Thus $C_a*m=G_a*m$.
+
+Consider the convex set
+\[
+ \mathcal K_\lambda
+ =\{m\in L^1(\nu):m\hbox{ is radial},\ 0\le m\le\lambda u\}.
+\]
+It is weakly compact.  To see this without a finite-volume assumption,
+write $m=\lambda u f$ with $0\le f\le1$ in the finite measure
+$u\nu$; its unit order interval is weak-star compact in $L^\infty(u\nu)$,
+and integration against any bounded function gives its continuous image
+in the weak topology of $L^1(\nu)$.
+For $m\in\mathcal K_\lambda$ let
+$A_m=\lambda u e^{-\beta G_a*m}$ and $T(m)=\rho_{A_m}$.
+The insertion upper bound gives $0\le T(m)\le A_m\le\lambda u$,
+and rotation covariance makes $T(m)$ radial.  Hence $T$ maps
+$\mathcal K_\lambda$ into itself.
+
+We verify continuity in the indicated weak topology.  Weak convergence
+$m_j\to m$ implies $(G_a*m_j)(z)\to(G_a*m)(z)$ at every $z$,
+since $G_a(z,\cdot)$ is bounded.  Dominated convergence then gives
+$A_{m_j}\to A_m$ in $L^1(\nu)$.  Finite repulsive gases depend
+continuously in total variation on their finite activity measures.
+Indeed, telescope the $n$ activity factors in the partition series:
+when their masses are bounded by $L$, the sum of the absolute differences
+of the unnormalized sector densities is at most
+$e^L\|A-B\|_1$.  The partition functions are at least one, so
+normalization preserves convergence.  Insertion formula
+\eqref{eq:reference-gnz}, whose expectation is of a function in $[0,1]$,
+now gives
+\[
+ \|\rho_A-\rho_B\|_1
+ \le\|A-B\|_1+\|B\|_1\operatorname{TV}(Q_A,Q_B).
+\]
+Thus $T(m_j)\to T(m)$ in $L^1$ and, in particular, weakly.
+The Schauder--Tychonoff fixed-point theorem on a compact convex set
+now gives a fixed point.  The preceding argument applies equally to
+nets, or one can use that the finite measure $u\nu$ has separable
+$L^1$ and its bounded weak-star order interval is metrizable.
+
+Uniqueness follows from an entropy identity.  If $m,n$ are two fixed
+points, the logarithm of the density ratio of their reference gases is
+a constant minus $\beta\eta(G_a*(m-n))$.  This linear statistic is
+integrable, because its summand is bounded and both expected counts are
+finite.  Adding the two relative entropies therefore gives
+\begin{align*}
+ D(Q_{A_m}\Vert Q_{A_n})+D(Q_{A_n}\Vert Q_{A_m})
+ &=\int(m-n)\log(A_m/A_n)\,d\nu\\
+ &=-\beta G_a((m-n)\nu,(m-n)\nu)\le0.
+\end{align*}
+The energy is nonnegative by positive semidefiniteness and boundedness
+of $G_a$, by finite-measure approximation.  Relative entropies are
+nonnegative, so the reference laws coincide and their intensities
+$m,n$ coincide.  This proves uniqueness.
+
+The fixed point is positive by \eqref{eq:reference-gnz}: the empty
+configuration has positive reference probability.  Its activity is
+continuous by the continuity and boundedness of $G_a$ and dominated
+convergence.  For each finite configuration,
+$z\mapsto\exp[-\beta\sum_{w\in\eta}k(d(z,w))]$ is continuous,
+with value zero at a coinciding point.  Here $k$ is continuous away
+from zero and tends to infinity at zero.  Dominated convergence in
+\eqref{eq:reference-gnz} proves continuity of $m$.
+Finite mass follows from $m,A\le\lambda u$.  The boundary asymptotic
+of $u$, with $p>1$, gives
+$\int[-\log(1-|z|^2)]m\,d\nu<\infty$; the energy justification in
+Theorem~\ref{thm:actual-reference-tilt} therefore applies.
+
+We next prove parameter continuity, needed to select the bounded
+branch in the uniform estimate.  If $\lambda_j\to\lambda>0$, the
+profiles lie in one weakly compact order interval
+$0\le m\le\Lambda u$.  Every weak limit is a fixed point at
+$\lambda$, by the continuity just proved and the change in the scalar
+activity.  Uniqueness identifies it with $m_\lambda$, and the same
+argument gives strong $L^1$ convergence of the intensities and activities.
+Furthermore
+\[
+ \|G_a*(m_j-m)\|_\infty\le g(a)\|m_j-m\|_1.
+\]
+Consequently the activities converge uniformly, and the pointwise
+insertion formula, the uniform bound $A_j\le\Lambda$, and total
+variation convergence of their laws give uniform convergence of the
+intensities.  This proves both asserted continuities.  As
+$\lambda\downarrow0$, $\|m_\lambda\|_\infty\le\lambda$.
+
+It remains to prove the uniform bound.  Write $m=m_\lambda$, and set
+\[
+ w(z)=\log(\lambda u(z))-\beta(C*m)(z).
+\]
+For a radial nonnegative integrable charge, angular averaging yields
+\[
+ (C*m)(r)=\int-\log\max\{r,|y|\}\,m(y)\nu(dy)\ge0.
+\]
+It is finite and continuous and has boundary limit zero.  Writing
+$B=C*m$, differentiation of that one-dimensional formula gives
+\[
+ B'(r)=-\frac2r\int_0^r\frac{s\,m(s)}{(1-s^2)^2}\,ds.
+\]
+Thus $B$ is twice continuously differentiable for $r>0$ and satisfies
+$\Delta_{\mathbb H}B=-m/2$.  At zero both $B''(r)$ and $B'(r)/r$
+tend to $-m(0)$; the radial Cartesian Hessian therefore extends
+continuously there, proving the same classical equation at the center.
+Since $\Delta_{\mathbb H}\log u=-p=-\beta c/2$,
+\begin{equation}\label{eq:centering-w-equation}
+ \Delta_{\mathbb H}w=\frac\beta2(m-c).
+\end{equation}
+The insertion Jensen bound and the fixed-point equation imply
+\[
+ m\ge A e^{-\beta k*m}=e^w.
+\]
+Also $w\to-\infty$ at the boundary, so $w$ attains an interior
+maximum.  At that maximum \eqref{eq:centering-w-equation} gives
+$m\le c$.  Hence $e^w\le c$ everywhere.  It follows that
+\[
+ m\le A=e^w e^{\beta k*m}
+       \le c\exp(\beta M\|m\|_\infty).
+\]
+Put $x(\lambda)=\|m_\lambda\|_\infty/c$.  It is continuous,
+tends to zero with $\lambda$, and satisfies $x\le e^{tx}$.
+It cannot ever reach $2$, because $e^{2t}<2$ in the present range.
+Thus $x<2$ for all activities and then $x\le e^{2t}$.  Substitution
+in the preceding activity estimate proves
+\eqref{eq:exact-centering-activity}.
+
+Finally $1-e^{-\beta k}\le\beta k$ proves the first inequality in
+\eqref{eq:exact-centering-row}.  For $0\le t\le79/1600$,
+\[
+ t e^{t e^{2t}}
+ \le\frac{t}{1-t/(1-2t)}
+ =\frac{t(1-2t)}{1-3t}
+ \le\frac{113918}{2180800}<\frac1{19}.
+\]
+The first step uses $e^x\le(1-x)^{-1}$ twice.  The last rational
+function is increasing on this interval, as direct differentiation
+shows, and its value at $79/1600$ is the displayed fraction.
+The weighted bound follows from the support condition $d(z,w)<2a$;
+here $2\sqrt\beta<1/2$ and $e^{1/2}<2$.
+This completes the proof.
+\end{proof}
+
+\begin{corollary}[The exactly centered representation, including counts]
+\label{cor:exactly-centered-representation}
+Set $\zeta=\lambda e^{-\beta g(a)/2}$, and use the reference of
+Theorem~\ref{thm:exact-reference-centering}.  Then
+\begin{equation}\label{eq:exactly-centered-tilt}
+ \frac{dP_{\zeta,\beta}}{dQ_{A_\lambda}}(\eta)
+ =\frac{\exp[-\frac\beta2 C_a(\eta-m_\lambda\nu,
+                                  \eta-m_\lambda\nu)]}
+ {E_{Q_{A_\lambda}}\exp[-\frac\beta2 C_a(\eta-m_\lambda\nu,
+                                  \eta-m_\lambda\nu)]}.
+\end{equation}
+In the corresponding imaginary Gaussian representation, the derivative
+at zero of the centered logarithmic reference functional vanishes:
+for every bounded real test function $f$,
+\begin{equation}\label{eq:exactly-centered-linear-cancel}
+ \left.\frac d{ds}\right|_{s=0}
+ \left[-is\sqrt\beta\int m_\lambda f\,d\nu
+  +\log\Xi_{\rm short}(A_\lambda e^{is\sqrt\beta f})\right]=0.
+\end{equation}
+The periodic restoring estimate of
+Proposition~\ref{prop:complex-coercivity} applies to this reference
+uniformly in $\lambda$.
+\end{corollary}
+\begin{proof}
+The exact fixed-point activity identity is
+$\log(\lambda u)=\log A_\lambda+\beta C_a*m_\lambda$.
+Use it in \eqref{eq:actual-smearing-density} and complete the square,
+as in Theorem~\ref{thm:actual-reference-tilt}.  This proves the identity
+in every count sector, including count zero.  The finite energies and
+strictly positive denominator are justified exactly as there, using
+$m_\lambda\le\lambda u$.  The logarithmic derivative of a grand
+partition function is its intensity paired with the activity
+perturbation.  Since $\rho_{A_\lambda}=m_\lambda$, the two terms
+in \eqref{eq:exactly-centered-linear-cancel} cancel exactly.
+All differentiations are justified by Poisson domination of the
+finite partition series for bounded $f$.  The row bound
+\eqref{eq:exact-centering-row} proves the final assertion.
+\end{proof}
+
+\begin{corollary}[Matching the reference mass to each canonical count]
+\label{cor:exact-centering-mass}
+The mass $\mathcal M(\lambda)=\int m_\lambda\,d\nu$ is continuous
+and strictly increasing from zero to infinity.  Thus for every
+$N\ge1$ there is a unique $\widehat\lambda_N$ for which
+$\mathcal M(\widehat\lambda_N)=N$.  Conditioning
+\eqref{eq:exactly-centered-tilt} at this parameter on count $N$
+gives an exact representation of the original canonical gas.
+\end{corollary}
+\begin{proof}
+Continuity follows from the $L^1$ continuity in the theorem, and
+$\mathcal M(\lambda)\le\lambda\int u\,d\nu$ gives its zero limit.
+For two parameters $\lambda>\kappa$, the same entropy calculation as
+in the uniqueness proof gives
+\begin{align*}
+ &D(Q_{A_\lambda}\Vert Q_{A_\kappa})
+  +D(Q_{A_\kappa}\Vert Q_{A_\lambda})
+  +\beta C_a((m_\lambda-m_\kappa)\nu,
+                    (m_\lambda-m_\kappa)\nu)\\
+ &\hspace{12mm}=(\log\lambda-\log\kappa)
+                    (\mathcal M(\lambda)-\mathcal M(\kappa)).
+\end{align*}
+Every term on the left is nonnegative.  Equality of the two masses
+would imply equality of the reference laws and hence of their
+intensities.  Their activities would also coincide, since the ratio
+of the singleton-sector density to the vacuum probability equals the
+activity density.  Their activity equations would then force
+$\lambda=\kappa$.  Thus the masses are strictly increasing.
+At the origin,
+\[
+ A_\lambda(0)=\lambda e^{-\beta(G_a*m_\lambda)(0)}
+ \ge\lambda e^{-\beta g(a)\mathcal M(\lambda)}.
+\]
+The uniform activity upper bound implies
+$\mathcal M(\lambda)\ge
+ [\log\lambda-\log(c e^{t e^{2t}})]/[\beta g(a)]$,
+so the mass diverges.  The intermediate value theorem gives the
+unique matching parameter.  Every count sector has positive
+probability, so conditioning the exact identity is legitimate.
+\end{proof}
+
+\begin{remark}[The gain and the remaining screening problem]
+Exact centering removes one previously explicit obstruction: the
+grandcanonical imaginary field action now has no linear term, while
+its finite-range reference still has a uniform row norm below $1/19$.
+The reference retains all particle-number weights.  This does not
+remove the other periodic wells, prove a lower bound for oscillatory
+normalizing integrals, or transfer reference mixing through the
+long-range quadratic tilt.  It also does not assert
+$m_\lambda\to c$, nor that the actual gas has intensity $m_\lambda$.
+After conditioning the reference on count $N$, its intensity need not
+equal $m_{\widehat\lambda_N}$; matching the expected total mass alone
+does not preserve the grandcanonical linear cancellation for every
+spatial test.  The canonical constant phase remains unchanged in
+modulus.  These distinctions prevent the exact centering theorem
+from being read as a proof of the intensity conjecture.
+\end{remark}
+
+
+\section{Exact self-consistent centering at fixed particle number}
+\label{sec:canonical-self-centering}
+
+The grandcanonical construction has a fixed-count counterpart. It removes
+the linear field term at each finite $N$, but does not supply the uniform
+reference estimates proved above for the grandcanonical gas.
+Throughout this section $0<\beta<2$, $a>0$, $N\ge1$, and
+$u(z)=(1-|z|^2)^p$, where $p=2-\beta/2>1$.
+
+\begin{theorem}[Canonical centering]
+\label{thm:canonical-self-centering}
+There is a unique finite-energy self-consistent canonical reference
+whose activity, up to a multiplicative constant, is
+\[
+ A_N(z)=u(z)\exp[-\beta(C_a*b_N)(z)]
+\]
+and whose intensity relative to $\nu$ is $b_N$.
+Here the reference $Q_N^*$ has exactly $N$ particles and pair interaction
+$\beta k_a$. The profile is radial and satisfies
+\[
+ \int b_N\,d\nu=N,\qquad
+ e^{-\beta g(a)N}u\le A_N\le u.
+\]
+More precisely, finite energy in the uniqueness assertion means that
+$b_N\nu$ has an absolutely defined Hilbert-space mean for the feature
+map of $C_a$. The original canonical disk gas obeys the exact identity
+\begin{equation}\label{eq:canonical-centered-exact}
+ \frac{dP_{N,\beta}}{dQ_N^*}(\eta)
+ =\frac{\exp[-\frac\beta2 C_a(\eta-b_N\nu,\eta-b_N\nu)]}
+ {E_{Q_N^*}\exp[-\frac\beta2 C_a(\eta-b_N\nu,\eta-b_N\nu)]}.
+\end{equation}
+\end{theorem}
+\begin{proof}
+Since $C_a$ is a continuous positive semidefinite kernel on the disk,
+it has a real separable Hilbert feature space $H$: take the span of
+symbols $\Phi_z$, give them inner products
+$\langle\Phi_z,\Phi_w\rangle=C_a(z,w)$, quotient by the null space,
+and complete. Continuity of the kernel makes $z\mapsto\Phi_z$
+continuous and a countable dense set of disk points spans a dense
+subspace. In particular,
+\[
+ \|\Phi_z\|^2=D(z):=g(a)-\log(1-|z|^2).
+\]
+Let $Q_N^0$ be the canonical short-range gas with activity $u\nu$,
+and set $X(\eta)=\sum_{z\in\eta}\Phi_z\in H$.
+Its partition function is positive and finite because $k_a\ge0$ and
+$\int u\,d\nu=(p-1)^{-1}$. For every $t>0$,
+\begin{equation}\label{eq:canonical-feature-exp-moments}
+ E_{Q_N^0}e^{t\|X\|}<\infty.
+\end{equation}
+Indeed $\|X\|\le\sum_z\sqrt{D(z)}$, so the unnormalized expectation
+is bounded by a constant times
+$[\int u(z)e^{t\sqrt{D(z)}}\nu(dz)]^N$. Writing
+$s=-\log(1-|z|^2)$ evaluates the latter integral as
+\[
+ \int_0^\infty
+ e^{-(p-1)s+t\sqrt{g(a)+s}}\,ds<\infty.
+\]
+
+Consider the functional on $H$
+\[
+ J_N(h)=\tfrac12\|h\|^2+\frac1\beta
+       \log E_{Q_N^0}e^{-\beta\langle h,X\rangle}.
+\]
+The exponential moments justify its finiteness, norm continuity, and
+Fr\'echet differentiation on every bounded set of $H$. For example,
+the difference quotients and their first two derivatives are dominated
+by a polynomial in $\|X\|$ times $e^{\beta R\|X\|}$ on
+$\|h\|\le R$; these functions are integrable by
+\eqref{eq:canonical-feature-exp-moments}.
+If $Q_{N,h}$ is the probability measure obtained by the displayed
+exponential tilt, then
+\begin{align*}
+ \nabla J_N(h)&=h-E_{Q_{N,h}}X,\\
+ D^2J_N(h)[v,v]&=\|v\|^2+
+       \beta\operatorname{Var}_{Q_{N,h}}\langle v,X\rangle
+       \ge\|v\|^2.
+\end{align*}
+Thus $J_N$ is strongly convex. Jensen's inequality gives
+\[
+ J_N(h)\ge\tfrac12\|h\|^2-
+               \langle h,E_{Q_N^0}X\rangle,
+\]
+so it is coercive. A minimizing sequence is bounded and therefore has
+a weakly convergent subsequence in the Hilbert space. A norm-continuous
+convex functional is weakly lower semicontinuous, so the weak limit is
+a minimizer. Strong convexity makes this minimizer $h_N$ unique, and
+its gradient equation reads
+\begin{equation}\label{eq:canonical-feature-fixed-point}
+ h_N=E_{Q_{N,h_N}}X.
+\end{equation}
+
+Put $Q_N^*=Q_{N,h_N}$ and let $b_N$ be its intensity density.
+All first moments of $\sum\sqrt D$ remain finite under the tilt,
+by the same exponential-moment argument. Consequently
+\[
+ h_N=\int\Phi_z b_N(z)\nu(dz),\qquad
+ \langle\Phi_z,h_N\rangle=(C_a*b_N)(z),
+\]
+where the first integral is a Bochner integral and the second is
+absolutely convergent by Cauchy--Schwarz.
+This proves self-consistency. Conversely every self-consistent
+reference in the stated finite-energy class defines a vector $h$
+with $h=E_{Q_{N,h}}X$ and hence $\nabla J_N(h)=0$; uniqueness of
+the minimizer gives uniqueness of both the reference and its intensity.
+
+Rotations act unitarily on $H$ by $\Phi_z\mapsto\Phi_{e^{i\theta}z}$.
+The kernel and $Q_N^0$ are rotation invariant, so $J_N$ is invariant
+under these unitaries. Its unique minimizer is invariant, proving
+radiality of the reference and its intensity.
+For a radial background the harmonic part of $C_a$ has zero convolution,
+and $C_a*b_N=G_a*b_N$, where $G_a=S_a^2g$.
+The bounded positive semidefinite kernel $G_a$ satisfies
+$0\le G_a(z,w)\le g(a)$: its diagonal is $g(a)$ and the upper bound
+follows from Cauchy--Schwarz in its feature space.
+These facts justify the displayed activity bounds because $\int b_N=N$.
+The harmonic cancellation is legitimate even at the disk boundary:
+for fixed $z$ its kernel is bounded as a function of $w$, and the
+background has finite mass.
+
+Finally, with $h=h_N$ and $X=X(\eta)$, completing the square gives
+\[
+ e^{-\frac\beta2\|X\|^2}\prod_{z\in\eta}u(z)
+ =e^{\frac\beta2\|h\|^2}
+  e^{-\frac\beta2\|X-h\|^2}
+  \prod_{z\in\eta}u(z)e^{-\beta\langle\Phi_z,h\rangle}.
+\]
+Multiplying by the short-range interaction and using the exact
+smearing identity for the disk gas proves
+\eqref{eq:canonical-centered-exact}. Its denominator is strictly
+positive and at most one, because the energy is a finite squared norm.
+\end{proof}
+
+\begin{corollary}[Cancellation of every canonical linear phase]
+\label{cor:canonical-phase-centering}
+Let $\mathcal Z_N(A)$ be the short-range canonical partition functional.
+For every bounded real $\psi$, the function
+\[
+ F_N(t;\psi)=e^{-it\int b_N\psi\,d\nu}
+               \frac{\mathcal Z_N(A_Ne^{it\psi})}
+                    {\mathcal Z_N(A_N)}
+\]
+satisfies $F_N(0;\psi)=1$ and $F_N'(0;\psi)=0$.
+If $W$ is an isonormal Gaussian process on $H$, the exact normalizer in
+\eqref{eq:canonical-centered-exact} is
+\begin{equation}\label{eq:canonical-gaussian-normalizer}
+ E_W\left[e^{-i\sqrt\beta W(h_N)}
+       \frac{\mathcal Z_N(A_Ne^{i\sqrt\beta W(\Phi_\cdot)})}
+            {\mathcal Z_N(A_N)}\right].
+\end{equation}
+For a constant $\psi$, one has $F_N(t;\psi)=1$ for every real $t$.
+\end{corollary}
+\begin{proof}
+The partition ratio is $E_{Q_N^*}e^{it\eta(\psi)}$; centering by
+its mean gives the derivative assertions. A constant statistic equals
+$N\psi$ deterministically, proving the last claim.
+The Gaussian characteristic function gives
+\[
+ E_W e^{i\sqrt\beta W(X-h_N)}
+       =e^{-\frac\beta2\|X-h_N\|^2}.
+\]
+Average this identity under $Q_N^*$ to obtain
+\eqref{eq:canonical-gaussian-normalizer}. Fubini is justified because
+the integrand before either expectation has modulus one. A jointly
+measurable field $W(\Phi_z)$ can be used: expand in an orthonormal basis
+of the separable feature space, take Gaussian partial sums, and choose
+their measurable limit in local product $L^2$; its covariance is $C_a$.
+Values on the resulting area-null exceptional set do not affect any
+of the absolutely continuous partition integrals.
+\end{proof}
+
+The theorem does not provide bounds uniform in $N$ on short-range
+influences or on the positive normalizer
+\eqref{eq:canonical-gaussian-normalizer}. The grandcanonical insertion
+identity used in the activity bootstrap compares the reference with
+itself after insertion. At fixed count, insertion instead involves an
+$(N-1)$-particle reference, whose intensity need not be $b_N$; the
+same bootstrap therefore does not follow. Furthermore the constant
+phase is exactly flat, so a canonical analogue of the grandcanonical
+periodic coercivity estimate with a strictly positive penalty for all
+constant phases is false. Exact centering removes the linear residue;
+it does not remove these finite-volume normalization and comparison
+problems.
+
+
+\section{What has been removed from the boundary problem}
+\label{sec:remaining-boundary-problem}
+
+Theorems~\ref{thm:actual-tilt-TV}--\ref{thm:green-force-reconstruction}
+are actual fixed-temperature estimates. They control all count and
+position events for the specified perturbations, with constants
+uniform in $N$. The force reconstruction also handles all distant
+particles together. In particular, the Green force cannot retain
+an extra random component at infinity for $0<\beta\le2$ after its
+configuration-measurable finite truncations have been retained.
+The independent radial theorem controls a further actual exterior
+channel at every temperature.
+
+At the determinantal benchmark, Theorem~\ref{thm:full-exterior-beta-two}
+goes further: the entire far exterior loses influence on the whole
+local law at rate $O_r(1-R^2)$, uniformly in $N$. Reversing the
+conditioning reduces the estimate to the distant excess count
+created by a fixed inner hole. Proposition~\ref{prop:general-hole-response}
+formulates the same reduction for other temperatures under explicit
+stochastic-domination and hole-response hypotheses.
+The explicit discrete example in
+Proposition~\ref{prop:lorentzian-no-covering} shows why Lorentzian
+structure alone does not supply that domination. It is not a
+counterexample for the disk interaction; the latter still has
+additional structure which might yield a comparison.
+
+These results leave two kinds of transmitted data unresolved. The
+first is the harmonic contribution in the decomposition
+$-\log|a-z|=g(a,z)-\log|1-a\bar z|$. The second is the scalar
+normalization which governs local particle-number weights. Given
+an exterior $Y$ and a prescribed count $m$, the exact conditional
+density in a region $U$ is
+\[
+ \frac1{Z_{U,m,Y}}|\Delta_m(\mathbf z)|^\beta
+       \exp\left\{\beta\sum_i\sum_{y\in Y}\log|z_i-y|\right\}
+       \prod_i\mathbf1_U(z_i)\mu(dz_i).
+\]
+Adding a constant $c_0$ to the exterior potential has no effect in
+one fixed sector, but multiplies its unnormalized weight by
+$e^{\beta m c_0}$ when sectors are mixed. Force reconstruction
+therefore does not determine the relative count probabilities.
+
+The exact reference representation in
+Section~\ref{sec:exact-smearing-reference} addresses part of this
+normalization problem: it retains every count factor, constructs
+the reference at every activity and at every canonical mass, and
+proves a small short-range comparison norm without assuming the
+actual intensity. It still requires an estimate on the normalized
+long-range quadratic tilt under local changes. Dropping that tilt
+because its energy is nonnegative would be invalid. Conditioning
+the short-range reference on its total count also introduces a
+dependency that the grandcanonical row-sum estimate does not
+automatically control. For $\beta\le1/20$, the complex cluster
+expansion additionally proves an explicit periodic restoring bound
+for the exact imaginary-field integrand. The bound is quadratic
+in each small-field well, but does not control other wells or
+cancellation in the normalized oscillatory integral.
+
+The new self-consistent construction in
+Theorem~\ref{thm:exact-reference-centering} removes the imaginary
+linear residue for $\beta\le1/20$ while preserving both the Mayer
+bound and a uniformly subcritical distance-weighted influence norm.
+Theorem~\ref{thm:canonical-self-centering} separately removes every
+linear phase at each fixed $N$ for $0<\beta<2$. Its proof uses a
+strongly convex Hilbert-space functional. The canonical theorem
+does not give a reference influence estimate uniform in $N$, and
+the constant canonical phase remains exactly flat. Neither
+construction provides the normalized long-range comparison needed
+for the original local particle law.
+
+The profile $b_\lambda$ constructed there converges locally to
+$4/\beta-1$. It is a deterministic balancing profile. It is not
+asserted to be the intensity of either the interacting short-range
+reference or the actual gas. Consequently the construction does
+not prove
+\[
+ \mathbb E\Xi_\beta(dz)=(4/\beta-1)\nu(dz).
+\]
+The Green-force estimate likewise concerns a potential modulo
+constants and cannot identify this coefficient by itself. These
+are remaining estimates for the original model, not counterexamples
+to its conjectured limit.
+
+The susceptibility argument gives no comparable theorem for
+$\beta>2$: the negative-type property used at its base is specific
+to exponents at most two. Nor does the two-to-one coupling in the
+appendix imply a coupling between every pair of successive particle
+numbers. The simultaneous local linear response at $2$ gives an
+additional perturbative input, while higher connected temperature
+responses and a uniform remainder remain uncontrolled.
+
+\appendix
+
+
+\section{An exact non-determinantal transfer from two particles to one}
+\label{sec:pair-deletion-below-two}
+
+The next result restores a genuine count-transfer coupling below two.
+Its scope is two interior particles versus one; the extension to
+arbitrary interior counts is not established here.
+
+\begin{proposition}[Deletion coupling for $0<\beta\le2$]
+\label{prop:pair-deletion-below-two}
+Let $\sigma$ be a finite nonatomic measure of compact support, let
+$y\in\mathbb R^2$, and let $0<\beta\le2$.  Compare the unordered pair
+law
+\[
+ P_2(dz\,dw)=\frac{|z-w|^\beta\sigma(dz)\sigma(dw)}
+                    {\iint|u-v|^\beta\sigma(du)\sigma(dv)}
+\]
+with the singleton law
+\[
+ Q_y(dz)=\frac{|z-y|^\beta\sigma(dz)}
+                   {\int|u-y|^\beta\sigma(du)}.
+\]
+There is a coupling $(\{Z,W\},X)$ with these marginals such that
+$X\in\{Z,W\}$ almost surely.  In particular, for any finite exterior
+$Y$ and observation region $U$, the actual disk-gas conditional law
+with two particles in $U$ and exterior $Y$ dominates the conditional
+law with one particle in $U$ and exterior $Y\cup\{y\}$.
+\end{proposition}
+
+\begin{proof}
+Normalize $\sigma$ to have mass one and use the Hilbert embedding of
+Lemma~\ref{lem:distance-negative-type}.  Put $h=\Phi(y)$, let $m$ and
+$V>0$ be the mean and variance of $\Phi$ under $\sigma$.
+For a Borel set $B$ with $b=\sigma(B)\in(0,1)$, put $a=1-b$.
+Let $u,v$ be the conditional Hilbert means on $B,B^c$, and $S,T$ their
+conditional variances.  Thus
+\[
+ m=bu+av,\qquad V=bS+aT+ab\|v-u\|^2.
+\]
+The probabilities of interest are
+\[
+ Q_y(B)=\frac{b(S+\|u-h\|^2)}{V+\|m-h\|^2},
+ \qquad P_2(\{Z,W\}\subset B)=\frac{b^2S}{V}.
+\]
+We claim the first is at least the second.  Put $x=u-h$ and $d=v-u$.
+The numerator after multiplying by the positive denominators and
+cancelling $b$ is
+\begin{align*}
+ &V(S+\|x\|^2)-bS(V+\|x+ad\|^2)\\
+ &\quad=a\left[
+ b\bigl(\|d\|^2\|x\|^2-2S\langle x,d\rangle+S^2\bigr)
+ +T\|x\|^2+aST\right]\ge0.
+\end{align*}
+The last inequality follows from Cauchy--Schwarz; the expression
+in parentheses is at least $(\|d\|\|x\|-S)^2$.
+Sets of $\sigma$-mass zero or one satisfy the same inequality directly.
+Replacing $B$ by its complement gives, for every Borel $A$,
+\begin{equation}
+ Q_y(A)\le P_2(\{Z,W\}\cap A\ne\varnothing).
+ \label{eq:pair-hall}
+\end{equation}
+
+For completeness, these Hall inequalities give the required continuum
+coupling as follows.  Partition a compact set containing the support
+into finitely many Borel cells of diameter at most $\varepsilon$.
+The right states are unordered pairs of cells, including equal cells;
+a left cell can be matched to a pair precisely when it belongs to that
+pair.  Inequalities \eqref{eq:pair-hall}, applied to unions of cells,
+are the finite capacitated Hall inequalities.  The max-flow/min-cut
+theorem therefore supplies a coupling of the cell-valued singleton
+and pair, supported on this incidence relation.  Lift the finite
+coupling using the conditional laws within the cells, and within the
+pair states.  It has the exact original marginals and satisfies
+$\min(|X-Z|,|X-W|)\le\varepsilon$ almost surely.  Compactness gives a
+weakly convergent subsequence as $\varepsilon\downarrow0$.
+The marginals persist, and continuity of
+$\min(|x-z|,|x-w|)$ forces its limiting value to be zero almost surely.
+This is the desired deletion coupling.
+
+For the disk-gas assertion, take
+$\sigma(dz)=\mathbf1_U(z)\prod_{a\in Y}|z-a|^\beta dA(z)$.
+The two displayed densities are exactly the two conditional laws.
+\end{proof}
+
+\begin{remark}
+The deleted point has intensity measure $\rho_{P_2}-Q_y$, independently
+of the choice of deletion coupling, because the difference consists
+of one point.  This proves a count-sensitive transport statement for
+the original interaction throughout $0<\beta\le2$.  It supplies no
+distance decay by itself and does not justify iterating the coupling
+through sectors with three or more particles.
+\end{remark}
+
+
+\section{A bounded response of the entire local law at temperature two}
+\label{sec:whole-local-linear-response}
+
+Here is an actual disk-gas estimate which includes every local count sector.
+It concerns the derivative at $\beta=2$, and does not assume that a
+general-temperature limiting process exists. Throughout this section,
+$\mu=dA/\pi$, $W=B_r$ with $0<r<1$, and
+\[
+ S_N=\sum_{i<j}\log|z_i-z_j|,
+ \qquad dP_{N,\beta}=Z_N(\beta)^{-1}e^{\beta S_N}\,d\mu^N.
+\]
+Let $P_{N,\beta}^W$ denote its law restricted to $W$. For a finite signed
+measure $\sigma$, write $\|\sigma\|_{\mathrm{var}}=|\sigma|(\Omega)$;
+the probability total variation distance is half this norm.
+
+\begin{theorem}[Uniform whole-law linear response]
+\label{thm:whole-law-linear-response}
+For each $r<1$, the finite signed measures
+\[
+ \dot P_N^W=\left.\partial_\beta P_{N,\beta}^W\right|_{\beta=2}
+\]
+exist in variation norm, have total mass zero, and converge in variation
+norm as $N\to\infty$. In particular, there is $C_r<\infty$ such that
+\[
+ \sup_N\|\dot P_N^W\|_{\mathrm{var}}\le C_r,
+ \qquad
+ |\operatorname{Cov}_{N,2}(F(\Xi_N|_W),S_N)|
+       \le C_r\|F\|_\infty
+\]
+for every bounded measurable local observable $F$. The convergence is
+simultaneous over $\|F\|_\infty\le1$, including all local count events.
+\end{theorem}
+
+This supplies a uniformly bounded local response to an extensive pair-energy
+perturbation. It does not supply an interval of temperatures: a uniform
+bound for a derivative at one temperature does not control its nonlinear
+remainder uniformly in $N$.
+
+\subsection{Kernel estimates with the collision singularities removed}
+At $\beta=2$ the correlation kernel, relative to $\mu$, is
+\[
+ K_N(x,y)=\sum_{a=1}^N a(x\bar y)^{a-1},\qquad
+ K(x,y)=(1-x\bar y)^{-2}.
+\]
+Write $\ell(x,y)=\log|x-y|$ and
+$g_N(x)=\frac12\sum_{a=1}^N|x|^{2a}/a$,
+$g(x)=-\frac12\log(1-|x|^2)$.
+
+\begin{lemma}\label{lem:linear-log-kernel}
+One has
+\[
+ \iint |\ell|\,|K_N-K|\,d\mu^2\longrightarrow0,
+ \qquad
+ J:=\sup_N\iint |\ell|\,|K_N|\,d\mu^2<\infty.
+\]
+Also $\int g\,d\mu=1/2$, and
+\[
+ L:=\sup_{z\in\mathbb D}\int_{\mathbb D}
+            |\log|z-x||\,d\mu(x)\le\tfrac12+\log2.
+\]
+\end{lemma}
+\begin{proof}
+The last two assertions follow by integration: for the negative logarithm
+translate into the unit disk about $z$, and for its positive part use
+$|z-x|\le2$. Put $u=x\bar y$. The exact finite-series identity gives
+\[
+ |K_N-K|\le\frac{|u|^N}{|1-u|^2}
+                   +\frac{N|u|^N}{|1-u|}.
+\]
+Where $\min(|x|,|y|)\le1/2$, denominators are bounded below and the
+logarithmic singularity is uniformly integrable, so the integral tends to
+zero. On the complement, put $v=|x||y|$ and let $\theta\in[-\pi,\pi]$
+be the angular difference. Uniformly there,
+\[
+ |1-u|^2\ge c((1-v)^2+\theta^2),\qquad
+ |\ell(x,y)|\le C(1+|\log|\theta||).
+\]
+Consequently the angular integrals with denominators $|1-u|^2$ and
+$|1-u|$ are bounded respectively by
+\[
+ C\frac{1+|\log(1-v)|}{1-v},\qquad
+ C(1+|\log(1-v)|^2).
+\]
+The radial integration identity
+\[
+ \int_0^1\!\int_0^1 f(rs)r\,dr\,s\,ds
+       =\int_0^1 f(v)v(-\log v)\,dv
+\]
+shows that the first bound without $v^N$ is integrable, so its version
+with $v^N$ tends to zero by dominated convergence. For the second bound,
+split at $v=1/2$; on the upper half use $-\log v\le2(1-v)$ and
+$v^N\le e^{-N(1-v)}$. Substituting $t=N(1-v)$ bounds the integral by
+$C(1+\log^2(N+1))/N$, which tends to zero. The same integrable first
+bound proves $\iint|\ell||K|<\infty$. The assertions follow.
+\end{proof}
+
+Fix $k\le N$ and distinct roots $\mathbf z=(z_1,\ldots,z_k)\in W^k$.
+Set $G_N=[K_N(z_i,z_j)]$, $D_N=\det G_N$, and
+\[
+ Q_N(x,y)=K_N(x,\mathbf z)G_N^{-1}K_N(\mathbf z,y),
+ \qquad q_N(x)=Q_N(x,x).
+\]
+These formulas are well defined: evaluations at $k$ distinct points are
+linearly independent on the polynomials of degree less than $N$, by
+polynomial interpolation. $Q_N$ is a rank-$k$ orthogonal projection,
+and the reduced Palm kernel is $K_N-Q_N$. These statements also follow
+directly by taking the Schur complement in the correlation determinant.
+
+\begin{lemma}[Gram cofactor bounds]\label{lem:cofactor-linear-response}
+Put $M=(1-r^2)^{-2}$ and $A=(1-r)^{-2}$. Uniformly in $N,k,\mathbf z$
+as above and $x,y\in\mathbb D$,
+\begin{align*}
+ 0\le D_N&\le M^k,\\
+ D_N|Q_N(x,y)|&\le k^2M^{k-1}A^2,\\
+ 0\le D_N\{q_N(x)q_N(y)-|Q_N(x,y)|^2\}
+       &\le4\binom{k}{2}^2M^{k-2}A^4.
+\end{align*}
+The last expression is zero when $k=1$. These bounds remain uniform when
+the roots approach collisions.
+\end{lemma}
+\begin{proof}
+The diagonal Gram entries are at most $M$ and the entries
+$K_N(x,z_i)$ have absolute value at most $A$. For any two equally sized
+index sets $I,J$, the Gram-minor Cauchy--Schwarz inequality gives
+\[
+ |\det(G_N)_{I,J}|^2
+ \le\det(G_N)_{I,I}\det(G_N)_{J,J}\le M^{2|I|}.
+\]
+This inequality follows by writing the minor as the inner product of the
+corresponding exterior products of Gram vectors. The first assertion is
+Hadamard's inequality. Expanding $D_NQ_N$ using the adjugate of $G_N$
+gives $k^2$ terms, each bounded by $M^{k-1}A^2$.
+
+For the last assertion, form the $k$ by $2$ matrix $V$ of evaluations at
+$x,y$. Its left side is $D_N\det(V^*G_N^{-1}V)$. Cauchy--Binet and
+the complementary-minor formula for $G_N^{-1}$ express this as a sum
+over pairs of two-element index sets. The complementary Gram minor is
+bounded by $M^{k-2}$; each two by two evaluation determinant has absolute
+value at most $2A^2$. There are $\binom{k}{2}^2$ terms. Positivity follows
+because $V^*G_N^{-1}V$ is positive semidefinite.
+\end{proof}
+
+\subsection{The exact derivative and its all-order envelope}
+Let $R_{N,\beta}^{(k)}$ be the factorial correlation density relative to
+$\mu^k$. The angular mean identity for the logarithm gives
+\begin{equation}\label{eq:response-h-potential}
+ h_N(x):=\int\ell(x,y)K_N(y,y)\,d\mu(y)
+   =-\frac12\sum_{a=1}^N\frac1a+g_N(x).
+\end{equation}
+Indeed, for a single term $a|y|^{2a-2}$, radial integration of
+$\log\max(|x|,|y|)$ gives $(|x|^{2a}-1)/(2a)$.
+
+Write $L_{\mathbf z}(x)=\sum_{i=1}^k\ell(z_i,x)$ and
+$\Delta(\mathbf z)=\prod_{i<j}(z_i-z_j)$. Define
+\begin{align}
+ B_N(\mathbf z)={}&\sum_i g_N(z_i)-\int q_Ng_N\,d\mu
+             -\int L_{\mathbf z}q_N\,d\mu\notag\\
+ &+\frac12\iint\ell(x,y)
+       \{q_N(x)q_N(y)-|Q_N(x,y)|^2\}\,d\mu^2\notag\\
+ &+\iint\ell(x,y)\operatorname{Re}
+       \{K_N(x,y)\overline{Q_N(x,y)}\}\,d\mu^2.
+ \label{eq:whole-law-B}
+\end{align}
+Then the exact identity is
+\begin{equation}\label{eq:whole-law-derivative}
+ \dot R_N^{(k)}(\mathbf z):=
+ \left.\partial_\beta R_{N,\beta}^{(k)}(\mathbf z)\right|_2
+    =D_N\{\log|\Delta(\mathbf z)|+B_N(\mathbf z)\}.
+\end{equation}
+Here is a derivation to make the normalization cancellation explicit.
+Differentiating the root-density integral gives
+\[
+ \frac{\dot R_N^{(k)}}{D_N}
+  =\log|\Delta|+
+   E^{!\mathbf z}_{N,2}\!\left[S_{N-k}+\sum_{y\in Y}L_{\mathbf z}(y)\right]
+      -E_{N,2}S_N.
+\]
+Expand the one- and two-point densities of the Palm kernel $K_N-Q_N$.
+The difference on the right, apart from $\log|\Delta|$, is
+\begin{align*}
+ \sum_i h_N(z_i)-\int q_Nh_N\,d\mu-\int L_{\mathbf z}q_N\,d\mu
+ &+\tfrac12\iint\ell(q_Nq_N-|Q_N|^2)\,d\mu^2\\
+ &+\iint\ell\operatorname{Re}(K_N\overline{Q_N})\,d\mu^2.
+\end{align*}
+Since $\int q_N\,d\mu=k$, the divergent harmonic-number constant in
+\eqref{eq:response-h-potential} cancels exactly. This proves
+\eqref{eq:whole-law-B}--\eqref{eq:whole-law-derivative}. All finite-$N$
+differentiations are justified by integrability of logarithms times a
+strictly positive Vandermonde power in a neighborhood of $\beta=2$.
+
+\begin{proposition}\label{prop:response-all-order-envelope}
+For each $r<1$ there are finite constants $c_r,C_r$ such that, for every
+$k\ge1$ and $N\ge k$,
+\[
+ a_{N,k}:=\int_{W^k}|\dot R_N^{(k)}|\,d\mu^k
+       \le c_r(k+1)^4C_r^k.
+\]
+For each fixed $k$, the functions $\dot R_N^{(k)}$ converge in
+$L^1(W^k,\mu^k)$ as $N\to\infty$.
+\end{proposition}
+\begin{proof}
+Lemmas \ref{lem:linear-log-kernel} and
+\ref{lem:cofactor-linear-response}, applied term by term in
+\eqref{eq:whole-law-B}, give
+\[
+ D_N|B_N|
+ \le kM^kg(r)
+  + k^2M^{k-1}A^2(\tfrac12+kL+J)
+  +2\binom{k}{2}^2M^{k-2}A^4L.
+\]
+Call this upper bound $F_{r,k}$. If $v=\mu(W)=r^2$, then
+\[
+ a_{N,k}\le v^kF_{r,k}
+       +M^k\binom{k}{2}v^{k-2}
+          \iint_{W^2}|\ell(x,y)|\,d\mu^2.
+\]
+For $k=1$ the second term is zero, and for $k\ge2$ its double integral
+is at most $vL$. This proves the claimed exponential times polynomial
+bound after enlarging constants depending only on $r$.
+
+For a fixed distinct root tuple, $G_N$ converges to its positive-definite
+infinite Bergman Gram matrix. Positivity follows again by testing the
+evaluation functionals against interpolation polynomials. Also
+$K_N(x,z_i)\to K(x,z_i)$ uniformly for $|x|\le1$, so $Q_N\to Q$
+uniformly on $(\overline{\mathbb D})^2$ for this tuple. Thus every term
+in \eqref{eq:whole-law-B} converges: use $g_N\le g$, integrability of
+the logarithms, and Lemma \ref{lem:linear-log-kernel} for the final
+two-variable term. The bound just obtained, together with
+$M^k\sum_{i<j}|\ell(z_i,z_j)|$, is an integrable pointwise majorant
+on $W^k$. Dominated convergence proves $L^1$ convergence. The collision
+set has $\mu^k$ measure zero.
+\end{proof}
+
+\subsection{Passing from every correlation to the entire local law}
+\begin{proof}[Proof of Theorem \ref{thm:whole-law-linear-response}]
+For finite $N$, differentiability of $P_{N,\beta}$ in variation norm
+follows by differentiating its density in $L^1$. Its derivative is
+$(S_N-E_{N,2}S_N)P_{N,2}$, and restriction to $W$ is a contraction for
+variation norm.
+
+For a second, more useful expression, let $j_{N,\beta,m}$ be the Janossy
+density in $W$: the probability of exactly $m$ unordered points in $W$
+is represented by $j_{N,\beta,m}\,d\mu^m/m!$. The empty sector uses
+$\mu^0=1$. Finite inclusion--exclusion gives
+\[
+ j_{N,\beta,m}(\mathbf x)
+ =\sum_{\ell=0}^{N-m}\frac{(-1)^\ell}{\ell!}
+       \int_{W^\ell}R_{N,\beta}^{(m+\ell)}(\mathbf x,\mathbf y)
+           \,d\mu^\ell(\mathbf y).
+\]
+Set $\dot R_N^{(k)}=0$ for $k>N$, and $\dot R_N^{(0)}=0$. Differentiate
+this finite sum and use the triangle inequality. Regrouping by
+$k=m+\ell$ yields
+\begin{equation}\label{eq:response-Janossy-bound}
+ \|\dot P_N^W\|_{\mathrm{var}}
+  =\sum_{m\ge0}\frac1{m!}\int_{W^m}|\dot j_{N,m}|\,d\mu^m
+  \le\sum_{k\ge1}\frac{2^k}{k!}a_{N,k}<C_r.
+\end{equation}
+The last inequality is uniform by Proposition
+\ref{prop:response-all-order-envelope}.
+
+Apply the same inequality to the difference of the derivatives for $N$
+and $N'$. For every fixed $k$, the $L^1$ difference of the correlation
+derivatives tends to zero. Its summand is dominated by twice the
+summable envelope in \eqref{eq:response-Janossy-bound}. Hence
+$\|\dot P_N^W-\dot P_{N'}^W\|_{\mathrm{var}}\to0$. Completeness of
+the space of finite signed measures in variation norm gives the stated
+limit. Its total mass is zero by continuity of total mass. Finally,
+integrating $F$ against the derivative gives the covariance formula and
+its uniform bound.
+\end{proof}
+
+\begin{remark}[What is still missing]
+The uniform all-order bound above refers to correlation order $k$, not
+temperature derivative order. It closes the passage from fixed
+correlations to all local events at first order. A fixed interval near
+$2$ still requires a uniform nonlinear remainder, or summable bounds on
+all temperature derivatives. Neither follows from this theorem. For
+example, an additional term proportional to $\tanh(N(\beta-2)^2)$ has
+zero first derivative at $2$ for every $N$, while remaining nonzero at
+every fixed other temperature as $N\to\infty$.
+\end{remark}
+
+
+\begin{thebibliography}{9}
+\bibitem{BrandenHuh}
+P.~Br\"and\'en and J.~Huh,
+\emph{Lorentzian polynomials}, Annals of Mathematics
+\textbf{192} (2020), 821--891.
+\href{https://arxiv.org/pdf/1902.03719}{Original manuscript,
+arXiv:1902.03719v8}; Theorems 2.25 and 2.30, Proposition 2.33.
+The direct continuum susceptibility proof in this note is independent
+of the polynomial characterization.
+\bibitem{LyonsScreening}
+R.~Lyons,
+\emph{Determinantal probability: basic properties and conjectures},
+Proceedings of the International Congress of Mathematicians 2014,
+vol.~IV, 137--161.
+\href{https://arxiv.org/abs/1406.2707}{arXiv:1406.2707}; Theorem~3.8.
+The finite-projection comparison used here is also proved directly
+in Lemma~\ref{lem:finite-projection-comparison}.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,40 @@
+# Local personal context, not part of the research repository.
+/TheLossOfSingularity.pdf
+
+# Local tools and configuration.
+/.agents/
+/.codex/
+/.idea/
+/.vscode/
+.DS_Store
+*~
+*.swp
+*.swo
+
+# Credentials and local environments.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.venv/
+venv/
+__pycache__/
+
+# Generated TeX output. Supplied PDFs in Raw materials remain tracked.
+/build/
+/main.pdf
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.xdv

@@ -1,0 +1,237 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools,microtype,booktabs,tabularx}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+\newcommand{\D}{\mathbb D}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Pp}{\mathbb P}
+\newcommand{\dd}{\,d}
+\newtheorem{conjecture}{Conjecture}
+\title{GMC representations and the intensity conjecture\\[3pt]\large A side note on construction versus selection}
+\author{}
+\date{8 September 2026}
+\begin{document}
+\maketitle
+\vspace{-1.8em}
+\noindent\textbf{Position.}
+The Gaussian multiplicative chaos (GMC) representation does not, by itself,
+change the leading conjecture
+\begin{equation}\label{target}
+ \rho_\beta(z)=\frac{4/\beta-1}{\pi(1-|z|^2)^2}.
+\end{equation}
+It provides an explicit family of hyperbolically invariant processes,
+including a candidate with this intensity, and exposes a precise selection
+problem. Constructing that candidate is not a proof that the finite disk gas
+converges to it. This note records those distinctions. It uses the random
+Bergman construction developed in the preceding discussion as an input;
+it does not reproduce its analytical proof.
+
+\section{The finite gas uses a biased Gaussian law}
+Let $\mu=dA/\pi$ on the unit disk, and consider the labelled finite gas
+\[
+ d\Pp_{N,\beta}(\mathbf z)
+ =Z_N(\beta)^{-1}|\Delta_N(\mathbf z)|^\beta\,d\mu^N(\mathbf z),
+ \qquad \Delta_N=\prod_{i<j}(z_i-z_j).
+\]
+Throughout this note, $0<\beta<2$ and $t=2-\beta\in(0,2)$.
+Take a centered real Gaussian generalized field $X$ with covariance
+$C(z,w)=-\log|z-w|$, and let
+\[
+ M_t^X(dz)={:}e^{\sqrt t X(z)}{:}\,d\mu(z).
+\]
+The colons denote Wick normalization in the GMC limit. For a finite measure
+$M$ with full support, define
+\[
+ G_N(M)_{jk}=\int z^j\overline z^{\,k}\,M(dz),\quad 0\le j,k<N,
+ \qquad D_N(M)=N!\det G_N(M).
+\]
+The determinant identity and the GMC product-moment identity give
+\[
+ D_N(M)=\int|\Delta_N|^2\,dM^{\otimes N},\qquad
+ \E D_N(M_t^X)=Z_N(2-t).
+\]
+Hence the exact mixing law for the original gas is
+\begin{equation}\label{bias}
+ \frac{dQ_{N,t}}{dP_{\rm GMC}}(M)
+ =\frac{D_N(M)}{\E D_N(M_t^X)}.
+\end{equation}
+Conditionally on $M$, sample the rank-$N$ polynomial projection DPP in
+$L^2(M)$. Its labelled law is
+$|\Delta_N|^2\,dM^{\otimes N}/D_N(M)$. Averaging with \eqref{bias}
+cancels $D_N$ and recovers $\Pp_{N,2-t}$ exactly.
+
+In contrast, averaging the same conditional DPP with the original Gaussian
+law $P_{\rm GMC}$ defines the \emph{unbiased mixture}. Its asymptotics do
+not automatically describe the gas. Although $D_N$ is a normalization
+factor inside the conditional particle law, it is a nonconstant random
+weight in the law of the environment.
+
+\section{What the infinite GMC construction supplies}
+Let $G$ be the zero-boundary Gaussian free field with covariance
+\[
+ g_\D(z,w)=-\log\left|\frac{z-w}{1-z\overline w}\right|,
+ \qquad M_t^G={:}e^{\sqrt tG}{:}\,d\mu.
+\]
+For $s>-1$, put
+\[
+ m_{t,s}(dz)=(1-|z|^2)^sM_t^G(dz).
+\]
+Write $\mathcal Y_{t,s}$ for the following position law: first sample
+$M_t^G$, then sample the infinite projection DPP corresponding to the
+closure of $\mathbb C[z]$ in $L^2(m_{t,s})$.
+
+\noindent\textbf{Construction result used here.}
+For each fixed $t\in(0,2)$ and $s>-1$, this projection is locally trace
+class almost surely; its finite polynomial projections converge locally.
+The annealed process $\mathcal Y_{t,s}$ is locally finite, almost surely
+infinite, and hyperbolically invariant, with ordinary-area intensity
+\begin{equation}\label{family}
+ \rho_{t,s}^{\mathcal Y}(z)
+ =\frac{s+1}{\pi(1-|z|^2)^2}.
+\end{equation}
+The coefficient is independent of $t$ at fixed $s$; the entire law is not
+asserted to be independent of $t$. The proof uses bounded analytic point
+evaluations from GMC small-ball estimates, followed by an equivariant
+polar decomposition and hyperbolic mass transport. Standard negative
+GMC moments are one input; see \cite{negative}.
+
+To relate this family to the unbiased mixture, decompose
+\[
+ X=G+\operatorname{Re}F,
+ \qquad \E F(z)\overline{F(w)}=-2\log(1-z\overline w),
+\]
+where $G$ and the analytic Gaussian field $F$ are independent. Wick
+normalization gives
+\[
+ M_t^X=|h|^2(1-|z|^2)^{t/2}M_t^G,
+ \qquad h=e^{\sqrt t F/2}.
+\]
+The harmonic factor can be removed from the infinite polynomial DPP.
+Precisely, with $m_0=(1-|z|^2)^{t/2}M_t^G$,
+\[
+ \overline{h\mathbb C[z]}^{\,L^2(m_0)}
+ =\overline{\mathbb C[z]}^{\,L^2(m_0)}\quad\text{almost surely}.
+\]
+This density statement is essential because $h$ need not be bounded.
+It follows by approximating $h$ and $1$ using $h(rz)$ and $h(z)/h(rz)$
+in $L^2(m_0)$ along a suitable sequence $r\uparrow1$.
+Multiplication by $h$ then gives a unitary identification, and its kernel
+factors cancel the change of reference measure in every DPP correlation
+measure. Thus the unbiased infinite mixture is $\mathcal Y_{t,t/2}$, with
+\begin{equation}\label{unbiased}
+ \rho_\beta^{\rm unbiased}(z)
+ =\frac{1+t/2}{\pi(1-|z|^2)^2}
+ =\frac{2-\beta/2}{\pi(1-|z|^2)^2}.
+\end{equation}
+
+\section{Construction does not verify the conjecture}
+Let $b$ denote the coefficient multiplying
+$1/[\pi(1-|z|^2)^2]$. The relevant comparison is
+\begin{center}
+\begin{tabularx}{\linewidth}{@{}Xcc@{}}
+\toprule
+Position law & Exponent $s$ & Coefficient $b$\\
+\midrule
+Unbiased GMC limit & $t/2$ & $1+t/2$\\[3pt]
+GMC candidate matching \eqref{target} & $2t/(2-t)$ & $(2+t)/(2-t)$\\[3pt]
+Actual disk-gas limit & Unidentified & Unproved at fixed $\beta\ne2$\\
+\bottomrule
+\end{tabularx}
+\end{center}
+The actual limit is not assumed to belong to the $\mathcal Y_{t,s}$ family.
+The two explicit coefficients satisfy
+\[
+ \frac{b_{\rm conjectured}}{b_{\rm unbiased}}=\frac2\beta,
+ \qquad
+ b_{\rm conjectured}-b_{\rm unbiased}
+ =\frac{(2-\beta)(4-\beta)}{2\beta}>0.
+\]
+Therefore removing the determinant weight cannot establish the proposed
+coefficient. This comparison does \emph{not} prove that the actual
+fixed-temperature gas limit differs from the unbiased mixture: its
+intensity is precisely what remains unknown.
+
+More importantly, \eqref{family} realizes \emph{every} positive
+coefficient by choosing $s=b-1$. The choice
+\begin{equation}\label{sstar}
+ s_*(\beta)=\frac4\beta-2=\frac{2(2-\beta)}\beta
+\end{equation}
+is obtained by solving $s+1=4/\beta-1$. It builds the proposed intensity
+into a candidate; it is not an independent derivation of that intensity
+from the finite gas. Existence of many invariant candidates also does not
+show nonuniqueness of the finite-$N$ limit, or nonuniqueness for one fixed
+DLR specification. A common specification has not been established for
+this family.
+
+\section{Perturbative evidence and its limitation}
+In terms of $t=2-\beta$, the leading conjecture predicts
+\[
+ b_{\rm conjectured}=\frac{2+t}{2-t}
+ =1+t+\frac{t^2}{2}+O(t^3),
+ \qquad
+ b_{\rm unbiased}=1+\frac t2.
+\]
+The previously obtained first temperature response of the finite gas is
+\[
+ \lim_{N\to\infty}
+ \left.\partial_\beta\rho_{N,\beta}(z)\right|_{\beta=2}
+ =-\frac1{\pi(1-|z|^2)^2},
+\]
+locally uniformly in the disk. The earlier second-response calculation
+likewise matches the quadratic term of the first expansion. These are
+inputs from the preceding calculations, not new derivative results of
+this side note.
+
+They support retaining \eqref{target} as the leading conjecture. However,
+derivatives were taken \emph{before} $N\to\infty$. Without a justified
+exchange of limits or a uniform temperature remainder, those results do
+not exclude the unbiased coefficient as a possible fixed-temperature
+limit. Pointwise convergence of analytic functions on a real interval
+alone does not imply convergence of their derivatives.
+
+\section{A sharper conjecture to test}
+\begin{conjecture}[Tentative GMC selection conjecture]\label{selection}
+For each $0<\beta<2$, the point process of the original $N$-particle disk
+gas converges locally in distribution to
+\[
+ \mathcal Y_{\,2-\beta,\,2(2-\beta)/\beta}.
+\]
+\end{conjecture}
+This is stronger than the intensity conjecture: it specifies the entire
+limiting law. If true, it would give full-sequence convergence, hyperbolic
+invariance, and \eqref{target} for the limiting process. Its plausibility
+must be tested independently through higher correlations, Palm laws, and
+conditional resampling laws, including the probabilities of different
+particle counts. Matching an intensity is insufficient. In particular,
+we have not proved that this candidate satisfies the required limiting
+DLR specification.
+
+One exact way to formulate the remaining selection mechanism is through
+orthogonal-polynomial norms. Let
+\[
+ h_N(M)=\min_{\substack{p\text{ monic}\\\deg p=N}}\int|p|^2\,dM.
+\]
+Since $D_N=N!\prod_{j=0}^{N-1}h_j$, the biased environment laws obey
+\begin{equation}\label{increment}
+ \frac{dQ_{N+1,t}}{dQ_{N,t}}(M)
+ =\frac{h_N(M)}{\E_{Q_{N,t}}h_N(M)}.
+\end{equation}
+Identifying the effect of these successive weights on local particle
+observables is a concrete unresolved task. Fixed-environment convergence
+of the conditional DPP does not justify replacing $Q_{N,t}$ by the
+unbiased law.
+
+The original leading conjecture is therefore retained, while
+Conjecture~\ref{selection} is an additional, more tentative proposal.
+All constructions in this note concern $0<\beta<2$; the positive real
+GMC representation used here gives no direct conclusion for $\beta>2$.
+
+\begin{thebibliography}{9}
+\bibitem{negative}
+C. Garban, N. Holden, A. Sep\'ulveda and X. Sun,
+\emph{Negative moments for Gaussian multiplicative chaos on fractal sets},
+Electron. Commun. Probab. 23 (2018), no.~100.
+\href{https://arxiv.org/abs/1805.00864}{arXiv:1805.00864}.
+\end{thebibliography}
+\end{document}

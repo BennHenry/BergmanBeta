@@ -1,0 +1,608 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,microtype}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\D}{\mathbb D}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Pp}{\mathbb P}
+\newcommand{\dd}{\,d}
+\newcommand{\TV}{\mathrm{TV}}
+\newcommand{\Rea}{\operatorname{Re}}
+\newcommand{\tr}{\operatorname{tr}}
+\DeclareMathOperator{\Var}{Var}
+\title{Perturbing the hard-disk gas around $\beta=2$\\[3pt]\large Exact determinantal representations and uniform first responses}
+\author{Research note}
+\date{8 September 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give an exact reduced-Palm formula for temperature perturbations of the
+hard-disk logarithmic gas. We prove local convergence of the first temperature
+response of every fixed correlation function and hyperbolic covariance of
+these first responses. An elementary total variation estimate proves the
+Bergman limit when the temperature approaches $2$ at specified
+$N$-dependent rates. Below $2$, the finite gas also has an exact representation
+as a determinant-biased mixture of determinantal processes in a Gaussian
+multiplicative chaos measure. Finally, we formulate a sufficient connected
+cumulant criterion for a fixed temperature interval. That criterion is not
+proved here. Neither uniqueness at any fixed $\beta\ne2$ nor the conjectured
+exact intensity is claimed.
+\end{abstract}
+
+\section{Model and scope}
+Put $d\mu(z)=dA(z)/\pi$ on $\D=\{|z|<1\}$ and define
+\[
+ S_N(\mathbf z)=\sum_{i<j}\log|z_i-z_j|,\qquad
+ Z_N(b)=\int_{\D^N}e^{bS_N}\,d\mu^N,\qquad
+ d\Pp_{N,b}=Z_N(b)^{-1}e^{bS_N}\,d\mu^N.
+\]
+Here the particles are labelled; passing to their counting measure does not
+change any local assertion. Write $R_{N,b}^{(k)}$ for factorial correlation
+densities with respect to $\mu^k$. Densities with respect to ordinary area are
+$\rho_{N,b}^{(k)}=\pi^{-k}R_{N,b}^{(k)}$.
+At $b=2$,
+\[
+ Z_N(2)=1,\qquad
+ K_N(z,w)=\sum_{a=1}^N a(z\overline w)^{a-1},\qquad
+ R_{N,2}^{(k)}(\mathbf z)=\det[K_N(z_i,z_j)]_{i,j=1}^k.
+\]
+Indeed, the squared norms of $1,z,\ldots,z^{N-1}$ in $L^2(\mu)$ are
+$1,1/2,\ldots,1/N$, and the Vandermonde integral is $N!$ times their product.
+The locally uniform kernel limit is
+\[
+ K(z,w)=(1-z\overline w)^{-2}.
+\]
+It defines the Bergman determinantal process. In this note, all temperature
+derivatives are taken \emph{before} sending $N$ to infinity. No assertion
+about differentiability of an unconstructed general-temperature limit is
+implicit.
+
+\section{An exact determinant-times-correction identity}
+Fix $k\le N$ and distinct roots $\mathbf z=(z_1,\ldots,z_k)$ in $\D$.
+Let $\Pp_{N,2}^{!\mathbf z}$ be the reduced Palm law of the $N$-particle
+determinantal process at these roots; it has $N-k$ remaining particles $Y$.
+Set
+\[
+ L_{\mathbf z}(Y)=S_{N-k}(Y)+\sum_{i=1}^k\sum_{y\in Y}\log|z_i-y|,
+ \qquad \Delta_k(\mathbf z)=\prod_{i<j}(z_i-z_j).
+\]
+\begin{proposition}\label{palm}
+For real $\varepsilon>-2$,
+\begin{equation}\label{palmid}
+ R_{N,2+\varepsilon}^{(k)}(\mathbf z)
+ =\det[K_N(z_i,z_j)]\,|\Delta_k(\mathbf z)|^\varepsilon
+ \frac{\E_{N,2}^{!\mathbf z}e^{\varepsilon L_{\mathbf z}}}
+ {\E_{N,2}e^{\varepsilon S_N}}.
+\end{equation}
+Consequently its logarithmic correction has the Taylor germ
+\begin{equation}\label{cumulants}
+ \log\frac{R_{N,2+\varepsilon}^{(k)}(\mathbf z)}
+ {R_{N,2}^{(k)}(\mathbf z)|\Delta_k(\mathbf z)|^\varepsilon}
+ =\sum_{m\ge1}\frac{\varepsilon^m}{m!}
+ \left\{\kappa_m^{!\mathbf z}(L_{\mathbf z})-\kappa_m(S_N)\right\}.
+\end{equation}
+The radius of this germ is not asserted to be uniform in $N$.
+\end{proposition}
+\begin{proof}
+Integrate the density with $k$ specified coordinates. Split the pair sum
+into root-root, root-remaining, and remaining-remaining terms. Dividing by
+the corresponding expression at $b=2$ gives \eqref{palmid}. All integrals
+are holomorphic when $\Re\varepsilon>-2$: on a compact subregion, their
+absolute integrands are bounded by the same expressions with a strictly
+positive Vandermonde exponent, and logarithmic derivatives are integrable.
+The denominator is nonzero at zero. Taking logarithms near zero proves
+\eqref{cumulants} by the definition of cumulants.
+\end{proof}
+
+The collision factor cannot be omitted from a uniform relative estimate.
+Already for $N=k=2$ the relative density is a constant depending on
+$\varepsilon$ times $|z_1-z_2|^\varepsilon$. It tends to zero at collision
+for $\varepsilon>0$ and diverges there for $\varepsilon<0$. Thus an estimate
+of the form $R_{N,2+\varepsilon}^{(2)}/R_{N,2}^{(2)}=1+O(\varepsilon)$
+uniformly over all distinct points is false. One must extract the collision
+factor, restrict to separated roots, or use absolute errors or local Laplace
+functionals.
+
+\section{Uniform first responses of all fixed correlations}
+Write $\ell(x,y)=\log|x-y|$, and define
+\[
+ Q_N(x,y)=K_N(x,\mathbf z)K_N(\mathbf z,\mathbf z)^{-1}K_N(\mathbf z,y),
+ \quad q_N(x)=Q_N(x,x),\quad
+ L_{\mathbf z}(x)=\sum_{i=1}^k\ell(z_i,x).
+\]
+The reuse of $L$ for the one-particle insertion potential is restricted to
+this section. The Palm kernel is $K_N-Q_N$, and $Q_N$ is an orthogonal
+projection of rank $k$ on $L^2(\mu)$. In particular $\int q_N\,d\mu=k$.
+Let
+\[
+ g_N(x)=\frac12\sum_{a=1}^N\frac{|x|^{2a}}a,
+ \qquad g(x)=-\frac12\log(1-|x|^2).
+\]
+Use $Q,q$ for the same Palm update formed from $K$.
+
+\begin{theorem}\label{first}
+Fix a compact set of distinct root tuples in $\D^k$. Uniformly on that set,
+\[
+ B_N(\mathbf z):=
+ \left.\partial_b\log\frac{R_{N,b}^{(k)}(\mathbf z)}
+ {|\Delta_k(\mathbf z)|^b}\right|_{b=2}
+ \longrightarrow B(\mathbf z),
+\]
+where the finite and infinite expressions are given by
+\begin{align}\label{Bformula}
+ B_N={}&\sum_i g_N(z_i)-\int q_N(x)g_N(x)\,d\mu(x)
+          -\int L_{\mathbf z}(x)q_N(x)\,d\mu(x)\notag\\
+ &+\frac12\iint\ell(x,y)
+       \{q_N(x)q_N(y)-|Q_N(x,y)|^2\}\,d\mu(x)d\mu(y)\notag\\
+ &+\iint\ell(x,y)\Rea\{K_N(x,y)\overline{Q_N(x,y)}\}
+       \,d\mu(x)d\mu(y).
+\end{align}
+The expression for $B$ replaces $N$ by infinity. All displayed integrals
+are absolutely convergent. In particular the first derivatives
+$\partial_b R_{N,b}^{(k)}|_{b=2}$ converge locally uniformly off collisions.
+\end{theorem}
+
+\begin{lemma}\label{logkernel}
+The kernels satisfy
+\[
+ \iint |\ell(x,y)|\,|K_N(x,y)-K(x,y)|\,d\mu(x)d\mu(y)\longrightarrow0.
+\]
+Also $\iint |\ell|\,|K|\,d\mu^2<\infty$.
+\end{lemma}
+\begin{proof}
+Put $u=x\overline y$. The exact truncation identity gives
+\[
+ |K_N-K|\le\frac{|u|^N}{|1-u|^2}
+                   +\frac{N|u|^N}{|1-u|}.
+\]
+On the region $\min(|x|,|y|)\le1/2$, the denominators are bounded below,
+and the logarithmic diagonal singularity is uniformly integrable.
+There the first term tends to zero geometrically, as does the second.
+On the remaining region put $r=|x|,s=|y|$ and
+$\theta=\arg x-\arg y\in[-\pi,\pi]$. Up to fixed positive constants,
+\[
+ |1-u|^2\ge c\{(1-rs)^2+\theta^2\},\qquad
+ |\ell(x,y)|\le C(1+|\log|\theta||).
+\]
+The last bound holds outside the measure-zero set $\theta=0$ and follows
+from $|x-y|\ge c|\theta|$ and $|x-y|\le2$. Splitting the angular integral
+at $|\theta|=1-rs$ shows that its bounds for the squared and first-power
+denominators are, respectively,
+\[
+ C\frac{1+|\log(1-rs)|}{1-rs},
+ \qquad C\{1+|\log(1-rs)|^2\}.
+\]
+For nonnegative $f$, the radial integration identity is
+\[
+ \int_0^1\int_0^1 f(rs)\,r\,dr\,s\,ds
+ =\int_0^1 f(v)v(-\log v)\,dv.
+\]
+Thus the $|1-u|^{-2}$ term without $|u|^N$ is integrable; its version with
+$|u|^N$ tends to zero by dominated convergence. The remaining truncation
+term is bounded by
+\[
+ CN\int_0^1 v^{N+1}(-\log v)
+                 \{1+|\log(1-v)|^2\}\,dv
+ =O\!\left(\frac{1+\log^2 N}{N}\right).
+\]
+For completeness, this last bound follows by splitting at $v=1/2$,
+using $-\log v\le2(1-v)$ on the upper half, and then setting
+$s=N(1-v)$ and using $v^N\le e^{-N(1-v)}$. The lower half decays
+geometrically. These estimates prove the assertions.
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{first}]
+Radial angular averaging, or the mean-value identity for the logarithm,
+gives the exact potential
+\begin{equation}\label{potential}
+ h_N(x):=\int\ell(x,y)K_N(y,y)\,d\mu(y)
+       =-\frac{\mathcal H_N}{2}+g_N(x),
+ \qquad\mathcal H_N=\sum_{a=1}^N\frac1a.
+\end{equation}
+Differentiate \eqref{palmid} at zero. In the Palm expectation of the pair
+sum use the two-point determinant with kernel $K_N-Q_N$. Expanding that
+determinant and subtracting the original pair expectation gives
+\begin{align*}
+ B_N={}&\sum_i h_N(z_i)-\int q_Nh_N-\int L_{\mathbf z}q_N\\
+ &+\tfrac12\iint\ell(q_Nq_N-|Q_N|^2)
+       +\iint\ell\Rea(K_N\overline{Q_N}).
+\end{align*}
+All unmarked integrals here use $\mu$. Since $\int q_N=k$, the
+$-\mathcal H_N/2$ terms cancel \emph{exactly}. This is \eqref{Bformula}.
+
+For roots in the specified compact set, the matrices
+$K_N(\mathbf z,\mathbf z)$ have uniformly bounded inverses for all
+sufficiently large $N$. To see this, their limits are positive definite:
+the interior evaluation kernels are linearly independent, as follows by
+testing against interpolation polynomials. The least eigenvalue has a
+positive minimum on the compact set. Further,
+$K_N(x,z_i)\to K(x,z_i)$ uniformly for $|x|\le1$ and the permitted roots.
+Consequently $Q_N\to Q$ uniformly on $\overline\D^2$, with uniform bounds.
+The identity $\int q=k$ follows either from projection rank or this convergence.
+
+Now $0\le g_N\le g$ and $g\in L^1(\mu)$, so the $q_Ng_N$ integral
+converges. The insertion logarithms have uniformly integrable singularities
+as their roots move in a compact set, and the double logarithm lies in
+$L^1(\mu^2)$. The last term converges by Lemma \ref{logkernel} and uniform
+convergence of $Q_N$. All arguments are uniform in the allowed tuples.
+Finally,
+\[
+ \left.\partial_bR_{N,b}^{(k)}\right|_2
+ =\det K_N(\mathbf z,\mathbf z)
+       \{\log|\Delta_k(\mathbf z)|+B_N(\mathbf z)\},
+\]
+which proves the final assertion.
+\end{proof}
+
+\section{Hyperbolic symmetry to first order}
+Define the limiting logarithmic response
+\[
+ A(\mathbf z)=\log|\Delta_k(\mathbf z)|+B(\mathbf z).
+\]
+\begin{theorem}\label{symmetry}
+For every holomorphic automorphism $\phi$ of $\D$,
+\[
+ A(\phi z_1,\ldots,\phi z_k)=A(z_1,\ldots,z_k).
+\]
+Thus the limits of all fixed correlation derivatives transform as factorial
+densities of a hyperbolically invariant process. This statement concerns
+first derivatives at $2$ only.
+\end{theorem}
+\begin{proof}
+Set $a(x)=\frac12\log|\phi'(x)|$. The disk identities give
+\[
+ \ell(\phi x,\phi y)=\ell(x,y)+a(x)+a(y),\qquad
+ g(\phi x)=g(x)-a(x).
+\]
+The Bergman kernel and its Palm update transform covariantly under $\phi$.
+In particular $q(x)d\mu(x)$ and the two-variable measures with factors
+$|Q|^2$ and $K\overline Q$ transform by substitution. The projection
+identities needed below are
+\[
+ \int q=k,\quad \int|Q(x,y)|^2\,d\mu(y)=q(x),\quad
+ \int K(x,y)\overline{Q(x,y)}\,d\mu(y)=q(x).
+\]
+Apply the changes of variables to \eqref{Bformula} and add the change
+$(k-1)\sum_i a(z_i)$ of $\log|\Delta_k|$. The result is
+\[
+ A(\phi\mathbf z)-A(\mathbf z)
+       =2\left\{\int q(x)a(x)\,d\mu(x)-\sum_i a(z_i)\right\}.
+\]
+The braces vanish by a finite-rank quadrature identity. Indeed, for a
+bounded holomorphic $f$, the adjoint of multiplication by $f$ preserves
+$\operatorname{span}\{K(\cdot,z_i)\}$, with eigenvalues
+$\overline{f(z_i)}$. Taking its trace shows
+$\int q f\,d\mu=\sum_i f(z_i)$. Take real parts and use a holomorphic
+logarithm of $\phi'$; it is bounded on $\D$ for a fixed disk automorphism.
+All changes of variables and traces are justified by the absolute
+integrability in Theorem \ref{first} and the boundedness of $a$.
+\end{proof}
+
+\begin{corollary}\label{intensityfirst}
+Locally uniformly on $\D$,
+\[
+ \lim_{N\to\infty}\left.\partial_b\rho_{N,b}^{(1)}(z)\right|_2
+       =-\frac1{\pi(1-|z|^2)^2}.
+\]
+\end{corollary}
+\begin{proof}
+For $k=1$, Theorem \ref{symmetry} says that $A$ is constant. We compute it
+at zero. There $Q_N=1$, so \eqref{Bformula} reduces to
+\[
+ B_N(0)=-\frac{N}{2(N+1)}+\frac12+J_N,
+ \qquad J_N=\iint\ell(x,y)\Rea K_N(x,y)\,d\mu(x)d\mu(y).
+\]
+The constant kernel term in $J_N$ is $-1/4$. The angular expansion
+\[
+ \log|re^{i\theta}-s|
+ =\log\max(r,s)-\sum_{n\ge1}\frac{(\min(r,s)/\max(r,s))^n}{n}\cos(n\theta)
+\]
+shows that the term $(n+1)(x\overline y)^n$, for $n\ge1$, contributes
+$-1/[n(n+2)]$. Integration may first be done off $r=s$, followed by
+integrable limiting arguments. Therefore
+\[
+ J_N=-\frac14-\sum_{n=1}^{N-1}\frac1{n(n+2)}
+       =-1+\frac1{2N}+\frac1{2(N+1)}.
+\]
+It follows that $B_N(0)=-1+1/(2N)+1/(N+1)\to-1$.
+Combine this with Theorem \ref{first} and the diagonal of $K$.
+\end{proof}
+
+\section{An actual determinant comparison in a shrinking window}
+We use total variation with values in $[0,1]$.
+\begin{theorem}\label{tv}
+For $N\ge2$ and $\varepsilon\ge0$,
+\[
+ \|\Pp_{N,2+\varepsilon}-\Pp_{N,2}\|_{\TV}
+ \le\left(\frac12+\log2\right)(N-1)\varepsilon.
+\]
+For $0\le\delta\le2$,
+\[
+ \|\Pp_{N,2-\delta}-\Pp_{N,2}\|_{\TV}
+ \le1-e^{-\delta N\log N/2}\le\frac{\delta N\log N}{2}.
+\]
+Both bounds may of course be replaced by their minimum with $1$.
+\end{theorem}
+\begin{proof}
+Hadamard's inequality for the Vandermonde matrix, each of whose rows has
+Euclidean norm at most $\sqrt N$, yields
+\[
+ S_N\le M_N:=\tfrac N2\log N,\qquad T_N:=M_N-S_N\ge0.
+\]
+We first evaluate its mean at $2$:
+\begin{equation}\label{meanenergy}
+ \E_{N,2}S_N=\frac12\sum_{1\le b<a\le N}\frac1{a-b}
+                  -\sum_{1\le b<a\le N}\frac1{a+b}.
+\end{equation}
+Here are details of the determinantal calculation. Write
+$e_a(z)=\sqrt a\,z^{a-1}$, $1\le a\le N$. The angular average of
+$\ell$ against independent radial densities $|e_a|^2\mu,|e_b|^2\mu$ is
+$-1/[2(a+b)]$. This follows on setting $t=-\log r$ and using that these
+radial variables are independent exponentials of rates $2a,2b$; the
+negative logarithm of their maximum radius is their minimum.
+For $a\ne b$, the angular Fourier expansion used above gives
+\[
+ \iint\ell(x,y)e_a(x)\overline{e_b(x)}
+       \overline{e_a(y)}e_b(y)\,d\mu^2
+       =-\frac{\min(a,b)}{(a+b)|a-b|}.
+\]
+To verify the radial factor when $a>b$, split into $r>s$ and $s>r$;
+the angular coefficient is $-(s/r)^{a-b}/[2(a-b)]$ on the first region,
+and its radial integral including the factor $ab$ is
+$-b/[2(a+b)(a-b)]$. The other region is equal to it. For $a=b$ the
+integral is $-1/(4a)$. Substitute these expressions into
+$\E S_N=\frac12\iint\ell\{K_N(x,x)K_N(y,y)-|K_N(x,y)|^2\}\,d\mu^2$.
+The diagonal terms cancel; the contribution of an unordered pair $a>b$
+is $1/[2(a-b)]-1/(a+b)$, proving \eqref{meanenergy}.
+
+Since $\sum_{a>b}(a-b)^{-1}=N\mathcal H_{N-1}-(N-1)$,
+$\mathcal H_{N-1}\ge\log N$, and
+$\sum_{b=1}^{a-1}(a+b)^{-1}<\log2$, we obtain
+\[
+ \E_{N,2}T_N\le\left(\tfrac12+\log2\right)(N-1).
+\]
+If $0<X\le1$, the probability tilted by $X/\E X$ has overlap with the
+original probability at least $\E X$, because
+$\min(1,X/\E X)\ge X$. Apply this with $X=e^{-\varepsilon T_N}$ to get
+the first bound from $1-e^{-u}\le u$.
+
+For the negative side, H\"older's inequality and $Z_N(0)=Z_N(2)=1$ give
+$Z_N(2-\delta)\le1$. Hence
+$\E_{N,2}e^{\delta T_N}=e^{\delta M_N}Z_N(2-\delta)\le e^{\delta M_N}$.
+If $X\ge1$, the overlap is at least $1/\E X$. Apply this with
+$X=e^{\delta T_N}$ to obtain the second bound.
+\end{proof}
+
+\begin{corollary}
+The local point-process limit is Bergman if either
+$\beta_N\ge2$ and $N(\beta_N-2)\to0$, or
+$\beta_N\le2$ and $N\log N(2-\beta_N)\to0$.
+\end{corollary}
+\begin{proof}
+Total variation decreases under restriction to a local window and under
+every measurable map. The theorem therefore compares all bounded local
+observables to those at $2$. The latter converge to their Bergman law,
+for example by the local Fredholm determinant formula and convergence of
+the positive projection kernels in local trace norm.
+\end{proof}
+These are shrinking windows; they do not prove any fixed interval of
+temperatures. They also concern bounded observables, and are not asserted
+to bound unbounded factorial moments without additional integrability.
+
+\section{Below two: an exact mixture of determinantal processes}
+There is a second precise interpretation of ``nearly determinantal''.
+We use a standard Gaussian multiplicative chaos (GMC) construction
+\cite{RV,RobertVargas}; its basic existence theorem is the only stochastic
+field input in this section.
+
+The kernel $C(z,w)=-\log|z-w|$ is positive definite as a generalized
+covariance on the disk. Indeed,
+\[
+ C(z,w)=\underbrace{-\log\left|\frac{z-w}{1-z\overline w}\right|}_{g_D(z,w)}
+       -\log|1-z\overline w|.
+\]
+The first term is the Dirichlet Green covariance; the second is positive
+definite because it is
+$\Rea\sum_{n\ge1}(z\overline w)^n/n$.
+Let $X$ be a real Gaussian generalized field with covariance $C$ and, for
+$0<t<2$, let
+\[
+ M_t(dz)={:}e^{\sqrt t X(z)}{:}\,d\mu(z)
+\]
+be its Wick-normalized subcritical chaos measure. This notation denotes
+the limit of regularized exponentials with one half of their variance
+subtracted, not an exponential of pointwise values of $X$.
+The measure is finite, non-atomic, and has full support almost surely.
+Its expectation is $\mu$. Off the diagonals its product moment measure is
+\begin{equation}\label{gmc_moment}
+ \E[M_t(dz_1)\cdots M_t(dz_N)]
+    =|\Delta_N(\mathbf z)|^{-t}\,d\mu^N(\mathbf z).
+\end{equation}
+For example, apply the Gaussian exponential formula on pairwise separated
+compact sets. Product masses are uniformly integrable in the regularization:
+cross-covariances are uniformly bounded, so Gaussian comparison with
+independent copies of the fields plus a common Gaussian bounds a
+$(1+\eta)$th moment of their product. Choose $1+\eta<2$; the required
+single-set GMC moments are uniformly bounded since $t<2$. Expectations
+therefore pass to the limit. Exhaustion away from the diagonals gives the
+corresponding nonnegative integral identities. No
+claim that the unweighted $N$th moment of $M_t(\D)$ is finite is needed.
+
+\begin{proposition}\label{mixture}
+Define the Gram matrix and its determinant functional by
+\[
+ G_N(M)_{jk}=\int z^j\overline z^{,k}\,M(dz),\quad 0\le j,k<N,
+ \qquad D_N(M)=N!\det G_N(M).
+\]
+Bias the GMC law by $D_N(M_t)/\E D_N(M_t)$ and, conditionally on $M_t$,
+sample the rank-$N$ polynomial projection determinantal process in
+$L^2(M_t)$. Its unconditional position law is exactly $\Pp_{N,2-t}$.
+\end{proposition}
+\begin{proof}
+Finiteness and full support make $G_N$ finite and positive definite.
+Expansion of the two Vandermonde determinants and integration gives
+\[
+ D_N(M)=\int|\Delta_N(\mathbf z)|^2\,M^{\otimes N}(d\mathbf z).
+\]
+By \eqref{gmc_moment} and non-atomicity,
+\[
+ \E D_N(M_t)=\int|\Delta_N|^{2-t}\,d\mu^N=Z_N(2-t)\in(0,\infty).
+\]
+The conditional labelled determinantal law has density
+$|\Delta_N|^2/D_N(M_t)$ with respect to $M_t^{\otimes N}$. Averaging
+against the biased field law cancels $D_N$ and gives exactly
+$Z_N(2-t)^{-1}|\Delta_N|^{2-t}\,d\mu^N$.
+\end{proof}
+
+This is a mixture of \emph{correlation measures}: the conditional formula uses
+\[
+ \det[K_{N,M}(z_i,z_j)]_{i,j=1}^k\prod_{i=1}^kM(dz_i).
+\]
+The random measure is not an ordinary density with respect to area.
+Consequently one cannot average random kernels pointwise against $dA$.
+Also the mixing law depends on $N$ through a nontrivial determinant bias.
+The representation by itself proves neither a local limit nor uniqueness.
+For $\beta>2$ the same real Gaussian device would require a negative
+covariance coefficient; it is not a positive mixture representation.
+
+\section{A precise sufficient estimate for a fixed interval}
+Let $f\in C_c^+(\D)$, $F_f(\Xi)=e^{-\langle f,\Xi\rangle}$, and define
+the mixed cumulants under $\Pp_{N,2}$ by
+\[
+ a_{m,N}(f)=\kappa_{N,2}
+   (F_f,\underbrace{S_N,\ldots,S_N}_{m\text{ copies}}),\quad m\ge1,
+ \qquad a_{0,N}(f)=\E_{N,2}F_f.
+\]
+\begin{theorem}[Conditional criterion]\label{conditional}
+Suppose that some common $0<r<2$ has the following properties for every
+$f\in C_c^+(\D)$: there is $A_f<\infty$ such that
+\begin{equation}\label{missing}
+ \sup_N|a_{m,N}(f)|\le A_f\,m!r^{-m}\quad(m\ge1),
+ \qquad a_{m,N}(f)\longrightarrow a_m(f)\quad(m\ge1).
+\end{equation}
+Then for every real $|\varepsilon|<r$, the Laplace functionals of
+$\Pp_{N,2+\varepsilon}$ converge, and
+\begin{align}\label{lapseries}
+ \E_{N,2+\varepsilon}F_f
+ &=\sum_{m\ge0}\frac{\varepsilon^m}{m!}a_{m,N}(f),\notag\\
+ \left|\E_{N,2+\varepsilon}F_f-\E_{N,2}F_f\right|
+ &\le A_f\frac{|\varepsilon|}{r-|\varepsilon|}.
+\end{align}
+If local point-process tightness is available at each such temperature,
+the entire sequence converges there and its subsequential limit is unique.
+The constants $A_f$ may depend on $f$; the radius $r$ must be common.
+\end{theorem}
+\begin{proof}
+The Taylor coefficients of
+$\E_{N,2}[F_fe^{\varepsilon S_N}]/\E_{N,2}e^{\varepsilon S_N}$ at zero
+are exactly the mixed cumulants above. The bound in \eqref{missing}
+makes their series converge on $|\varepsilon|<r$, uniformly in $N$ on
+every smaller disk. There is no extra unproved zero-free assumption:
+both the numerator and denominator are holomorphic on
+$\Re\varepsilon>-2$. Multiplying the convergent series by the denominator
+gives the numerator near zero, and hence throughout $|\varepsilon|<r$
+by the identity theorem. On the real interval the denominator is positive,
+so division proves the first assertion of \eqref{lapseries}. Summing the
+geometric bound gives the second. Coefficient convergence and the common
+majorant allow the $N$ limit through the series. Finally, local tightness
+gives subsequential point-process limits, and equality of all their
+Laplace functionals determines a unique law.
+\end{proof}
+
+At $2$ the comparison functional in \eqref{lapseries} is exactly
+\[
+ \E_{N,2}F_f=
+ \det\!\left(I-\sqrt{1-e^{-f}}\,K_N\sqrt{1-e^{-f}}\right).
+\]
+Thus Theorem \ref{conditional} is a literal determinant-plus-error
+criterion. For one fixed nonzero $f$, its error also proves nonemptiness
+of the limit at sufficiently small $|\varepsilon|$, since the Bergman
+Laplace functional is strictly less than one.
+\textbf{The hypotheses \eqref{missing} are not proved in this note.}
+Theorem \ref{first} verifies uniform convergence for first correlation
+responses, not all orders of \eqref{missing}.
+
+\section{Why smallness alone does not finish the argument}
+There are two distinct issues. First, an $N$-uniform $O(|\varepsilon|)$
+bound only places every possible limit near Bergman. It does not make
+those possible limits equal. One needs convergence of the correction,
+such as the convergent coefficients in Theorem \ref{conditional}.
+Second, crude absolute cluster estimates lose necessary cancellations.
+To see a precise integrability problem, use
+\[
+ d\nu(z)=\frac{d\mu(z)}{(1-|z|^2)^2},\qquad
+ |\mathcal K(z,w)|=
+ \frac{(1-|z|^2)(1-|w|^2)}{|1-z\overline w|^2}.
+\]
+At zero,
+\[
+ \int|\mathcal K(0,w)|\,d\nu(w)=\infty,\qquad
+ \int|\mathcal K(0,w)|^2\,d\nu(w)=1.
+\]
+For the hyperbolic Green potential $g_D(0,w)=-\log|w|$, every $s>0$
+also satisfies
+\[
+ \int|e^{-s g_D(0,w)}-1|\,d\nu(w)
+ =\int_0^1\frac{2r(1-r^s)}{(1-r^2)^2}\,dr=\infty.
+\]
+Indeed the integrand is asymptotic to $s/[2(1-r)]$ at the boundary.
+Making $s$ small does not remove this divergence. This rules out a direct
+use of a cluster argument requiring these absolute integrals; it does not
+rule out a screened or connected expansion. The exact cancellation in
+\eqref{potential} is an example of the structure that such an expansion
+must preserve.
+
+The proposed intensity is, in the present normalization,
+\[
+ R_b^{(1)}(z)=\frac{4/b-1}{(1-|z|^2)^2}.
+\]
+Even proving a uniform analytic perturbation and uniqueness would not by
+itself identify this exact function. Its Taylor series requires, for all
+$m\ge1$,
+\[
+ \lim_{N\to\infty}\left.\partial_b^m R_{N,b}^{(1)}(z)\right|_2
+ =\frac{(-1)^m m!\,2^{1-m}}{(1-|z|^2)^2},
+\]
+together with a common convergence radius, or an independent identity
+that determines the density. Corollary \ref{intensityfirst} supplies the
+case $m=1$. The logarithm of the conjectured density ratio is
+\[
+ \log\frac{4/(2+\varepsilon)-1}{1}
+ =\log\frac{2-\varepsilon}{2+\varepsilon}
+ =-\varepsilon-\frac{\varepsilon^3}{12}-\frac{\varepsilon^5}{80}-\cdots.
+\]
+Thus a further explicit test is a limiting third logarithmic response
+equal to $-1/2$. It is not calculated here.
+
+\paragraph{Relation to the literature.}
+Temperature expansions from determinantal correlations have a precedent
+in the one-component plasma; see \cite{Can}. That work concerns a
+different background and edge regime, and is not used here to assert
+a uniform remainder. The counterion disk model and its exactly soluble
+coupling are discussed in \cite{Samaj}. Neither citation supplies the
+missing all-order estimate for the present local limit.
+
+\begin{thebibliography}{9}
+\bibitem{RV} R. Rhodes and V. Vargas, \emph{Gaussian multiplicative chaos and
+applications: a review}, Probability Surveys 11 (2014), 315--392.
+\href{https://arxiv.org/abs/1305.6221}{arXiv:1305.6221}.
+\bibitem{RobertVargas} R. Robert and V. Vargas, \emph{Gaussian multiplicative
+chaos revisited}, Annals of Probability 38 (2010), 605--631.
+\href{https://doi.org/10.1214/09-AOP490}{doi:10.1214/09-AOP490}.
+\bibitem{Can} T. Can, P. J. Forrester, G. T\'ellez and P. Wiegmann,
+\emph{Exact and asymptotic features of the edge density profile for the one
+component plasma in two dimensions}, Journal of Statistical Physics 158
+(2015), 1147--1180.
+\href{https://arxiv.org/abs/1310.3130}{arXiv:1310.3130}.
+\bibitem{Samaj} L. \v Samaj, \emph{Counter-Ions Near a Charged Wall:
+Exact Results for Disc and Planar Geometries} (2015).
+\href{https://arxiv.org/abs/1511.00882}{arXiv:1511.00882}.
+\end{thebibliography}
+\end{document}
