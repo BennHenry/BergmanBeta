@@ -1,12 +1,13 @@
 # Bergman beta: the planar log gas in the disk
 
-A collaborative study of many repelling random points confined to the unit disk. As the number of points grows, we ask whether a random configuration remains in the interior, what its distribution is, and how it depends on the strength of the repulsion.
+A collaborative study of the large particle number limit of a 2D log gas confined in the unit disk. As the number of points grows, we ask whether a random configuration remains in the interior, what its distribution is, and how it depends on the strength of the repulsion.
 
-Every result, method, or proof on this Git repository is completely free to reuse. If you want to take it, write your own article, and add to the noise, you are free to do so. However, we believe that the current capabilities of AI should push us toward a more collaborative, less ego-driven way of doing mathematics. We generally believe that there is no point in claiming for yourself results that are or can be easily AI-generated (more info in the [manifesto](A%20Manifesto%20for%20Renewing%20the%20Practice%20of%20Mathematics.pdf)). So we advise against participating in the noise and invite you to join us. You are very welcome.
 
 It is still not very clear how we will work together, but there is a [Discord server available for discussion](https://discord.gg/fcsYGk7NT).
 
 The final aim is to build a coherent, checked, reader-friendly account of the mathematics: what is known, which arguments work, and which questions remain. The ultimate goal could be a future manuscript under a collective name, online videos, or anything that allows us to share this mathematics. All of this comes with the idea of rejecting ownership of results or proofs, as well as individual credit.
+
+**At inverse temperature $\beta=2$, the limit is known explicitly** The whole sequence converges to the Bergman point process (see HKPV).
 
 ## Model and main question
 
@@ -19,11 +20,11 @@ $$
 
 Here $Z_{N,\beta}$ is the constant that makes the density integrate to one. Close pairs are penalized, more strongly when $\beta$ is larger. There is no additional potential acting on the points inside the disk. This is the planar logarithmic gas in a disk.
 
-We keep the disk and $\beta$ fixed and let $N$ tend to infinity, without rescaling distances. We observe the points in each smaller disk $|z|\le r<1$. Even though the total number of points grows, most can move towards the boundary, so the number in a smaller disk need not grow. The main question is whether these observations converge to a unique probability law, and how to describe that law.
+Let $N$ tend to infinity, without rescaling distances. We observe the points in each smaller disk $|z|\le r<1$. Even though the total number of points grows, most can move towards the boundary, so the number in a smaller disk need not grow. The main question is whether this model converges to a unique probability law, and how to describe that law.
 
 ## History
 
-The project starts from a [main research note](Raw%20material/disk_log_gas_limits.tex) and three companion notes, preserved in [Raw material](Raw%20material/). They study the possible limiting configurations, their symmetries, and the way points inside a region depend on those outside it.
+This project was proposed by [Raphaël Butez](https://sites.google.com/site/rabutez/).
 
 ## Announced results
 
@@ -31,14 +32,13 @@ Announced results are results claimed to be proved in the supplied notes but tha
 
 * **Limiting configurations exist along subsequences.** For every $\beta>0$, one can choose particle numbers tending to infinity along which the random configurations converge in distribution. Each limit has finitely many points in every smaller disk, and no two points coincide. Different choices of particle numbers might still give different limiting laws ([main note](Raw%20material/disk_log_gas_limits.tex)).
 * **For $0<\beta<2$, every such limit contains infinitely many points.** They can accumulate only at the boundary. Their expected density at $z$ is at least $c_\beta/[\pi(1-|z|^2)^2]$ for a constant $c_\beta>0$. The notes also give quantitative bounds on how many points lie near the boundary ([main note](Raw%20material/disk_log_gas_limits.tex)).
-* **At $\beta=2$, the limit is known explicitly.** The whole sequence converges to the Bergman point process, a random configuration with expected density $1/[\pi(1-|z|^2)^2]$. It has infinitely many points in the disk, but only finitely many in each smaller disk ([main note](Raw%20material/disk_log_gas_limits.tex)).
 * **For $\beta\ge4$, the interior becomes empty.** For every fixed $r<1$, the probability that any point lies in $|z|\le r$ tends to zero as $N$ grows. All the points concentrate towards the boundary. The notes give an explicit rate when $\beta>4$ ([main note](Raw%20material/disk_log_gas_limits.tex)).
 * **Equations for conditional distributions do not automatically determine the limit.** At $\beta=2$, the notes describe the distribution of the points inside a region given the entire configuration outside. They also construct several different infinite point processes satisfying the same proposed equations for redistributing points inside a region while fixing their number. Those equations alone therefore cannot prove uniqueness of the disk-gas limit ([main note](Raw%20material/disk_log_gas_limits.tex)).
 * **Changes near $\beta=2$ can be calculated.** For the finite systems, the notes compute how the joint densities of points change to first order as $\beta$ varies at $2$, and obtain limits of these derivatives as $N$ grows. Companion estimates bound the effect of certain changes to the potential acting on the particles ([perturbation note](Raw%20material/near_determinantal_disk_gas.tex), [screening note](Raw%20material/actual_disk_gas_screening.tex)).
 
 ## Checked results
 
-No results are yet recorded here as checked by the collaborative project. The initial task is to verify and digest the supplied arguments, beginning with the bounds on the number of points in smaller disks and the explicit case $\beta=2$.
+The project has not started yet.
 
 ## Open questions
 
