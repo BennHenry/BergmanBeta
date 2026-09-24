@@ -43,7 +43,7 @@ Announced results are results claimed to be proved in the supplied material but 
 
 The project has not started yet.
 
-## Open questions
+## Still Open
 
 * **Does the whole sequence converge?** For $0<\beta<4$, $\beta\ne2$, do all choices of particle numbers tending to infinity lead to the same limiting law?
 * **Does the limit have all the symmetries of the hyperbolic disk?** This means that applying any Möbius transformation mapping the unit disk onto itself leaves the distribution unchanged. This is known at $\beta=2$ and remains open in the raw material for the other values $0<\beta<4$.
