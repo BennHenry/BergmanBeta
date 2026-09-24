@@ -50,9 +50,9 @@ The project has not started yet.
 * **Do points remain in the interior when $2<\beta<4$?** The raw material do not establish whether a limiting configuration can be nonempty in this interval.
 * **What is the intensity of the limit?** For $0<\beta<4$, the conjectured formula is
 
-  $$
-  \rho_\beta(z)=\frac{4/\beta-1}{\pi(1-|z|^2)^2}.
-  $$
+$$
+\rho_\beta(z)=\frac{4/\beta-1}{\pi(1-|z|^2)^2}.
+$$
 
  The [side note on random measures](Raw%20material/gmc_intensity_conjecture_side_note.tex) discusses ways to construct a process with this density and the further problem of proving that it is the limit of the finite gases.
 
