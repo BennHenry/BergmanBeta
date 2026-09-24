@@ -13,10 +13,6 @@ The final aim is to build a coherent, checked, reader-friendly account of the ma
 
 For $N$ points $z_1,\ldots,z_N$ in the unit disk $\mathbb D=\\{z\in\mathbb C:|z|<1\\}$, the probability density, with respect to ordinary area in each coordinate, is
 
-$$
-\frac{1}{Z_{N,\beta}}\prod_{1\le i<j\le N}|z_i-z_j|^\beta,
-\qquad \beta>0.
-$$
 
 Here $Z_{N,\beta}$ is the constant that makes the density integrate to one. Close pairs are penalized, more strongly when $\beta$ is larger. There is no additional potential acting on the points inside the disk. This is the planar logarithmic gas in a disk.
 
