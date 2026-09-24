@@ -11,7 +11,7 @@ The final aim is to build a coherent, checked, reader-friendly account of the ma
 
 ## Model and main question
 
-For $N$ points $z_1,\ldots,z_N$ in the unit disk $\mathbb D=\\{z\in\mathbb C:|z|<1\\}$, the probability density, with respect to ordinary area in each coordinate, is
+For $N$ points $z_1,\ldots,z_N$ in the unit disk $\mathbb D=\\{z\in\mathbb C:|z|<1\\}$, the probability density, with respect to Lebesgue measure, is
 
 
 $$
