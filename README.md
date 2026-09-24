@@ -14,6 +14,13 @@ The final aim is to build a coherent, checked, reader-friendly account of the ma
 For $N$ points $z_1,\ldots,z_N$ in the unit disk $\mathbb D=\\{z\in\mathbb C:|z|<1\\}$, the probability density, with respect to ordinary area in each coordinate, is
 
 
+$$
+\frac{1}{Z_{N,\beta}}
+\prod_{1\le i\lt j\le N}
+|z_i-z_j|^\beta,
+\qquad \beta>0.
+$$
+
 Here $Z_{N,\beta}$ is the constant that makes the density integrate to one. Close pairs are penalized, more strongly when $\beta$ is larger. There is no additional potential acting on the points inside the disk. This is the planar logarithmic gas in a disk.
 
 Let $N$ tend to infinity, without rescaling distances. We observe the points in each smaller disk $|z|\le r<1$. Even though the total number of points grows, most can move towards the boundary, so the number in a smaller disk need not grow. The main question is whether this model converges to a unique probability law, and how to describe that law.
