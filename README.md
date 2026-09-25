@@ -5,7 +5,7 @@ A collaborative study of the large particle number limit of a 2D log gas confine
 
 It is still not very clear how we will work together, but there is a [Discord server available for discussion](https://discord.gg/m4VbUtkY6).
 
-The final aim is to build a coherent, checked, reader-friendly account of the mathematics: what is known, which arguments work, and which questions remain. The ultimate goal could be a future manuscript under a collective name, online videos, or anything that allows us to share this mathematics. All of this comes with the idea of rejecting ownership of results or proofs, as well as individual credit.
+The final aim is to build a coherent, checked, reader-friendly account of the mathematics: what is known, which arguments work, and which questions remain. The ultimate goal could be a future manuscript under a collective name, online videos, or anything that allows us to share this mathematics. All of this comes with the idea of rejecting ownership of results or proofs, as well as individual credit (see the [manifesto](https://www.lesswrong.com/posts/zm5ovfqZ35A8rxZCc/rethinking-credit-and-recognition-in-mathematics-in-the-age)).
 
 **At inverse temperature $\beta=2$, the limit is known explicitly** The whole sequence converges to the Bergman point process (see HKPV).
 
