@@ -41,7 +41,12 @@ Announced results are results claimed to be proved in the supplied material but 
 
 ## Checked results
 
-The project has not started yet.
+The [standalone compactness note](compactness.tex) proves tightness for every
+$\beta>0$ in the space of nonnegative Radon measures and proves that every
+accumulation point is a locally finite simple point process. It includes
+the compact-count tail bounds and the two-point estimate that rules out
+multiple atoms. All model-specific arguments are included in the note.
+Run `make compactness` to build `build/compactness/compactness.pdf`.
 
 ## Still Open
 

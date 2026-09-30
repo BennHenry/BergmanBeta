@@ -1,0 +1,542 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=28mm]{geometry}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=blue!45!black]{hyperref}
+\numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\D}{\mathbb D}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Prob}{\mathbb P}
+\newcommand{\Mplus}{\mathcal M_+}
+\newcommand{\Mp}{\mathcal M_{\mathrm p}}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\ind}{\mathbf 1}
+\setlength{\emergencystretch}{2em}
+\hypersetup{pdftitle={Compactness and simplicity for the planar disk log gas},pdfauthor={}}
+\title{Compactness and simplicity for the planar disk log gas}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-2em}
+\begin{abstract}
+For every fixed inverse temperature $\beta>0$, the unscaled counting
+measures of the logarithmic gas in the open unit disk have tight laws.
+Every accumulation point, even when convergence is taken in the space
+of all nonnegative Radon measures, is a locally finite simple point
+process. We prove a uniform Gaussian upper tail for compact counts,
+derive a local two-point repulsion estimate, and show explicitly why
+these bounds exclude both diffuse mass and multiple atoms in the limit.
+All estimates specific to the model are proved in this note.
+\end{abstract}
+
+\section{Model, topology, and statement}
+
+Let $\D=\{z\in\mathbb C:|z|<1\}$, let $B_r=\{z:|z|<r\}$, and
+let $dA$ denote ordinary, unnormalized planar Lebesgue measure.
+Fix $\beta>0$. For $N\ge1$, the labelled particles have law
+\begin{equation}\label{eq:model}
+ \Prob_{N,\beta}(\dd z_1\cdots\dd z_N)
+ =\frac{1}{Z_{N,\beta}}|\Delta_N(z)|^\beta\prod_{i=1}^N dA(z_i),
+ \qquad z\in\D^N,
+ \qquad \Delta_N(z)=\prod_{1\le i<j\le N}(z_i-z_j).
+\end{equation}
+Here $Z_{N,\beta}$ is the integral of the numerator over $\D^N$,
+and empty products equal one. The partition function is finite because
+all pair distances are at most $2$, and positive because the integrand
+is positive off the collision diagonals. In particular, this law is
+absolutely continuous and its particles are distinct almost surely.
+Write
+\[
+ \Xi_N=\sum_{i=1}^N\delta_{z_i},\qquad M_N(r)=\Xi_N(B_r).
+\]
+There is no spatial rescaling as $N$ increases.
+
+The space $\Mplus(\D)$ consists of nonnegative Radon measures on
+$\D$: their mass on every compact subset of $\D$ is finite.
+It carries the \emph{vague topology}, in which $\mu_n\to\mu$ means
+\[
+ \mu_n(f)\longrightarrow\mu(f),\qquad
+ \mu(f)=\int f\dd\mu,\qquad f\in C_c(\D).
+\]
+Here $C_c(\D)$ is the space of continuous functions with compact
+support in $\D$. The subspace $\Mp(\D)$ consists of locally finite
+counting measures, allowing integer multiplicities at an atom.
+A \emph{point process} is a random element of $\Mp(\D)$; it is
+\emph{simple} if the mass of each atom is one almost surely.
+Convergence in law below refers to probability laws on these spaces,
+not to convergence of the measures $N^{-1}\Xi_N$.
+
+Vague convergence on the open disk permits particles to escape to the
+boundary. This is essential: on the closed disk the unnormalized total
+mass is $N$, so these laws could not be tight.
+
+\begin{theorem}[Compactness and simple limits]\label{thm:main}
+Fix $\beta>0$.
+The laws of $(\Xi_N)_{N\ge1}$ are tight in $\Mplus(\D)$.
+Every sequence of particle numbers tending to infinity therefore has
+a subsequence along which $\Xi_N$ converges in law.
+Every accumulation point is a locally finite simple point process.
+
+For $0<r<1$ and every integer $m\ge2$,
+\begin{equation}\label{eq:tail}
+ \sup_{N\ge1}\Prob\{M_N(r)\ge m\}
+ \le \min\left\{1,
+ \exp\left(m-\frac{\beta}{4}m(m-1)\log\frac1r\right)\right\}.
+\end{equation}
+The same bound holds for $M(r)=\Xi(B_r)$ for every limiting process
+$\Xi$. For every compact $K\subset\D$, $q>0$, and $t\in\mathbb R$,
+\[
+ \sup_N\E[\Xi_N(K)^q]<\infty,\qquad
+ \sup_N\E e^{t\Xi_N(K)}<\infty,
+\]
+and these moments are finite for every limit.
+Along any subsequence $\Xi_{N_j}\Rightarrow\Xi$, the counts
+$M_{N_j}(r)$ converge in law to $M(r)$ for each $r<1$, and
+\begin{equation}\label{eq:moment-convergence}
+ \E M_{N_j}(r)^q\longrightarrow\E M(r)^q,
+ \qquad
+ \E e^{tM_{N_j}(r)}\longrightarrow\E e^{tM(r)}.
+\end{equation}
+\end{theorem}
+
+The proof has two separate parts. A radial comparison bounds the number
+of particles in every compact window and gives tightness. A two-point
+estimate then prevents different particles from merging in the limit.
+Simplicity does not follow from tightness alone: for example,
+$\delta_0+\delta_{1/n}\to2\delta_0$ vaguely, although each measure in
+the sequence is simple.
+
+\section{Radial comparison and compact-count tails}
+
+We first prove the two elementary inequalities used in the comparison.
+
+\begin{lemma}[Subharmonic means]\label{lem:subharmonic}
+If $P$ is holomorphic and $\beta>0$, then $|P|^\beta$ is
+subharmonic. Its circular mean about any center is nondecreasing in
+the radius, for circles whose enclosed disks lie in its domain.
+More generally, for a nonnegative continuous subharmonic function $u$,
+\begin{equation}\label{eq:annular-mean}
+ u(z)\le\frac{1}{\pi(b^2-a^2)}
+ \int_{a<|w-z|<b}u(w)\,dA(w),\qquad 0\le a<b,
+\end{equation}
+provided the closed disk of radius $b$ about $z$ lies in the domain.
+\end{lemma}
+\begin{proof}
+Put $\alpha=\beta/2$. Direct differentiation gives, for $\varepsilon>0$,
+\[
+ \Delta(|P|^2+\varepsilon)^\alpha
+ =4\alpha(|P|^2+\varepsilon)^{\alpha-2}
+       (\varepsilon+\alpha|P|^2)|P'|^2\ge0.
+\]
+The locally uniform limit as $\varepsilon\downarrow0$ is subharmonic.
+For smooth $u$, the derivative of the circular mean at radius $s$ is
+$(2\pi s)^{-1}\int_{B(z,s)}\Delta u\,dA\ge0$.
+Regularization proves the corresponding statement for continuous
+subharmonic functions. Integrate the circular submean inequality
+against $2\pi s\dd s$ over $a<s<b$ to obtain
+\eqref{eq:annular-mean}.
+\end{proof}
+
+\begin{lemma}[Increasing tilts of product measures]\label{lem:association}
+Let $\mu$ be a product probability measure on finitely many intervals.
+If $F\ge0$ is bounded, nondecreasing in each coordinate, and
+$\mu(F)>0$, then the probability measure $\nu=F\mu/\mu(F)$ satisfies
+\[
+ \nu(A)\le\mu(A)
+\]
+for every coordinatewise decreasing Borel set $A$.
+\end{lemma}
+\begin{proof}
+For bounded increasing functions $f,g$ of one variable and independent
+identically distributed $X,X'$, one has
+\[
+ 2\operatorname{Cov}(f(X),g(X))
+ =\E[(f(X)-f(X'))(g(X)-g(X'))]\ge0.
+\]
+For a product measure, induct on the number of coordinates.
+The conditional covariance given the last coordinate is nonnegative
+by induction. The conditional expectations are increasing functions
+of that last coordinate, so their covariance is also nonnegative.
+The covariance decomposition proves the same inequality in every
+dimension. Apply it to $f=F$ and $g=-\ind_A$ to obtain
+$\mu(F\ind_A)\le\mu(F)\mu(A)$.
+\end{proof}
+
+By absolute continuity, zero or repeated radii have probability zero.
+Sort the radii as $0<r_1<\cdots<r_N<1$ and relabel the angles
+accordingly. Sorting contributes only a constant $N!$ to the density.
+Define the ratios
+\begin{equation}\label{eq:ratios}
+ t_k=\frac{r_k}{r_{k+1}},\qquad r_{N+1}=1,
+ \qquad r_j=\prod_{k=j}^N t_k,
+ \qquad a_k=2k+\frac{\beta}{2}k(k-1).
+\end{equation}
+For $i<j$, factor
+\[
+ |z_i-z_j|=r_j\left|1-
+   \left(\prod_{\ell=i}^{j-1}t_\ell\right)
+        e^{i(\theta_i-\theta_j)}\right|.
+\]
+The triangular Jacobian and the radial Vandermonde factors give
+\[
+ \prod_{j=1}^N r_j\dd r_j=\prod_{k=1}^N t_k^{2k-1}\dd t_k,
+ \qquad
+ \prod_{j=1}^N r_j^{\beta(j-1)}
+ =\prod_{k=1}^N t_k^{\beta k(k-1)/2}.
+\]
+Indeed, the Jacobian of $t\mapsto r$ is $\prod_k t_k^{k-1}$ and
+$\prod_jr_j=\prod_kt_k^k$.
+After angular integration, the ratio density is proportional to
+\begin{equation}\label{eq:ratio-density}
+ F_N(t)\prod_{k=1}^N t_k^{a_k-1},\qquad t\in(0,1)^N,
+\end{equation}
+where
+\[
+ F_N(t)=\int_{[0,2\pi)^N}
+ \prod_{i<j}\left|1-
+   \left(\prod_{\ell=i}^{j-1}t_\ell\right)
+        e^{i(\theta_i-\theta_j)}\right|^\beta
+       \prod_{j=1}^N\frac{\dd\theta_j}{2\pi}.
+\]
+This function is bounded, continuous, and nonnegative on $[0,1]^N$.
+
+\begin{lemma}\label{lem:angular}
+The angular factor $F_N$ is nondecreasing in every ratio $t_k$.
+\end{lemma}
+\begin{proof}
+Fix $k<N$ and all other ratios. Only the pairs $i\le k<j$ depend
+on $t_k$; their radial ratios have the form $t_kq_{ij}$.
+Average additionally over the common rotation
+$\theta_i\mapsto\theta_i+\phi$ for $i\le k$.
+Invariance of angular Lebesgue measure leaves $F_N$ unchanged.
+All noncrossing factors are unchanged, whereas the crossing product is
+\[
+ |P_\theta(t_ke^{i\phi})|^\beta,
+ \qquad P_\theta(w)=\prod_{i\le k<j}
+          (1-q_{ij}e^{i(\theta_i-\theta_j)}w).
+\]
+Its circular mean is nondecreasing in $t_k$ by
+Lemma~\ref{lem:subharmonic}. Integration against the remaining
+nonnegative factors preserves this inequality.
+The factor $F_N$ does not depend on $t_N$.
+\end{proof}
+
+Let $U_k$, $1\le k\le N$, be independent with density
+$a_ku^{a_k-1}$ on $(0,1)$. Equation~\eqref{eq:ratio-density} is
+their product law tilted by $F_N$, whose mean is positive.
+For $N\ge m$, the event $M_N(r)\ge m$ is the decreasing event
+$\prod_{k=m}^N t_k<r$. Hence Lemma~\ref{lem:association} gives
+\begin{equation}\label{eq:comparison}
+ \Prob\{M_N(r)\ge m\}
+ \le\Prob\left\{\sum_{k=m}^N E_k>\log\frac1r\right\},
+ \qquad E_k=-\log U_k.
+\end{equation}
+The variables $E_k$ are independent exponentials with rates $a_k$:
+$\Prob(E_k>x)=e^{-a_kx}$ for $x\ge0$.
+
+For $m\ge2$, take $\lambda=\beta m(m-1)/4$.
+For every $k\ge m$,
+$a_k\ge\beta k(k-1)/2$ and $\lambda/a_k\le1/2$.
+Using $-\log(1-x)\le2x$ for $0\le x\le1/2$,
+\begin{align*}
+ \log\E\exp\left(\lambda\sum_{k=m}^N E_k\right)
+ &=\sum_{k=m}^N-\log(1-\lambda/a_k)\\
+ &\le2\lambda\sum_{k=m}^N a_k^{-1}
+ \le\frac{4\lambda}{\beta}
+       \sum_{k=m}^\infty\frac1{k(k-1)}=m.
+\end{align*}
+Exponential Markov inequality and \eqref{eq:comparison} prove
+\eqref{eq:tail} at finite $N$; if $N<m$, its left side is zero.
+In particular, for every $r<1$, $q>0$, and $t>0$,
+\begin{equation}\label{eq:uniform-moments}
+ \sup_N\E M_N(r)^q<\infty,
+ \qquad\sup_N\E e^{tM_N(r)}<\infty.
+\end{equation}
+For example, the terms with $m\ge2$ in the exponential-moment sum
+are bounded by
+$\exp((t+1)m-c_rm(m-1))$ with
+$c_r=(\beta/4)\log(1/r)>0$, a summable sequence.
+
+\section{Tightness in the space of random measures}
+
+We recall the required topological facts and explain the deterministic
+compactness and closure arguments. For a locally compact, second
+countable space such as $\D$, $\Mplus(\D)$ with the vague topology
+is Polish, meaning that its topology can be given by a complete
+separable metric. We use Prokhorov's theorem: a family of probability
+laws on a Polish space is tight if, for every $\varepsilon>0$, a
+compact set has probability at least $1-\varepsilon$ under every law;
+such a family is relatively sequentially compact for convergence in
+law. For the Polish property and Prokhorov's theorem, see
+\cite[Theorems A2.6.III and A2.4.I]{DV1}, respectively.
+
+\begin{lemma}[Local mass bounds and counting-measure closure]
+\label{lem:topology}
+A family in $\Mplus(\D)$ whose masses are uniformly bounded on
+each compact subset of $\D$ is relatively compact for the vague
+topology. Moreover, $\Mp(\D)$ is closed in $\Mplus(\D)$.
+\end{lemma}
+\begin{proof}
+For the first assertion, choose a compact exhaustion and countable
+uniformly dense families of continuous test functions supported in
+its successive members. The integrals of each test function are
+bounded by the corresponding local mass bound. Diagonal extraction
+gives convergence for this countable family. Uniform approximation
+and the same mass bounds extend convergence to every function in
+$C_c(\D)$. The limiting functional is positive and locally bounded,
+so the Riesz representation theorem identifies it with a Radon
+measure. Thus every sequence has a vaguely convergent subsequence.
+
+For closure, suppose that counting measures $\xi_n$ converge vaguely
+to $\mu\in\Mplus(\D)$. If a relatively compact ball $B$ satisfies
+$\mu(\partial B)=0$, approximation of its indicator by continuous
+functions gives $\xi_n(B)\to\mu(B)$. Therefore $\mu(B)$ is an
+integer. For every $x\in\D$ there are arbitrarily small balls
+centered at $x$ with $\mu$-null boundary: among radii below any fixed
+compactly contained radius, only countably many circles can have
+positive mass. Along decreasing such radii,
+$\mu(B(x,s))\downarrow\mu(\{x\})$.
+These ball masses are nonnegative integers and bounded above, so
+they eventually stabilize. Thus $\mu(\{x\})$ is an integer, and
+if it is zero some neighborhood of $x$ has zero mass.
+It follows that every point of the support of $\mu$ is an atom of
+positive integer mass. There are finitely many such atoms on each
+compact set because $\mu$ is Radon. Hence $\mu$ is a locally finite
+counting measure.
+\end{proof}
+The local compactness criterion and the closure assertion also appear
+in \cite[Corollary A2.6.V]{DV1} and \cite[Lemma 9.1.V]{DV2},
+respectively.
+
+Choose $r_\ell\uparrow1$. Given $\varepsilon>0$, the tail bound
+allows us to choose integers $b_\ell$ with
+\[
+ \sup_N\Prob\{\Xi_N(B_{r_\ell})>b_\ell\}
+ <\varepsilon2^{-\ell}.
+\]
+Consider the subset of the full measure space
+\[
+ \mathcal K=\bigcap_{\ell\ge1}
+ \{\mu\in\Mplus(\D):\mu(B_{r_\ell})\le b_\ell\}.
+\]
+Mass on an open relatively compact set is lower semicontinuous
+for vague convergence. Thus $\mathcal K$ is closed.
+Every compact subset of $\D$ lies in some $B_{r_\ell}$, so
+Lemma~\ref{lem:topology} makes $\mathcal K$ relatively compact,
+hence compact. A union bound gives
+$\inf_N\Prob(\Xi_N\in\mathcal K)\ge1-\varepsilon$.
+Prokhorov's theorem proves tightness in $\Mplus(\D)$.
+
+Now fix any convergent subsequence $\Xi_{N_j}\Rightarrow\Xi$ in
+that space. Since $\Mp(\D)$ is closed and contains every $\Xi_N$,
+Portmanteau's theorem shows that $\Xi\in\Mp(\D)$ almost surely.
+This excludes diffuse mass in the limit; multiplicities still require
+proof.
+
+The tail bound already passes to this counting-measure limit.
+The set
+$\{\mu:\mu(B_r)>m-1/2\}$ is open by lower semicontinuity. Thus
+Portmanteau and the integer-valued counts give
+\[
+ \Prob\{\Xi(B_r)\ge m\}
+ \le\liminf_j\Prob\{\Xi_{N_j}(B_r)\ge m\},
+\]
+which proves \eqref{eq:tail} for $\Xi$ and all its local moment
+bounds. This argument requires no assumption about boundary points
+or simplicity.
+
+\section{A local two-point bound}
+
+The finite-system one- and two-point densities, relative to $dA$
+and $dA\otimes dA$, are defined by
+\begin{align*}
+ \E\sum_i f(z_i)&=\int_\D f(z)\rho_{1,N}(z)\,dA(z),\\
+ \E\sum_{i\ne j}g(z_i,z_j)
+ &=\int_{\D^2}g(z,w)\rho_{2,N}(z,w)\,dA(z)dA(w).
+\end{align*}
+The pairs in the second sum are ordered.
+Integration of \eqref{eq:model} yields, for $p=1,2$ and $N\ge p$,
+\begin{equation}\label{eq:correlation-factorization}
+ \rho_{p,N}(z)=|\Delta_p(z)|^\beta h_{p,N}(z),
+\end{equation}
+where $(N)_p=N(N-1)\cdots(N-p+1)$ and
+\begin{equation}\label{eq:h-definition}
+ h_{p,N}(z)=\frac{(N)_p}{Z_{N,\beta}}
+ \int_{\D^{N-p}}|\Delta_{N-p}(y)|^\beta
+     \prod_{i=1}^p\prod_{\ell=1}^{N-p}|z_i-y_\ell|^\beta
+           \prod_{\ell=1}^{N-p}dA(y_\ell).
+\end{equation}
+For $N<p$ set these functions to zero. For each fixed $N$, they
+are continuous by dominated convergence. They are separately
+subharmonic in their arguments, since the integrands are powers of
+moduli of holomorphic polynomials, integrated against a positive
+measure independent of $z$.
+
+\begin{proposition}[Uniform local intensity and repulsion bounds]
+\label{prop:repulsion}
+For every $r<1$ there is $C_{\beta,r}<\infty$, independent of $N$,
+such that, for $z,w\in\overline{B_r}$,
+\begin{equation}\label{eq:repulsion}
+ \rho_{1,N}(z)\le C_{\beta,r},\qquad
+ \rho_{2,N}(z,w)\le C_{\beta,r}|z-w|^\beta.
+\end{equation}
+\end{proposition}
+\begin{proof}
+Fix $r<R<1$ and put $\eta=(R-r)/8$.
+The disk submean inequality gives
+\[
+ h_{1,N}(z)\le\frac{1}{\pi\eta^2}
+       \int_{B_R}\rho_{1,N}(u)\,dA(u)
+ =\frac{\E M_N(R)}{\pi\eta^2}.
+\]
+This is uniformly bounded by \eqref{eq:uniform-moments}.
+
+For $h_{2,N}$ we average its two arguments over separated regions.
+If $|z-w|\ge4\eta$, use the disks $B(z,\eta)$ and $B(w,\eta)$;
+points $u,v$ in these disks satisfy $|u-v|\ge2\eta$.
+If $|z-w|<4\eta$, use $B(z,\eta)$ and the annulus
+$6\eta<|v-w|<7\eta$. Then $|u-v|\ge\eta$.
+Both choices lie inside $B_R$; each averaging region has area at
+least $\pi\eta^2$. Successive applications of
+Lemma~\ref{lem:subharmonic} therefore give in either case
+\begin{align*}
+ h_{2,N}(z,w)
+ &\le\frac{\eta^{-\beta}}{\pi^2\eta^4}
+       \int_{B_R^2}|u-v|^\beta h_{2,N}(u,v)\,dA(u)dA(v)\\
+ &=\frac{\E[M_N(R)(M_N(R)-1)]}{\pi^2\eta^{\beta+4}}.
+\end{align*}
+The second moment bound is uniform in $N$.
+Multiplication by $|z-w|^\beta$ proves the second assertion.
+\end{proof}
+
+\section{Why every accumulation point is simple}
+
+Let $\Xi_{N_j}\Rightarrow\Xi$ be the subsequence fixed above.
+We already know that $\Xi$ is a locally finite counting measure,
+with multiplicities permitted. For such a measure $\xi$, its second
+\emph{factorial measure} $\xi^{[2]}$ counts ordered pairs of distinct
+particle labels, including pairs at the same location if an atom has
+multiplicity. For $f\in C_c(\D^2)$,
+\begin{equation}\label{eq:factorial-functional}
+ \langle f,\xi^{[2]}\rangle
+ =\int f(z,w)\,\dd\xi(z)\dd\xi(w)
+       -\int f(z,z)\,\dd\xi(z).
+\end{equation}
+For example, an atom of mass $a$ contributes $a(a-1)$ ordered
+pairs on the diagonal. This formula is valid before simplicity has
+been established.
+
+Both terms on the right of \eqref{eq:factorial-functional} are
+continuous under vague convergence. For the product-measure term,
+approximate $f$ uniformly on a compact product by finite sums of
+products of one-variable continuous functions, with compactly
+supported cutoffs. Vaguely convergent measures have uniformly bounded
+mass on each compact set, so this approximation reduces the assertion
+to the definition of vague convergence. The diagonal function
+$z\mapsto f(z,z)$ is itself continuous with compact support.
+
+If the coordinate projections of the support of $f$ lie in a compact
+set $K\subset B_S$, then
+\[
+ |\langle f,\Xi_{N_j}^{[2]}\rangle|
+ \le\|f\|_\infty M_{N_j}(S)^2.
+\]
+The uniform fourth moment in \eqref{eq:uniform-moments} makes these
+random variables uniformly integrable. The continuous mapping theorem
+and uniform integrability imply
+\begin{equation}\label{eq:pair-moment-convergence}
+ \E\langle f,\Xi_{N_j}^{[2]}\rangle
+ \longrightarrow\E\langle f,\Xi^{[2]}\rangle.
+\end{equation}
+The same argument, using the second moment bound, gives
+$\E\Xi_{N_j}(g)\to\E\Xi(g)$ for $g\in C_c(\D)$.
+
+Write $\alpha_1=\E\Xi$ and $\alpha_2=\E\Xi^{[2]}$ for the
+limiting intensity and second factorial moment measures.
+They are locally finite by the count moment bounds.
+For nonnegative continuous tests supported in $B_r$ or $B_r^2$,
+Proposition~\ref{prop:repulsion} and
+\eqref{eq:pair-moment-convergence} show that
+\begin{equation}\label{eq:limiting-domination}
+ \alpha_1\big|_{B_r}\le C_{\beta,r}\,dA,
+ \qquad
+ \alpha_2\big|_{B_r^2}
+ \le C_{\beta,r}|z-w|^\beta\,dA(z)dA(w).
+\end{equation}
+These are inequalities of Radon measures: domination on nonnegative
+continuous compactly supported tests extends to all Borel sets by
+regularity. In particular, $\alpha_2$ gives no mass to the diagonal.
+For every $r<1$,
+\[
+ 0=\alpha_2\{(z,z):z\in B_r\}
+   =\E\sum_{x\in B_r}
+       \Xi(\{x\})\bigl(\Xi(\{x\})-1\bigr).
+\]
+The sum is nonnegative. It is therefore zero almost surely, so every
+atom in $B_r$ has mass at most one. Taking a countable exhaustion
+$r\uparrow1$ proves that $\Xi$ is simple almost surely.
+This completes the assertion about accumulation points in the full
+space of random measures.
+
+The first inequality in \eqref{eq:limiting-domination} also proves
+that $\Xi$ almost surely avoids every fixed area-null Borel subset
+of $\D$. In particular, for every fixed $r<1$,
+$\Xi(\partial B_r)=0$ almost surely. Counting $B_r$ is continuous
+for vague convergence at any measure with this property: approximate
+its indicator from inside and outside by continuous functions.
+The continuous mapping theorem now gives
+$M_{N_j}(r)\Rightarrow M(r)$.
+Uniform bounds on higher powers and on $e^{sM_N(r)}$ for every $s>0$
+give uniform integrability of each fixed power and exponential.
+This proves \eqref{eq:moment-convergence} and finishes the proof of
+Theorem~\ref{thm:main}.
+
+\begin{remark}[Quantitative exclusion of close pairs]
+The preceding proof gives a uniform estimate for both the finite
+processes and every limit. If $K\subset B_r$ is compact and
+$\varepsilon>0$, then
+\[
+ \Prob\{\text{two distinct points in }K
+                    \text{ have distance less than }\varepsilon\}
+ \le \frac{C_{\beta,r}\pi\,A(K)}{\beta+2}
+               \varepsilon^{\beta+2},
+\]
+where $A(K)$ is the area of $K$. Indeed, such a pair contributes at
+least two to the ordered pair count. Integrating the two-point bound
+uses
+$\int_{|u|<\varepsilon}|u|^\beta dA(u)
+ =2\pi\varepsilon^{\beta+2}/(\beta+2)$.
+\end{remark}
+
+\begin{remark}[The role of positive inverse temperature]
+At $\beta=0$ the points are independent and uniform on $\D$.
+For $0<r<1$, $M_N(r)$ is binomial with parameters $N$ and $r^2$,
+so it tends to infinity in probability. The local tightness result
+therefore uses the assumption $\beta>0$ essentially.
+\end{remark}
+
+\begin{thebibliography}{2}
+\bibitem{DV1}
+D. J. Daley and D. Vere-Jones,
+\emph{An Introduction to the Theory of Point Processes},
+vol.~I: Elementary Theory and Methods, second edition, Springer, 2003.
+Appendix A2.4--A2.6.
+
+\bibitem{DV2}
+D. J. Daley and D. Vere-Jones,
+\emph{An Introduction to the Theory of Point Processes},
+vol.~II: General Theory and Structure, second edition, Springer, 2008.
+Section 9.1.
+\end{thebibliography}
+\end{document}
