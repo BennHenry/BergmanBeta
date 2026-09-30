@@ -7,7 +7,9 @@
 \newcommand{\D}{\mathbb{D}}
 \newcommand{\Bin}{\operatorname{Bin}}
 
-\title{Bergman beta heuristic}
+\newtheorem{remark}{Remark}
+
+\title{Bergman $\beta$ Heuristic}
 \author{}
 \date{}
 
@@ -15,8 +17,7 @@
 
 \maketitle
 
-The goal of this short note is to provide a heuristic on why the limit(s)
-of finite-number-of-particles log gases in the disk are empty for $\beta=4$.
+The goal of this short note is to provide a heuristic explanation for why the limit(s) of finite-particle log gases in the disk are empty for $\beta>4$.
 
 Recall that we consider the Gibbs point process
 \[
@@ -26,7 +27,7 @@ Recall that we consider the Gibbs point process
 e^{-\beta H(\gamma)}
 \Bin_{\D,n}(d\gamma),
 \]
-where $\Bin_{\D,n}$ is the binomial point process in the unit disk $\D$ and
+where $\Bin_{\D,n}$ is the $n$-point binomial point process in the unit disk $\D$, and
 \[
 H(\gamma)
 =
@@ -52,21 +53,18 @@ e^{-\beta H(\gamma)}
 \log \Bin_{\D,n}(\mathcal{C}).
 \]
 
-This quantity allows us to compare how probable different classes of
-configurations are. We know (at least for $\beta=2$), that almost all particles concentrate 
- on the boundary of the disk. To see where the $\beta=4$ comes from we will compare the asymptotics
-of candidates to be typical configuration:
+This quantity allows us to compare the probabilities of different classes of configurations. We know, at least for $\beta=2$, that almost all particles concentrate near the boundary of the disk. Because of the repulsion, it is reasonable to expect the points near the boundary to be distributed approximately evenly.
+
+To understand where the transition at $\beta=4$ comes from, we compare the asymptotics of two candidate typical configurations:
 \begin{enumerate}
-\item The first candidate will be configurations where all the particles goes to the boundary leaving a limiting empty interior
-\item The second candidate will be configurations with essentially all points on the boundary but one remains near $0$
+    \item Configurations in which all particles approach the boundary, leaving an empty interior in the limit.
+    \item Configurations in which essentially all particles lie near the boundary, while one particle remains near $0$.
 \end{enumerate}
-We will see that for $\beta>4$ the free energy cost of candidates $1$ will be favorable. This suggest empty point processes at the limit.
+We will see that, for $\beta>4$, the free-energy cost of candidate~1 is favorable. This suggests an empty limiting point process.
 
+Let us define the two corresponding classes of configurations, $\mathcal{C}_1$ and $\mathcal{C}_2$.
 
-Let us define our two types of configurations:
-$\mathcal{C}_1$ and $\mathcal{C}_2$.
-
-Let $n\geq 2$ and denote by
+Let $n\geq 2$, and denote by
 \[
 \Gamma_n
 :=
@@ -74,15 +72,14 @@ Let $n\geq 2$ and denote by
 \]
 the space of configurations with $n$ points in the unit disk.
 
- For $m\geq1$, write
+For $m\geq 1$, write
 \[
 \zeta_k^{(m)}
 :=
 e^{2\pi i k/m},
+\qquad
 k=0,\ldots,m-1.
 \]
-
-
 
 We define the reference class $\mathcal{C}_1$ by
 \[
@@ -90,60 +87,51 @@ We define the reference class $\mathcal{C}_1$ by
 :=
 \left\{
 \gamma\in\Gamma_n:
-\#\bigl(\gamma\cap B(\zeta_k^{(m)},1/n)\cap\D\bigr)=1
+\#\bigl(\gamma\cap B(\zeta_k^{(n)},1/n)\cap\D\bigr)=1
 \text{ for } k=0,\ldots,n-1
 \right\}.
 \]
 
+\begin{remark}
+Of course, a typical boundary configuration would instead be some random rotation of a configuration resembling $\mathcal{C}_1$. The computation can be carried out for a more general class of configurations, but doing so does not provide additional insight. Moreover, we compare $\mathcal{C}_1$ with a class having the same type of ``fixed reference.'' Thus, the entropy lost by not taking this random permutation into account is, to some extent, compensated by making the same restriction for $\mathcal{C}_2$.
+\end{remark}
 
-The figures illustrate $n=10$. Black dots represent particles; hollow
-circles mark the centers of the balls.
-
-\begin{center}
-\includegraphics[width=0.65\textwidth]{Assets/class1.png}
-\end{center}
-
-Thus there is exactly one point in each blue boundary region, and no points
-elsewhere. We then consider
-
-
-The boundary pattern may have any common orientation, while particles may
-vary within their respective regions.
+The figures illustrate the case $n=10$. Black dots represent particles, while hollow circles mark the centers of the balls.
 
 \begin{center}
-\includegraphics[width=0.65\textwidth]{Assets/class2.png}
+    \includegraphics[width=0.65\textwidth]{Assets/class1.png}
 \end{center}
-Let $\alpha>0$ be small.
-Similarly, we define the reference class $\mathcal{C}_2$ by
+
+Thus, there is exactly one point in each blue boundary region and no points elsewhere.
+
+\begin{center}
+    \includegraphics[width=0.65\textwidth]{Assets/class2.png}
+\end{center}
+
+Let $\alpha>0$ be small. Similarly, we define the reference class $\mathcal{C}_2$ by
 \[
 \mathcal{C}_2
 :=
 \left\{
 \gamma\in\Gamma_n:
 \begin{array}{l}
-\#\bigl(\gamma\cap B(0,\sqrt{\alpha/\pi})\bigr)=1,\\[2pt]
-\#\bigl(\gamma\cap B(\zeta_k^{(m)},1/n)\bigr)=1
+\#\bigl(\gamma\cap B(0,\sqrt{\alpha})\bigr)=1,\\[2pt]
+\#\bigl(\gamma\cap B(\zeta_k^{(n-1)},1/n)\bigr)=1
 \text{ for } k=0,\ldots,n-2
 \end{array}
 \right\}.
 \]
 
-Thus there is exactly one point in the central ball and one point in each of
-the $n-1$ blue boundary regions, with no points elsewhere.
+Thus, there is exactly one point in the central ball and one point in each of the $n-1$ blue boundary regions, with no points elsewhere.
 
-
-
-We now compute the binomial probabilities of these two classes. Write $|E|$
-for planar area and set
+We now compute the binomial probabilities of these two classes. Write $|E|$ for planar area and set
 \[
 q_n
 :=
 \frac{|B(1,1/n)\cap\mathbb{D}|}{\pi}.
 \]
 
-Thus $q_n$ is the contribution of one boundary cap.
- The central ball contributes $\alpha$.
-
+Thus, $q_n$ is the contribution of one boundary cap, while the central ball contributes $\alpha/\pi$.
 
 We then have
 \[
@@ -153,10 +141,8 @@ n!\,q_n^n,
 \qquad
 \Bin_{\mathbb{D},n}\bigl(\mathcal{C}_2\bigr)
 =
-n!\,\alpha^2 q_n^{n-1}.
+n!\,\alpha q_n^{n-1}.
 \]
-
-
 
 We have
 \[
@@ -165,37 +151,41 @@ q_n
 \frac{1}{2n^2}.
 \]
 
-Hence
+Hence,
 \[
 \Bin_{\mathbb{D},n}(\mathcal{C}_1)
 \simeq
-n!\,2^{-n}n^{2n},
+n!\,2^{-n}n^{-2n},
 \qquad
 \Bin_{\mathbb{D},n}(\mathcal{C}_2)
 \simeq
-n!\alpha^2\,2^{1-n}n^{2-2n}.
+n!\alpha \,2^{1-n}n^{2-2n}.
 \]
 
-
-
-
-
 Set
-$$
-\gamma_1^{(n)}:=\{\zeta_0^{(n)},\ldots,\zeta_{n-1}^{(n)}\},\
-\qquad\
-\gamma_2^{(n)}:=\{0,\zeta_0^{(n-1)},\ldots,\zeta_{n-2}^{(n-1)}\}.\
-$$
-the prototypical configurations associated respectively to $\mathcal{C}_1$ and $\mathcal{C}_2$.
+\[
+\gamma_1^{(n)}
+:=
+\{\zeta_0^{(n)},\ldots,\zeta_{n-1}^{(n)}\},
+\qquad
+\gamma_2^{(n)}
+:=
+\{0,\zeta_0^{(n-1)},\ldots,\zeta_{n-2}^{(n-1)}\}.
+\]
+These are the prototypical configurations associated with $\mathcal{C}_1$ and $\mathcal{C}_2$, respectively.
 
-Because of the repulsion, we expect that the points near the boundary are distributed 
-close $\gamma_1^{(n)}$ and $\gamma_2^{(n)}$, so we trust the approximations
-$$
-H(\gamma)\simeq H(\gamma_i^{(n)}),\quad \forall \gamma\in \mathcal{C}_i, \quad i\in\{0,1\}.
-$$
+Because of the repulsion, we expect the points near the boundary to be distributed close to $\gamma_1^{(n)}$ and $\gamma_2^{(n)}$. We therefore use the approximations
+\[
+H(\gamma)
+\simeq
+H(\gamma_i^{(n)}),
+\qquad
+\forall\,\gamma\in\mathcal{C}_i,
+\qquad
+i\in\{1,2\}.
+\]
+
 The classical computation gives
-
-
 \[
 H(\gamma_1^{(n)})
 =
@@ -204,26 +194,32 @@ H(\gamma_1^{(n)})
 and
 \[
 H(\gamma_2^{(n)})
-=-\frac{n-1}{2}\log(n-1).
+=
+-\frac{n-1}{2}\log(n-1).
 \]
-where the impact of the central point just dispear since the zeta's are the 
-roots of unity.
+The contribution of the central point disappears because the $\zeta_k$'s are roots of unity.
+
 In particular,
 \[
 H(\gamma_1^{(n)})-H(\gamma_2^{(n)})
 =
-\frac{1}{2}\log n+\frac{1}{2}+O(n^{-1}),
-\qquad n\to\infty.
+-\frac{1}{2}\log n-\frac{1}{2}+O(n^{-1}),
+\qquad
+n\to\infty.
 \]
-Thus the free energy discrepency is
 
+Thus, the free-energy discrepancy is
 \[
-\Delta_n:=F_{n,\beta}(\mathcal{C}_1)-F_{n,\beta}(\mathcal{C}_2)=\frac{1}{2}\log n-\frac{2}{\beta}\log n+\frac{1}{2}+O(1).
+\Delta_n
+:=
+F_{n,\beta}(\mathcal{C}_1)
+-
+F_{n,\beta}(\mathcal{C}_2)
+=
+\left(\frac{2}{\beta}-\frac{1}{2}\right)\log n
++O(1).
 \]
 
-Hence, for $\beta<4$, $\Delta_n \to -\infty$ and for $\beta>4$, $\Delta_n \to \infty$. Hence,
-in the first case $\mathcal{C}_2$ is more favorable while in the second case it is  
-$\mathcal{C}_1$ that is favored.
-
+Hence, for $\beta<4$, $\Delta_n\to+\infty$, whereas for $\beta>4$, $\Delta_n\to-\infty$. Thus, in the first case, $\mathcal{C}_2$ is more favorable, while in the second case, $\mathcal{C}_1$ is favored.
 
 \end{document}
